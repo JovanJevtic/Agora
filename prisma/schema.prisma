@@ -14,15 +14,15 @@ datasource db {
 model User {
   id        Int      @default(autoincrement()) @id
   email     String   @unique
-  password  String   
+  password  String   @db.VarChar(200)
   name      String   @db.VarChar(50)
 }
 
 model EmailVerificationToken {
   id        Int      @default(autoincrement()) @id
   email     String
-  password  String   
   name      String   @db.VarChar(50)
-  token     Int     
+  password  String   @db.VarChar(200)
+  token     String   @db.LongText
   expiresAt DateTime @default(dbgenerated("(DATE_ADD(NOW(), INTERVAL 24 HOUR))"))
 }
