@@ -10,3 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
+
+model User {
+  id        Int      @default(autoincrement()) @id
+  email     String   @unique
+  password  String   
+  name      String   @db.VarChar(50)
+}
+
+model EmailVerificationToken {
+  id        Int      @default(autoincrement()) @id
+  email     String
+  password  String   
+  name      String   @db.VarChar(50)
+  token     Int     
+  expiresAt DateTime @default(dbgenerated("(DATE_ADD(NOW(), INTERVAL 24 HOUR))"))
+}
