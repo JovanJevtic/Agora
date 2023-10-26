@@ -3,7 +3,7 @@
 import { verifyJWT } from '@/app/libs/token'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
+import axios from 'axios'
 
 type Token = {
     email: string; 
@@ -16,20 +16,18 @@ const VerifyPage = () => {
     const token = searchParams.get('token')
     
     const [tokenValue, setTokenValue] = useState<Token | null>();
+    const [responseMessage, setResponseMessage] = useState<string | null>(null);
+    const [responseError, setResponseError] = useState<string | null>(null);
 
     const getValue = async () => {
-        const tokenVal: Token = await verifyJWT(token as string);
-        if (tokenVal) setTokenValue(tokenVal)
+        try {
+            const tokenVal: Token = await verifyJWT(token as string);
+            if (tokenVal) setTokenValue(tokenVal)
+        } catch (error) {
+            setResponseError("Verifikacioni token istekao, molim Vas pokusajte ponovo!")
+        }
     }
-    const validate = async () => {
-        const res = fetch(`http://localhost:3000/api/auth/confirmEmail`, {
-            method: 'POST',
-            body: JSON.stringify({
-                tokenVal: tokenValue,
-                token: token
-            })
-        })
-    }
+
 
     useEffect(() => {
         if (token) getValue()
@@ -37,13 +35,27 @@ const VerifyPage = () => {
 
     useEffect(() => {
         if (tokenValue) {
-            validate()
-        } 
+            axios.post(`http://localhost:3000/api/auth/confirmEmail`, {
+                tokenVal: tokenValue,
+                token: token
+            }).then((res) => {
+                setResponseMessage(res.data.msg);
+            }).catch((error) => {
+                setResponseError(error.response.data.error)
+            })
+        }   
     }, [tokenValue])
 
-
     return (
-        <div>VerifyPage: </div>
+        <>
+            <div>VerifyPage</div>
+            {
+                responseMessage && <h1>{responseMessage}</h1>
+            }
+            {
+                responseError && <h1>{responseError}</h1>
+            }
+        </>
     )
 }
 
