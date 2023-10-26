@@ -23,6 +23,6 @@ model EmailVerificationToken {
   email     String
   name      String   @db.VarChar(50)
   password  String   @db.VarChar(200)
-  token     String   @db.LongText
+  token     String   @unique @db.VarChar(200) 
   expiresAt DateTime @default(dbgenerated("(DATE_ADD(NOW(), INTERVAL 24 HOUR))"))
 }

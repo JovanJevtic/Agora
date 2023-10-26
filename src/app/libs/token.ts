@@ -1,10 +1,13 @@
 import { SignJWT, jwtVerify } from 'jose'
 
+const secret = new TextEncoder().encode(
+  `asdasldkk2as0dk02qkdasdpksldkassasadasdkjl2`
+)
+
 export const signJWT = async (
     payload: { email: string, tokenCode: number },
   ) => {
     try {
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       const alg = "HS256";
       const trenutniDatum = Date.now()
       const sutra = (trenutniDatum + (24 * 60 * 60 * 1000));
@@ -24,7 +27,7 @@ export const verifyJWT = async <T>(token: string): Promise<T> => {
       return (
         await jwtVerify(
           token,
-          new TextEncoder().encode(process.env.JWT_SECRET)
+          secret
         )
       ).payload as T;
     } catch (error: any) {

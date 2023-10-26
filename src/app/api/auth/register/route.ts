@@ -12,7 +12,7 @@ type RegisterUserData = {
 }
 
 export const POST = async (request: NextRequest) => {
-    // try {
+    try {
         const {
             email,
             name,
@@ -62,9 +62,9 @@ export const POST = async (request: NextRequest) => {
             html: 'Cao,  '+ name +',\n\n' + `Verifikuj se: <a href="${url}">${url}</a>`+'\n\n, Pusa!\n' 
         };
 
-        const sendResult = await transporter.sendMail(mailOptions);
+        const sendResult = transporter.sendMail(mailOptions);
         return NextResponse.json({ message: 'success' }, { status: 200 });
-    // } catch (error) {
-    //     return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
-    // }
+    } catch (error) {
+        return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
+    }
 }
