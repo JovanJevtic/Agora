@@ -11,7 +11,7 @@ export const POST = async (request: NextRequest) => {
 
         const userExists = await prisma.user.findUnique({ where: { email: tokenVal.email } })
         if (userExists) {
-            return NextResponse.json({ error: 'Korisnik je vec verifikovan...' }, { status: 400 })
+            return NextResponse.json({ message: 'Korisnik je vec verifikovan...', redirect: true }, { status: 200 })
         }
         
         if (!emailVerificationToken) {
@@ -43,7 +43,7 @@ export const POST = async (request: NextRequest) => {
             }
         })
 
-        return NextResponse.json({ msg: 'success' }, { status: 200 })
+        return NextResponse.json({ message: 'success'  }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 })
     }

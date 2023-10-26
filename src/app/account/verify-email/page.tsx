@@ -3,7 +3,10 @@
 import { verifyJWT } from '@/app/libs/token'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { signIn } from 'next-auth/react';
 
 type Token = {
     email: string; 
@@ -12,12 +15,15 @@ type Token = {
 }
 
 const VerifyPage = () => {
+    const { push, refresh } = useRouter();
+
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
     
     const [tokenValue, setTokenValue] = useState<Token | null>();
     const [responseMessage, setResponseMessage] = useState<string | null>(null);
     const [responseError, setResponseError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const getValue = async () => {
         try {
@@ -28,34 +34,55 @@ const VerifyPage = () => {
         }
     }
 
+    const validate = async () => {
+        try {
+            setLoading(true);
+            const res = await axios.post(`http://localhost:3000/api/auth/confirmEmail`, {
+                tokenVal: tokenValue,
+                token: token
+            });
+            setResponseMessage(res.data.message);
+            
+            if (res.data.redirect) {
+                push('/login')
+            }
+            setLoading(false);
+        } catch (error: any) {
+            setLoading(false);
+            setResponseError(error.response.data.error)
+        }
+    }
 
     useEffect(() => {
         if (token) getValue()
     }, [])
 
     useEffect(() => {
-        if (tokenValue) {
-            axios.post(`http://localhost:3000/api/auth/confirmEmail`, {
-                tokenVal: tokenValue,
-                token: token
-            }).then((res) => {
-                setResponseMessage(res.data.msg);
-            }).catch((error) => {
-                setResponseError(error.response.data.error)
-            })
-        }   
+        if (tokenValue) validate()
     }, [tokenValue])
 
     return (
-        <>
-            <div>VerifyPage</div>
+        <div id='emailVerificationPage'>
+            <h1>VerifyPage</h1>
+            <div className='loading-wrapp'>
+                {
+                    loading && <h1>Loading...</h1>
+                }
+            </div>
             {
-                responseMessage && <h1>{responseMessage}</h1>
+                responseMessage && 
+                <div className='success-wrapper'>
+                    {responseMessage}
+                    <Link href={'/login'}>Prijavi se</Link>    
+                </div>
             }
             {
-                responseError && <h1>{responseError}</h1>
+                responseError && <div className='error-wrapper'>
+                   <p>{responseError}</p>
+                   <Link href={'/register'}>Registruj se</Link>
+                </div>
             }
-        </>
+        </div>
     )
 }
 

@@ -1,5 +1,7 @@
 @import './config';
-@import './nav';
+@import './components/nav';
+
+@import './pages/emailVerification';
 
 * {
     margin: 0;

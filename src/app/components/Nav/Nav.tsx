@@ -38,7 +38,7 @@ const Nav = () => {
                         }
                     </ul>
                 </div>
-                {/* <NavBarBtn /> */}
+                <NavBtn />
             </div>
         </nav>
   )
