@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 import './style/style.css'
 import Nav from './components/Nav/Nav'
 import SessionProvider from './components/SessionProvider'
 import { getServerSession } from 'next-auth'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Poppins({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: 'Agora',

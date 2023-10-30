@@ -32,11 +32,12 @@ const Form = () => {
         const response = await signIn('credentials', {
             email: formData.email,
             password: formData.password,
-            redirect: callbackUrl ? true : false,
-            callbackUrl: callbackUrl as string
+            // redirect: callbackUrl ? true : false,
+            // callbackUrl: callbackUrl ? callbackUrl : '/'
+            redirect: false
         }) 
         if (!response?.error) {
-            push('/');
+            push(callbackUrl ? callbackUrl : '/');
             refresh();
         }
     }

@@ -31,15 +31,19 @@ export const POST = async (request: NextRequest) => {
 
         const user = await prisma.user.create({
             data: {
+                // email: emailVerificationToken.email,
+                // name: emailVerificationToken.name,
+                // password: emailVerificationToken.password
                 email: emailVerificationToken.email,
                 name: emailVerificationToken.name,
-                password: emailVerificationToken.password
+                password: emailVerificationToken.password,
+                role: "user"
             }
         })
 
         await prisma.emailVerificationToken.deleteMany({
             where: {
-                email: user.email
+                email: user.email || '',
             }
         })
 

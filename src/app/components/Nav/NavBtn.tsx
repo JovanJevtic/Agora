@@ -18,15 +18,16 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
                 style={{ backgroundColor: '#96160e' }}
             >Odjavi se</button>
             :
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', height: '100%' }}>
                 <Link
-                    id='nav-btn'
+                    className='nav-btn'
                     href={'/login'}
                 >Prijavi se</Link>
                 <Link 
                     href={'/register'}
+                    className='nav-btn'
                     id='nav-btn'
-                    style={{ backgroundColor: '#0e2b96', marginLeft: '10px' }}
+                    style={{ marginLeft: '10px', paddingLeft: '15px', paddingRight: '15px' }}
                 >
                     Registruj se
                 </Link>

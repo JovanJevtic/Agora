@@ -1,8 +1,10 @@
 nav {
     height: 10vh;
     width: 100%;
-    border-bottom: 1px solid #5d5d5d;
+    border-bottom: 1px solid #4e4e4e;
+    background: #000;
     position: fixed;
+    color: #fff;
 }
 
 #navbar-gap {
@@ -18,11 +20,13 @@ nav {
 
 #logo-wrapp {
     flex: 1;
+    display: flex;
+    align-items: center;
 
-    p {
-        font-weight: bold;
-        font-size: 18px;
-    }
+    // p {
+        // font-weight: bold;
+        // font-size: 16px;
+    // }
 }
 
 #links-wrapp {
@@ -46,15 +50,19 @@ nav {
     }
 }
  
-#nav-btn {
+.nav-btn {
     height: 45px;
-    width: 110px;
+    min-width: 110px;
     margin-left: 10px;
     // background: rgb(7, 7, 117);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    font-weight: bold;
-    font-size: 16px;
+    // font-weight: bold;
+    // font-size: 16px;
+}
+
+#nav-btn {
+    background: $orange;
 }

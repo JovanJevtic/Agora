@@ -5,7 +5,7 @@
 
 @media only screen and (min-width: 1000px) {
   .container {
-    width: 900px;
+    width: 1250px;
     margin: auto;
   }
 }
@@ -13,8 +13,10 @@
 nav {
   height: 10vh;
   width: 100%;
-  border-bottom: 1px solid #5d5d5d;
+  border-bottom: 1px solid #4e4e4e;
+  background: #000;
   position: fixed;
+  color: #fff;
 }
 
 #navbar-gap {
@@ -36,11 +38,12 @@ nav {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-}
-
-#logo-wrapp p {
-  font-weight: bold;
-  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #links-wrapp {
@@ -76,9 +79,9 @@ nav {
   color: #737373;
 }
 
-#nav-btn {
+.nav-btn {
   height: 45px;
-  width: 110px;
+  min-width: 110px;
   margin-left: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -90,8 +93,10 @@ nav {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
+}
+
+#nav-btn {
+  background: #fa8400;
 }
 
 #emailVerificationPage {
