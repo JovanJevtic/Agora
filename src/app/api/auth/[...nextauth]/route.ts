@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
                     image: profile.picture,
                     role: profile.role ? profile.role : "user"
                 })
-            }
+            },
         }),
         CredentialsProvider({
             credentials: {
