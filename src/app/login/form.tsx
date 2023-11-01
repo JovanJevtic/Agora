@@ -4,6 +4,11 @@ import { signIn } from "next-auth/react";
 import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { useSearchParams } from 'next/navigation'
+import { Button } from "../components/ui/button";
+import { useForm } from 'react-hook-form'
+import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginFormSchema } from "../libs/validation/form";
 
 type LoginFormData = {
     email: string;
@@ -11,56 +16,38 @@ type LoginFormData = {
 }
 
 const Form = () => {
-    const { push, refresh } = useRouter();
-    const params = useSearchParams();
-    const callbackUrl = params.get("callbackUrl")
-
-    const [formData, setFormData] = useState<LoginFormData>({
-        email: '',
-        password: ''
-    })
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData, 
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const login = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const response = await signIn('credentials', {
-            email: formData.email,
-            password: formData.password,
-            // redirect: callbackUrl ? true : false,
-            // callbackUrl: callbackUrl ? callbackUrl : '/'
-            redirect: false
-        }) 
-        if (!response?.error) {
-            push(callbackUrl ? callbackUrl : '/');
-            refresh();
-        }
-    }
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isLoading },
+        reset,
+        getValues
+    } = useForm();
 
     return (
        <>
-        <form onSubmit={login}>
+        <form>
             <h1>Login</h1>
             <input 
+                {
+                    ...register('email')
+                }
                 type="email" 
                 name="email"
                 placeholder="email.."
-                onChange={handleChange}
                 className="text-black"
             />
             <input 
+                {
+                    ...register('password')
+                }
                 type="password"
                 name="password"
                 placeholder="password..."
-                onChange={handleChange}
                 className="text-black"
             />
-            <button type="submit">Login</button>
+            {/* <button type="submit">Login</button> */}
+            <Button type="submit">Login</Button>
         </form>
         <button onClick={() => {signIn("google")}}>Google</button>
         </>

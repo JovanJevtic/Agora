@@ -20,7 +20,16 @@ export const POST = async (request: NextRequest) => {
         } = (await request.json()) as RegisterUserData;
 
         const validateResponse = registerFormSchema.safeParse({ email, password, name });
-        if (!validateResponse.success) return NextResponse.json({ error: 'Greska u unosu...' }, { status: 400 });
+        // if (!validateResponse.success) return NextResponse.json({ error: 'Greska u unosu...' }, { status: 400 });
+
+        let zodErrors = {};
+        if (!validateResponse.success) {
+                validateResponse.error.issues.forEach((issue) => {
+                zodErrors = { ...zodErrors, [issue.path[0]]: issue.message };
+            });
+
+            return NextResponse.json({ errors: zodErrors });
+        }
 
         const emailEquieped = await prisma.user.findUnique({ where: { email: email } });
         if (emailEquieped) return NextResponse.json({ error: 'Email je vec u upotrebi' }, { status: 400 });
