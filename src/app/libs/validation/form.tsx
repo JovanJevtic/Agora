@@ -6,10 +6,10 @@ export const loginFormSchema = z.object({
 })
 
 export const registerFormSchema = z.object({
-    email: z.string().email(),
+    email: z.string().email("Email nije vazeci!"),
     password: z.string().min(8, "Lozinka mora biti najmanje 8 karaktera dugacka!"),
     confirmPassword: z.string(),
-    name: z.string().min(3)
+    name: z.string().min(3, "Ime mora sadrzati najmanje 3 karaktera!")
 }).refine(data => data.password === data.confirmPassword, { 
   message: 'Lozinke se moraju poklapati!',
   path: ['confirmPassword']

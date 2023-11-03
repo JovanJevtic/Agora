@@ -9,6 +9,7 @@ type RegisterUserData = {
     email: string;
     name: string;
     password: string;
+    confirmPassword: string;
 }
 
 export const POST = async (request: NextRequest) => {
@@ -16,10 +17,11 @@ export const POST = async (request: NextRequest) => {
         const {
             email,
             name,
-            password
+            password,
+            confirmPassword
         } = (await request.json()) as RegisterUserData;
 
-        const validateResponse = registerFormSchema.safeParse({ email, password, name });
+        const validateResponse = registerFormSchema.safeParse({ email, password, name, confirmPassword });
         // if (!validateResponse.success) return NextResponse.json({ error: 'Greska u unosu...' }, { status: 400 });
 
         let zodErrors = {};
@@ -28,20 +30,20 @@ export const POST = async (request: NextRequest) => {
                 zodErrors = { ...zodErrors, [issue.path[0]]: issue.message };
             });
 
-            return NextResponse.json({ errors: zodErrors });
+            return NextResponse.json({ errors: zodErrors }, { status: 400 });
         }
 
         const emailEquieped = await prisma.user.findUnique({ where: { email: email } });
-        if (emailEquieped) return NextResponse.json({ error: 'Email je vec u upotrebi' }, { status: 400 });
+        if (emailEquieped) return NextResponse.json({ errors: { email: 'Email je vec u upotrebi!' } }, { status: 400 });
 
         const salt = await bcrypt.genSalt(10);
-        const hashedPwd = await bcrypt.hash(password, salt);
+        const hashedPwd = await bcrypt.hash(password, salt);    
         const tokenCode = (Math.floor(10000 + Math.random() * 90000));
 
         const token = await signJWT({
            email: email,
            tokenCode: tokenCode
-        })
+    })  
         
         const emailVerifyToken = await prisma.emailVerificationToken.create({
             data: {

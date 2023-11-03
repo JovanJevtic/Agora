@@ -1,68 +1,68 @@
-nav {
-    height: 10vh;
-    width: 100%;
-    border-bottom: 1px solid #4e4e4e;
-    background: #000;
-    position: fixed;
-    color: #fff;
-}
+// nav {
+//     height: 10vh;
+//     width: 100%;
+//     border-bottom: 1px solid #4e4e4e;
+//     background: #000;
+//     position: fixed;
+//     color: #fff;
+// }
 
-#navbar-gap {
-    height: 10vh;
-    width: 100%;
-}
+// #navbar-gap {
+//     height: 10vh;
+//     width: 100%;
+// }
 
-#nav-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
+// #nav-container {
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+// }
 
-#logo-wrapp {
-    flex: 1;
-    display: flex;
-    align-items: center;
+// #logo-wrapp {
+//     flex: 1;
+//     display: flex;
+//     align-items: center;
 
-    // p {
-        // font-weight: bold;
-        // font-size: 16px;
-    // }
-}
+//     // p {
+//         // font-weight: bold;
+//         // font-size: 16px;
+//     // }
+// }
 
-#links-wrapp {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+// #links-wrapp {
+//     flex: 1;
+//     display: flex;
+//     justify-content: flex-end;
 
-    ul {
-        width: 75%;
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
+//     ul {
+//         width: 75%;
+//         list-style: none;
+//         display: flex;
+//         justify-content: space-around;
 
-        li {
-            // width: 70px;
-            justify-content: flex-end;
-            display: flex;
-            font-size: 16px;
-            color: #737373;
-        }
-    }
-}
+//         li {
+//             // width: 70px;
+//             justify-content: flex-end;
+//             display: flex;
+//             font-size: 16px;
+//             color: #737373;
+//         }
+//     }
+// }
  
-.nav-btn {
-    height: 45px;
-    min-width: 110px;
-    margin-left: 10px;
-    // background: rgb(7, 7, 117);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    // font-weight: bold;
-    // font-size: 16px;
-}
+// .nav-btn {
+//     height: 45px;
+//     min-width: 110px;
+//     margin-left: 10px;
+//     // background: rgb(7, 7, 117);
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     border-radius: 5px;
+//     // font-weight: bold;
+//     // font-size: 16px;
+// }
 
-#nav-btn {
-    background: $orange;
-}
+// #nav-btn {
+//     background: $orange;
+// }

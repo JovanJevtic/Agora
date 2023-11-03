@@ -5,6 +5,7 @@ import './style/style.css'
 import Nav from './components/Nav/Nav'
 import SessionProvider from './components/SessionProvider'
 import { getServerSession } from 'next-auth'
+import { ThemeProvider } from "@/app/components/theme-provider"
 
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
 
@@ -21,15 +22,22 @@ export default async function RootLayout({
   const session = await getServerSession()
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <SessionProvider session={session}>
-          <Nav />
-          <div style={{height: '10vh'}}></div>
-          <main className='container'>
-            {children}
-          </main>
-        </SessionProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} `} >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider session={session}>
+            <Nav />
+            <div style={{height: '10vh'}}></div>
+            <main className='container '>
+              {children}
+            </main>
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

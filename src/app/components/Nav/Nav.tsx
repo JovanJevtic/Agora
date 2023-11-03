@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Logo from '../../../../public/LogoTip-01.png'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 
 export type NavLink = {
     name: string;
@@ -49,6 +50,7 @@ const Nav = async () => {
                 { 
                     session?.user.role === "admin" ? <Link href={'/admin'}>Admin</Link> : <></>
                 }
+                <DarkModeToggle />
             </div>
         </nav>
   )

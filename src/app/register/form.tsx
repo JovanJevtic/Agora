@@ -4,13 +4,30 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent, useState } from "react"
 import { FieldValues, useForm } from "react-hook-form";
 import { TSRegisterSchema, registerFormSchema } from "../libs/validation/form";
-
-type RegisterFormData = {
-    email: string;
-    password: string;
-}
+import { Form as FormComponent, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/app/components/ui/form'
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { Loader2 } from "lucide-react"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/app/components/ui/card"
 
 const Form = () =>   {
+    const form = useForm<TSRegisterSchema>({
+        resolver: zodResolver(registerFormSchema),
+        defaultValues: {
+            email: "",
+            confirmPassword: '',
+            name: '',
+            password: ''
+        },
+    });
+
     const {
         register,
         handleSubmit,
@@ -18,9 +35,7 @@ const Form = () =>   {
         reset,
         getValues,
         setError
-    } = useForm<TSRegisterSchema>({
-        resolver: zodResolver(registerFormSchema)
-    });
+    } = form
 
     const onSubmit = async (data: FieldValues) => {
         const response = await fetch(`/api/auth/register`, {
@@ -52,72 +67,76 @@ const Form = () =>   {
               alert("Something went wrong!");
             }
         }
-
-
         // reset();
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Register</h1>
-            <input
-                {
-                    ...register("name")
-                } 
-                type="name" 
-                name="name"
-                placeholder="name.."
-                className="text-black"
-            />
-            {
-                errors.name && (
-                    <p className="text-red-500">{`${errors.name.message}`}</p>
-                )
-            }
-            <input
-                {
-                    ...register("email")
-                } 
-                type="email" 
-                name="email"
-                placeholder="email.."
-                className="text-black"
-            />
-            {
-                errors.email && (
-                    <p className="text-red-500">{`${errors.email.message}`}</p>
-                )
-            }
-            <input 
-                {
-                    ...register('password')
-                }
-                type="password"
-                name="password"
-                placeholder="password..."
-                className="text-black"
-            />
-            {
-                errors.password && (
-                    <p className="text-red-500">{`${errors.password.message}`}</p>
-                )
-            }
-            <input 
-                {
-                    ...register('confirmPassword')
-                }
-                type="password"
-                name="confirmPassword"
-                placeholder="password..."
-                className="text-black"
-            />
-            {
-                errors.confirmPassword && (
-                    <p className="text-red-500">{`${errors.confirmPassword.message}`}</p>
-                )
-            }
-            <button disabled={isSubmitting} type="submit">Register</button>
-        </form>
+        <Card className="w-[750px]">
+            <CardHeader>
+                <CardTitle>Registracija</CardTitle>
+                <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <FormComponent {...form}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem className="mt-2">
+                            <FormControl className="h-12">
+                                <Input placeholder="Korisnicko ime..." {...field} />
+                            </FormControl>
+                            <FormMessage style={{color: 'red'}} />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem className="mt-2">
+                                <FormControl className="h-12">
+                                    <Input placeholder="Email..." {...field} />
+                                </FormControl>
+                                <FormMessage style={{color: 'red'}} />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                            <FormItem className="mt-2">
+                            <FormControl className="h-12">
+                                <Input type="password" placeholder="Lozinka.." {...field} />
+                            </FormControl>
+                            <FormMessage style={{color: 'red'}} />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="confirmPassword"
+                        render={({ field }) => (
+                            <FormItem className="mt-2">
+                            <FormControl className="h-12"> 
+                                <Input type="password" placeholder="Lozinka.." {...field} />
+                            </FormControl>
+                            <FormMessage style={{color: 'red'}} />
+                            </FormItem>
+                        )}
+                    />
+                    <Button className="mt-5" disabled={isSubmitting || isLoading} type="submit">
+                        {
+                            (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        }
+                        Registruj se
+                    </Button>
+                </form>
+            </FormComponent>
+            </CardContent>
+        </Card>
     )
 }
 
