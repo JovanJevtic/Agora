@@ -16,6 +16,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/app/components/ui/card"
+import { signIn } from "next-auth/react";
 
 const Form = () =>   {
     const form = useForm<TSRegisterSchema>({
@@ -64,7 +65,7 @@ const Form = () =>   {
                 message: errors.confirmPassword,
               });
             } else {
-              alert("Something went wrong!");
+              
             }
         }
         // reset();
@@ -127,7 +128,7 @@ const Form = () =>   {
                             </FormItem>
                         )}
                     />
-                    <Button className="mt-5" disabled={isSubmitting || isLoading} type="submit">
+                    <Button className="mt-5 w-full" disabled={isSubmitting || isLoading} type="submit" variant={"secondary"}>
                         {
                             (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         }
@@ -135,6 +136,20 @@ const Form = () =>   {
                     </Button>
                 </form>
             </FormComponent>
+            <div className="w-full flex justify-center">
+                <div className="h-10 flex items-center mt-2" style={{width: '98%'}}>
+                    <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
+                    <div className="flex-1 flex items-center justify-center">
+                        <p className="text-zinc-600" style={{fontSize: '16px'}}>ili</p>
+                    </div>
+                    <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
+                </div> 
+            </div> 
+            <Button
+                className="w-full mt-2"
+                onClick={() => signIn("google")}
+                variant={"default"}
+            >Google</Button>
             </CardContent>
         </Card>
     )
