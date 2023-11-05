@@ -17,6 +17,8 @@ import {
     CardTitle,
 } from "@/app/components/ui/card"
 import { signIn } from "next-auth/react";
+import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert"
+import { AlertCircle, MailCheck } from "lucide-react"
 
 const Form = () =>   {
     const form = useForm<TSRegisterSchema>({
@@ -28,6 +30,9 @@ const Form = () =>   {
             password: ''
         },
     });
+
+    const [response, setResponse] = useState<string | null>(null);
+    const [resError, setResError] = useState<string | null>(null);
 
     const {
         register,
@@ -65,93 +70,119 @@ const Form = () =>   {
                 message: errors.confirmPassword,
               });
             } else {
-              
+                setResponse(null)
+                setResError("Nesto je poslo po zlu, molimo Vas pokusajte ponovo!");
             }
+        } else {
+            setResponse("Success")
+            setResError(null);
         }
         // reset();
     }
 
     return (
-        <Card className="w-[750px]">
-            <CardHeader>
-                <CardTitle>Registracija</CardTitle>
-                <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <FormComponent {...form}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                            <FormItem className="mt-2">
-                            <FormControl className="h-12">
-                                <Input placeholder="Korisnicko ime..." {...field} />
-                            </FormControl>
-                            <FormMessage style={{color: 'red'}} />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem className="mt-2">
+        <div className="flex flex-col">
+            {
+                resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                    You can add components and dependencies to your app using the cli.
+                </AlertDescription>
+                </Alert>
+            }
+            
+            {
+                response && <Alert className="mb-5 bg-background border-green-400" variant={"default"}>
+                <MailCheck className="h-4 w-4" />
+                <AlertTitle>Uspjesno!</AlertTitle>
+                <AlertDescription>
+                    Provjerite Vase email sanduce i veirifikujte se!
+                </AlertDescription>
+                </Alert>
+            }
+
+            <Card className="w-[750px]">
+                <CardHeader>
+                    <CardTitle>Registracija</CardTitle>
+                    <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <FormComponent {...form}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem className="mt-2">
                                 <FormControl className="h-12">
-                                    <Input placeholder="Email..." {...field} />
+                                    <Input placeholder="Korisnicko ime..." {...field} />
                                 </FormControl>
                                 <FormMessage style={{color: 'red'}} />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem className="mt-2">
-                            <FormControl className="h-12">
-                                <Input type="password" placeholder="Lozinka.." {...field} />
-                            </FormControl>
-                            <FormMessage style={{color: 'red'}} />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="confirmPassword"
-                        render={({ field }) => (
-                            <FormItem className="mt-2">
-                            <FormControl className="h-12"> 
-                                <Input type="password" placeholder="Lozinka.." {...field} />
-                            </FormControl>
-                            <FormMessage style={{color: 'red'}} />
-                            </FormItem>
-                        )}
-                    />
-                    <Button className="mt-5 w-full" disabled={isSubmitting || isLoading} type="submit" variant={"secondary"}>
-                        {
-                            (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        }
-                        Registruj se
-                    </Button>
-                </form>
-            </FormComponent>
-            <div className="w-full flex justify-center">
-                <div className="h-10 flex items-center mt-2" style={{width: '98%'}}>
-                    <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
-                    <div className="flex-1 flex items-center justify-center">
-                        <p className="text-zinc-600" style={{fontSize: '16px'}}>ili</p>
-                    </div>
-                    <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem className="mt-2">
+                                    <FormControl className="h-12">
+                                        <Input placeholder="Email..." {...field} />
+                                    </FormControl>
+                                    <FormMessage style={{color: 'red'}} />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem className="mt-2">
+                                <FormControl className="h-12">
+                                    <Input type="password" placeholder="Lozinka.." {...field} />
+                                </FormControl>
+                                <FormMessage style={{color: 'red'}} />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="confirmPassword"
+                            render={({ field }) => (
+                                <FormItem className="mt-2">
+                                <FormControl className="h-12"> 
+                                    <Input type="password" placeholder="Lozinka.." {...field} />
+                                </FormControl>
+                                <FormMessage style={{color: 'red'}} />
+                                </FormItem>
+                            )}
+                        />
+                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading} type="submit" variant={"secondary"}>
+                            {
+                                (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            }
+                            Registruj se
+                        </Button>
+                    </form>
+                </FormComponent>
+                <div className="w-full flex justify-center">
+                    <div className="h-10 flex items-center mt-2" style={{width: '98%'}}>
+                        <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
+                        <div className="flex-1 flex items-center justify-center">
+                            <p className="text-zinc-600" style={{fontSize: '16px'}}>ili</p>
+                        </div>
+                        <div className="bg-zinc-600" style={{height: '1px', flex: '5'}}></div>
+                    </div> 
                 </div> 
-            </div> 
-            <Button
-                className="w-full mt-2"
-                onClick={() => signIn("google")}
-                variant={"default"}
-            >Google</Button>
-            </CardContent>
-        </Card>
+                <Button
+                    className="w-full mt-2"
+                    onClick={() => signIn("google")}
+                    variant={"default"}
+                >Google</Button>
+                </CardContent>
+            </Card>
+        </div>
     )
 }
 
