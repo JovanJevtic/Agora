@@ -110,4 +110,4 @@ model Subcategory {
 
   name          String
   posts         Post[]
-}
+} 
