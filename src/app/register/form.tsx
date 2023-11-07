@@ -104,7 +104,7 @@ const Form = () =>   {
                 </Alert>
             }
 
-            <Card className="w-[750px]">
+            <Card className="max-[800px]:w-[100%] min-[800px]:w-[750px]">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
