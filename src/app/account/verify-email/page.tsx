@@ -39,7 +39,7 @@ const VerifyPage = () => {
     const validate = async () => {
         try {
             setLoading(true);
-            const res = await axios.post(`http://localhost:3000/api/auth/confirmEmail`, {
+            const res = await axios.post(`https://agoraportal.net/api/auth/confirmEmail`, {
                 tokenVal: tokenValue,
                 token: token
             });
