@@ -73,8 +73,7 @@ export const POST = async (request: NextRequest) => {
             html: 'Pozdrav,  '+ name +',\n\n' + `verifikuj svoj racun klikom na sledeci link: <a href="${url}">${url}</a>`+'\n\n, Hvala!\n' 
         };
 
-        const sendResult = transporter.sendMail(mailOptions);
-        console.log(sendResult);
+        const sendResult = await transporter.sendMail(mailOptions);
         return NextResponse.json({ message: 'success' }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
