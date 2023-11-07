@@ -29,6 +29,7 @@ const Form = () =>   {
             name: '',
             password: ''
         },
+        mode: 'onTouched'
     });
 
     const [response, setResponse] = useState<string | null>(null);
@@ -37,10 +38,10 @@ const Form = () =>   {
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting, isLoading },
+        formState: { errors, isSubmitting, isLoading, isValid },
         reset,
         getValues,
-        setError
+        setError,
     } = form
 
     const onSubmit = async (data: FieldValues) => {
@@ -158,7 +159,7 @@ const Form = () =>   {
                                 </FormItem>
                             )}
                         />
-                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading} type="submit" variant={"secondary"}>
+                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading || !isValid } type="submit" variant={"secondary"}>
                             {
                                 (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             }

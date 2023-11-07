@@ -23,7 +23,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} `} >
+      <body className={`${inter.className} bg-black`} >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -33,7 +33,7 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <Nav />
             <div style={{height: '10vh'}}></div>
-            <main className='container '>
+            <main className='container'>
               {children}
             </main>
           </SessionProvider>

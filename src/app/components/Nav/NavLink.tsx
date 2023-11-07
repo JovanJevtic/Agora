@@ -17,9 +17,9 @@ const NavBarLink: React.FunctionComponent<NavBarLinkPropTypes> = ({ link }) => {
         <Link 
             href={link.route} 
             key={link.route}
-            style={pathname === link.route ? { color: '#fff' } : {}}
+            style={pathname === link.route ? { color: '#fff' } : { color: '#737373' }}
         >
-        {link.name}
+            <p className='text-sm hover:text-white hover:underline underline-offset-8 transition'>{link.name}</p>
         </Link> 
     </li>
   )
