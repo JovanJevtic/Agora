@@ -7,6 +7,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react';
+import { Button } from '@/app/components/ui/button'
+import Spinner from '@/app/components/Spinner/Spinner'
 
 type Token = {
     email: string; 
@@ -30,7 +32,7 @@ const VerifyPage = () => {
             const tokenVal: Token = await verifyJWT(token as string);
             if (tokenVal) setTokenValue(tokenVal)
         } catch (error) {
-            setResponseError("Verifikacioni token istekao, molim Vas pokusajte ponovo!")
+            setResponseError("Verifikacioni token istekao, molimo Vas pokusajte ponovo!")
         }
     }
 
@@ -62,24 +64,34 @@ const VerifyPage = () => {
     }, [tokenValue])
 
     return (
-        <div id='emailVerificationPage'>
-            <h1>VerifyPage</h1>
+        <div className='w-full h-[90vh] flex justify-center items-center flex-col' id='emailVerificationPage'>
+            {
+                (!responseError && !responseMessage) && <h1 className='text-gray-400 mb-5'>Provjera verifikacijskog tokena...</h1>
+            }
             <div className='loading-wrapp'>
                 {
-                    loading && <h1>Loading...</h1>
+                    loading && <Spinner />
                 }
             </div>
             {
                 responseMessage && 
-                <div className='success-wrapper'>
-                    {responseMessage}
-                    <Link href={'/login'}>Prijavi se</Link>    
+                <div className='flex items-center justify-center flex-col'>
+                    {responseMessage && <p className='text-green-500'>Verifikacija uspjesna!</p>}
+                    <Link className='mt-3' href={'/login'}>
+                        <Button>
+                            Prijavi se
+                        </Button>    
+                    </Link>    
                 </div>
             }
             {
-                responseError && <div className='error-wrapper'>
-                   <p>{responseError}</p>
-                   <Link href={'/register'}>Registruj se</Link>
+                responseError && <div className='flex justify-center items-center flex-col'>
+                   <p className='text-red-600'>{responseError}</p>
+                   <Link className='mt-3' href={'/register'}>
+                    <Button>
+                        Registruj se
+                    </Button>
+                   </Link>
                 </div>
             }
         </div>

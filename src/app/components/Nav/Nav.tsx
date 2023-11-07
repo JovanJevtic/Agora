@@ -45,7 +45,7 @@ const Nav = async () => {
     ]
 
     return (
-        <nav className='h-20 bg-black fixed w-full border-b-[0.1px] border-background'>
+        <nav className='h-20 bg-black fixed w-full border-b-[0.1px] border-background z-[1000]'>
             <div className="container flex w-full h-full items-center">
                 <div className='mr-10 flex items-center'>
                     <Link href={'/'} className='flex h-full items-center'>
@@ -61,7 +61,7 @@ const Nav = async () => {
                         }
                     </ul>
                 </div>
-                <DarkModeToggle />
+                {/* <DarkModeToggle /> */}
                 <div className='h-full flex items-center'>
                     <Link href={'/search'} className='h-10 bg-secondary w-44 rounded-sm flex items-center cursor-pointer'>
                         <Search height={14} className='ml-2' />

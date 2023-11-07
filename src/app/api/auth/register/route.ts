@@ -70,7 +70,7 @@ export const POST = async (request: NextRequest) => {
             from: process.env.NODEMAILER_AUTH_EMAIL, 
             to: email,     
             subject: 'Account Verification Code', 
-            html: 'Cao,  '+ name +',\n\n' + `Verifikuj se: <a href="${url}">${url}</a>`+'\n\n, Pusa!\n' 
+            html: 'Pozdrav,  '+ name +',\n\n' + `verifikuj svoj racun klikom na sledeci link: <a href="${url}">${url}</a>`+'\n\n, Hvala!\n' 
         };
 
         const sendResult = transporter.sendMail(mailOptions);

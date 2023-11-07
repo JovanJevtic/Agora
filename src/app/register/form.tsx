@@ -19,6 +19,7 @@ import {
 import { signIn } from "next-auth/react";
 import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert"
 import { AlertCircle, MailCheck } from "lucide-react"
+import Link from "next/link";
 
 const Form = () =>   {
     const form = useForm<TSRegisterSchema>({
@@ -82,19 +83,19 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center h-[90vh]">
             {
                 resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
                 <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Heads up!</AlertTitle>
+                <AlertTitle>Greska!</AlertTitle>
                 <AlertDescription>
-                    You can add components and dependencies to your app using the cli.
+                    Nesto je poslo po zlu..Pokusajte ponovo!
                 </AlertDescription>
                 </Alert>
             }
             
             {
-                response && <Alert className="mb-5 bg-background border-green-400" variant={"default"}>
+                response && <Alert className="mb-5 bg-background border-primary" variant={"default"}>
                 <MailCheck className="h-4 w-4" />
                 <AlertTitle>Uspjesno!</AlertTitle>
                 <AlertDescription>
@@ -106,7 +107,8 @@ const Form = () =>   {
             <Card className="w-[750px]">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
-                    <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.</CardDescription>
+                    <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
+                        <Link className="underline mt-1" href={'/login'}>Vec imas racun? Prijavi se</Link></CardDescription>
                 </CardHeader>
                 <CardContent>
                     <FormComponent {...form}>

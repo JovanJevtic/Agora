@@ -1,1 +1,17 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.trending-news-th-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.trending-news-th-image:hover::before {
+  background: rgba(0, 0, 0, 0.8);
+}
+/*# sourceMappingURL=style.css.map */

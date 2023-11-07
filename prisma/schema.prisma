@@ -70,28 +70,28 @@ model EmailVerificationToken {
 
 model Post {
   id              String      @default(cuid()) @id
-  author          User        @relation(fields: [authorId], references: [id])
+  author          User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId        String
 
   title           String
   subtitle        String
   body            String      @db.Text
-  image           String
+  image           String      @db.Text
   slug            String      @unique
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
-  category      Category      @relation(fields: [categoryId], references: [id])
+  category      Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId    String
 
-  subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id])
+  subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
   subcategoryId    String?
 
-  position1       Boolean @default(false)
-  position2       Boolean @default(false)
-  position3       Boolean @default(false)
-  position4       Boolean @default(false)
-  position5       Boolean @default(false)
+  position1       Boolean         @default(false)
+  position2       Boolean         @default(false)
+  position3       Boolean         @default(false)
+  position4       Boolean         @default(false)
+  position5       Boolean         @default(false)
 }
 
 model Category {
@@ -104,7 +104,7 @@ model Category {
 
 model Subcategory {
   id            String       @default(cuid()) @id
-  category      Category     @relation(fields: [categoryId], references: [id])
+  category      Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId    String
 
   name          String

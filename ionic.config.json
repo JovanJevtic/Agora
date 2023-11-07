@@ -1,0 +1,7 @@
+{
+  "name": "next-auth-proba",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
