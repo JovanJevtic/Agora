@@ -31,12 +31,17 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
 
     return(
         <div className='flex items-center ml-5'>
-            <Button className='mr-3' variant={"outline"}>
-                <Link href={'/login'}>Prijavi se</Link>
-            </Button>
-            <Button>
-                <Link href={'/register'}>Registruj se</Link>
-            </Button>
+            <Link className='max-[500px]:hidden' href={'/login'}>
+                <Button className='mr-3 max-[780px]:text-xs' variant={"outline"}>
+                    Prijavi se                
+                </Button>
+            </Link>
+            
+            <Link className='max-[780px]:text-xs' href={'/register'}>
+                <Button className='min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
+                    Registruj se                
+                </Button>
+            </Link>
         </div>
     )
 }  

@@ -7,7 +7,7 @@ import { TSRegisterSchema, registerFormSchema } from "../libs/validation/form";
 import { Form as FormComponent, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/app/components/ui/form'
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { Loader2 } from "lucide-react"
+import { EyeIcon, Loader2 } from "lucide-react"
 import {
     Card,
     CardContent,
@@ -142,8 +142,8 @@ const Form = () =>   {
                             name="password"
                             render={({ field }) => (
                                 <FormItem className="mt-2">
-                                <FormControl className="h-12">
-                                    <Input type="password" placeholder="Lozinka.." {...field} />
+                                <FormControl className="h-12">   
+                                    <Input  type="password" placeholder="Lozinka.." {...field} />
                                 </FormControl>
                                 <FormMessage style={{color: 'red'}} />
                                 </FormItem>

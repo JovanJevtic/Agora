@@ -9,7 +9,7 @@ type Props = {
 }
 const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
   return (
-    <Link style={{width: '31%', height: '100%'}} href={`/post/${post.id}`}>
+    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full" href={`/post/${post.id}`}>
         {/* <div className="rounded-md background-image-blured" 
             style={{ backgroundImage: `url(${post.image})`, backgroundRepeat: 'none', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}    
         >
@@ -23,7 +23,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             </div>
         </div>
         </div> */}
-        <Card className="flex flex-col h-full w-full border-none bg-black">
+        <Card className="flex flex-col h-full w-full border-none bg-black max-[840px]:h-96">
             <div className="flex-[5] w-full bg-primary">
                 {/* <Image src={post.image} alt="a" width={'100'} height={100} /> */}
                 <div style={{width: '100%', height: '100%', position: 'relative'}}>

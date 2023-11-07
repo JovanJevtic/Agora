@@ -22,6 +22,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "hamburger-react": "^2.5.0",
     "jose": "^4.15.4",
     "lucide-react": "^0.291.0",
     "next": "13.5.6",

@@ -10,21 +10,21 @@ type Props = {
 
 const TrendingNews: React.FunctionComponent<Props> = ({ posts }) => {
   return (
-    <div className='flex w-full h-96 bg-background mt-3'>
-        <div className='grid grid-cols-4 grid-rows-2 h-full w-full gap-2'>
-            <div className='col-start-1 col-span-2 row-span-2 row-start-1'>
+    <div className='flex w-full bg-background mt-3 mb-10'>
+        <div className='grid h-full w-full max-[600px]:grid-cols-2 grid-rows-6 min-[600px]:grid-cols-3 min-[600px]:grid-rows-3 min-[1200px]:grid-cols-4 min-[1200px]:grid-rows-2 gap-2'>
+            <div className='col-start-1 col-span-2 row-span-2 h-64'>
                 <TrendingNewsThumbnail big post={posts[0]} />
             </div>
-            <div className='col-span-1 row-span-1'>
+            <div className='col-span-1 row-span-2 h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[1]} />
             </div>
-            <div className='col-span-1 row-span-1'>
+            <div className='col-span-1 row-span-2 h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[2]} />
             </div>
-            <div className='col-span-1 row-span-1'>
+            <div className='col-span-1 row-span-2 h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[3]} />
             </div>
-            <div className='col-span-1 row-span-1'>
+            <div className='col-span-1 row-span-2 h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[4]} />
             </div>
         </div>  
