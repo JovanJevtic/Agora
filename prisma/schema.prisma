@@ -77,20 +77,26 @@ model Post {
   subtitle        String
   body            String      @db.Text
   image           String
-  slug            String
+  slug            String      @unique
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
   category      Category      @relation(fields: [categoryId], references: [id])
   categoryId    String
 
-  subcategory      Subcategory  @relation(fields: [subcategoryId], references: [id])
-  subcategoryId    String
+  subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id])
+  subcategoryId    String?
+
+  position1       Boolean @default(false)
+  position2       Boolean @default(false)
+  position3       Boolean @default(false)
+  position4       Boolean @default(false)
+  position5       Boolean @default(false)
 }
 
 model Category {
   id        String    @default(cuid()) @id
-  name      String
+  name      String    @unique
   subcategories   Subcategory[]
 
   posts   Post[]
