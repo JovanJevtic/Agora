@@ -16,7 +16,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
     }
 
   return (
-    <div className='h-full w-full min-h-[220px]'>
+    <div className='h-full w-full min-h-[180px]'>
         <div className={`relative h-full trending-news-th-image`} style={{ backgroundImage: `url(${post.image})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <div className='h-full w-full flex justify-end flex-col'>
                 <h1 style={{maxWidth: '90%', fontSize: '90%'}} className={`font-bold relative ml-3 capitalize`}>{post.title}</h1>
