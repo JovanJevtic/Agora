@@ -58,7 +58,7 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
     }
 
   return (
-    <Link className="mt-10" href={`/category/${category}`}>
+    <Link className="mt-5" href={`/category/${category}`}>
         {/* <Card className="p-5 mb-10 border-background"> */}
             <div className="flex mb-5 items-center">
                 <div className={`absolute h-6 ${ category === "Novosti" ? "bg-primary" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-red-500" :  "bg-white" }`} style={{width: '2px'}}></div>

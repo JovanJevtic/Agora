@@ -41,7 +41,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     }, [])
     
     return (
-    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full " href={`/post/${post.id}`}>
+    <Link className="min-[840px]:w-[31%]  max-[840px]:w-full mb-5" href={`/post/${post.id}`}>
         {/* <div className="rounded-md background-image-blured" 
             style={{ backgroundImage: `url(${post.image})`, backgroundRepeat: 'none', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}    
         >
@@ -55,22 +55,23 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             </div>
         </div>
         </div> */}
-        <Card className="flex flex-col h-full w-full border-none bg-black max-[840px]:h-96">
+        <Card className="flex flex-col h-full w-full border-none">
             <div className="flex-[4] w-full bg-primary">
                 {/* <Image src={post.image} alt="a" width={'100'} height={100} /> */}
-                <div style={{width: '100%', height: '100%', position: 'relative'}}>
+                <div style={{width: '100%', position: 'relative', minHeight: '200px', height: '100%'}}>
                     <Image
                         src={post.image} alt="a"
-                        layout='fill'
-                        objectFit='cover'
+                        layout="fill"
+                        objectFit='cover' 
                         objectPosition="top"
                     />
                 </div>
             </div>
-            <div className="flex-[3] w-full">
-                <h1 className="font-bold mt-3 capitalize text-lg hover:underline transition">{post.title}</h1>
+            <div className=" w-full p-3">
+                <h1 className="font-bold mt-1 capitalize text-lg hover:underline transition">{post.title}</h1>
                 <p className="text-gray-400 text-xs mt-2">{post.subtitle}</p>
-                <div className="flex mt-1">
+                <div className="h-5"></div>
+                <div className="flex mb-1">
                     <div className="flex-1 flex items-center">
                         {
                             subcategory  ? 

@@ -23,6 +23,7 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
     if (status === "authenticated") {
         return(
             <div className='flex items-center ml-5'>
+                <Button className='h-9 text-xs ml-5' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button>
                 <Link href={'/profile'} className='flex h-full items-center'>
                     {
                         session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
@@ -30,7 +31,6 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
                     }
                     <p className='text-sm max-[600px]:hidden'>{session.user.name}</p>
                 </Link>
-                <Button className='h-9 text-xs ml-5' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button>
                 {/* <div className='h-6 bg-slate-700 right-0 ml-5' style={{width: '1px'}}></div> */}
             </div>
         )
