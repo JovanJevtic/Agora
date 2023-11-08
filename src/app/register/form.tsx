@@ -99,7 +99,7 @@ const Form = () =>   {
                 <MailCheck className="h-4 w-4" />
                 <AlertTitle>Uspjesno!</AlertTitle>
                 <AlertDescription>
-                    Provjerite Vase email sanduce i veirifikujte se!
+                    Provjerite Vase email sanduce i verifikujte se!
                 </AlertDescription>
                 </Alert>
             }

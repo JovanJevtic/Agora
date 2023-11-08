@@ -41,7 +41,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     }, [])
     
     return (
-    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.id}`}>
+    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full " href={`/post/${post.id}`}>
         {/* <div className="rounded-md background-image-blured" 
             style={{ backgroundImage: `url(${post.image})`, backgroundRepeat: 'none', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}    
         >
@@ -68,22 +68,22 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                 </div>
             </div>
             <div className="flex-[3] w-full">
-                <h1 className="font-bold mt-3 capitalize text-lg">{post.title}</h1>
-                <p className="text-gray-400 text-sm mt-1">{post.subtitle}</p>
+                <h1 className="font-bold mt-3 capitalize text-lg hover:underline transition">{post.title}</h1>
+                <p className="text-gray-400 text-xs mt-2">{post.subtitle}</p>
                 <div className="flex mt-1">
                     <div className="flex-1 flex items-center">
                         {
                             subcategory  ? 
                             <div className="flex mt-1 items-center">
                                 <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div>
-                                <p className="ml-2 text-sm text-gray-400">{subcategory.name}</p>
+                                <p className="ml-2 text-xs text-gray-400">{subcategory.name}</p>
                             </div>
                             : loadingSub ?
                             <Skeleton className="h-4 w-12" /> : <></>
                         }
                     </div>
                     <div className="flex-1 flex items-center justify-end">
-                        <p className="text-sm text-gray-400 mt-1">
+                        <p className="text-xs text-gray-400 mt-1">
                             <TrendingNewsDate date={post.createdAt} />
                         </p>
                     </div>
