@@ -38,7 +38,7 @@ export const links: NavLink[] = [
     },
     {
         name: 'O nama',
-        route: '/Onama'
+        route: '/onama'
     }
 ]
 
