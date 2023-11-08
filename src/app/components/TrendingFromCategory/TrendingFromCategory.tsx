@@ -58,17 +58,17 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
     }
 
   return (
-    <Link className="mt-5" href={`/${category}`}>
+    <Link className="" href={`/${category}`}>
         {/* <Card className="p-5 mb-10 border-background"> */}
             <div className="flex mb-5 items-center">
-                <div className={`absolute h-6 ${category === "Novosti" ? "bg-primary" : category === "Sport" ? "bg-green-700": "bg-red-800"}`} style={{width: '2px'}}></div>
+                <div className={`absolute h-6 ${ category === "Novosti" ? "bg-primary" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-red-500" :  "bg-white" }`} style={{width: '2px'}}></div>
                 <h1 className="font-bold text-lg ml-3">{category}</h1>
                 <div className="flex-1 flex justify-end h-full items-center">
                     <p className="text-sm text-gray-500">Pogledaj jos</p>
                     <ArrowRight className="text-gray-500 ml-1" size={16} />
                 </div>
             </div>
-            <div className="flex w-full justify-between min-[840px]:h-96 max-[840px]:flex-col">
+            <div className="flex w-full justify-between min-[840px]:h-[460px]  max-[840px]:flex-col">
                 {data?.map(post => (
                     <ThumbnailCategory post={post} key={post.id} />
                 ))}

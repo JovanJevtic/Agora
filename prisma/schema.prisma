@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
 }
 
 datasource db {
@@ -108,6 +107,7 @@ model Subcategory {
   category      Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId    String
 
-  name          String
+  name          String      
   posts         Post[]
+  colorHex      String
 } 

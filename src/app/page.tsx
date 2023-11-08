@@ -6,9 +6,10 @@ import TrendingFromCategory from "./components/TrendingFromCategory/TrendingFrom
 const getTrendingPosts = async () => {
   const res = await fetch('https://www.agoraportal.net/api/posts/trending', {
     method: 'GET',
-    cache: 'no-cache'
+    cache: 'no-store'
   });
   const data: Post[] = await res.json()
+  console.log(data);
   return data;
 }
 
