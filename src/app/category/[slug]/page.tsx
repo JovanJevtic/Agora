@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div className={`absolute h-6 ${ category === "Novosti" ? "bg-primary" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-red-500" :  "bg-white" }`} style={{width: '2px'}}></div>
     <h1 className='ml-2 font-bold text-lg'>{category}</h1>
 </div>
-    <div className='w-full h-full grid grid-cols-3 gap-5'>
+    <div className='w-full h-full grid max-[600px]:grid-cols-1 min-[600px]:grid-cols-3 gap-5'>
         
         
         {posts.map((post) => (
