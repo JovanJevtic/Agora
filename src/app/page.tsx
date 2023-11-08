@@ -4,7 +4,7 @@ import TrendingNews from "./components/TrendingNews/TrendingNews";
 import TrendingFromCategory from "./components/TrendingFromCategory/TrendingFromCategory";
 
 const getTrendingPosts = async () => {
-  const res = await fetch('https://agoraportal.net/api/posts/trending', {
+  const res = await fetch('https://www.agoraportal.net/api/posts/trending', {
     method: 'GET',
     cache: 'no-cache'
   });

@@ -10,7 +10,7 @@ const CurrentDate = () => {
     const [date, setDate] = useState();
 
     const getTime = () => {
-        fetch('http://worldtimeapi.org/api/timezone/Europe/Belgrade')
+        fetch('https://worldtimeapi.org/api/timezone/Europe/Belgrade')
             .then(response => response.json())
             .then(data => {
                 setDate(data.datetime);

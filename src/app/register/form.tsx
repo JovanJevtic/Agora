@@ -7,7 +7,7 @@ import { TSRegisterSchema, registerFormSchema } from "../libs/validation/form";
 import { Form as FormComponent, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/app/components/ui/form'
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { EyeIcon, Loader2 } from "lucide-react"
+import { EyeIcon, Loader2, Wrench } from "lucide-react"
 import {
     Card,
     CardContent,
@@ -161,7 +161,7 @@ const Form = () =>   {
                                 </FormItem>
                             )}
                         />
-                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading || !isValid } type="submit" variant={"secondary"}>
+                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading || !isValid } type="submit" variant={"default"}>
                             {
                                 (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             }
@@ -179,10 +179,13 @@ const Form = () =>   {
                     </div> 
                 </div> 
                 <Button
+                    disabled
                     className="w-full mt-2"
                     onClick={() => signIn("google")}
-                    variant={"default"}
-                >Google</Button>
+                    variant={"secondary"}
+                >
+                    <Wrench height={16} className="mr-3" />
+                    Google</Button>
                 </CardContent>
             </Card>
         </div>

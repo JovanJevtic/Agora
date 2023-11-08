@@ -14,7 +14,7 @@ type Props = {
 const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
     const getLatest = async () => {
         try {
-            const res = await fetch(`https://agoraportal.net/api/posts/category/latest?name=${category}`, {
+            const res = await fetch(`https://www.agoraportal.net/api/posts/category/latest?name=${category}`, {
                 method: 'GET',
                 cache: 'no-cache'
             })
