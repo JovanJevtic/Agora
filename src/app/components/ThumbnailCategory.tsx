@@ -39,7 +39,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     useEffect(() => {
         getSubcategory()
     }, [])
-
+    
     return (
     <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.id}`}>
         {/* <div className="rounded-md background-image-blured" 
@@ -75,7 +75,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                         {
                             subcategory  ? 
                             <div className="flex mt-1 items-center">
-                                <div className={`h-6 w-[1px] bg-[#${subcategory.colorHex.length > 0 ? subcategory.colorHex : 'ffffff'}]`}></div>
+                                <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div>
                                 <p className="ml-2 text-sm text-gray-400">{subcategory.name}</p>
                             </div>
                             : loadingSub ?

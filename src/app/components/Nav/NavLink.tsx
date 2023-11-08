@@ -7,13 +7,15 @@ import { usePathname } from 'next/navigation';
 
 type NavBarLinkPropTypes = {
     link: NavLink;
+    setIsOpen?: (isOpen: boolean) => void;
+    isOpen?: boolean;
 }
 
-const NavBarLink: React.FunctionComponent<NavBarLinkPropTypes> = ({ link }) => {
+const NavBarLink: React.FunctionComponent<NavBarLinkPropTypes> = ({ link, setIsOpen, isOpen }) => {
     const pathname = usePathname()
 
     return (
-    <li>
+    <li onClick={() => { if (setIsOpen && isOpen) setIsOpen(!isOpen) }}>
         <Link 
             href={link.route} 
             key={link.route}

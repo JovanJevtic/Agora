@@ -37,8 +37,8 @@ export const links: NavLink[] = [
         route: '/category/Drustvo'
     },
     {
-        name: 'O nama',
-        route: '/onama'
+        name: 'Kontakt',
+        route: '/kontakt'
     }
 ]
 

@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
         <div className='flex h-full w-full items-center justify-center'>
           <ul className='flex flex-col h-[70%] w-full items-center justify-around'>
             {
-              links.map(link => <p key={link.name}><NavBarLink key={link.route} link={link} /></p>)
+              links.map(link => <NavBarLink key={link.route} setIsOpen={setOpen} isOpen={isOpen} link={link} />)
             }
           </ul>
         </div>
