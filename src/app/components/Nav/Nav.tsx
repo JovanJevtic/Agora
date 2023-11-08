@@ -33,7 +33,7 @@ export const links: NavLink[] = [
         route: '/category/Kultura'
     },
     {
-        name: 'Drustvo',
+        name: 'Društvo',
         route: '/category/Drustvo'
     },
     {
@@ -73,7 +73,7 @@ const Nav = async () => {
                 <div className='h-full flex items-center max-[1000px]:hidden'>
                     <Link href={'/search'} className='h-10 bg-secondary w-44 rounded-sm flex items-center cursor-pointer'>
                         <Search height={14} className='ml-2' />
-                        <p className='text-xs ml-2'>Pretrazuj..</p>
+                        <p className='text-xs ml-2'>Pretražuj..</p>
                     </Link>
                 </div>
                 <Link href={'/search'} className='h-10 rounded-sm flex items-center cursor-pointer max-[820px]:hidden min-[1000px]:hidden'>
