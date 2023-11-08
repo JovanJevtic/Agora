@@ -2,6 +2,7 @@ import CurrentDate from "./components/CurrentDate/CurrentDate";
 import type { User, Post } from '@prisma/client'
 import TrendingNews from "./components/TrendingNews/TrendingNews";
 import TrendingFromCategory from "./components/TrendingFromCategory/TrendingFromCategory";
+import Footer from "./components/Footer";
 
 const getTrendingPosts = async () => {
   const res = await fetch('https://www.agoraportal.net/api/posts/trending', {
@@ -9,7 +10,6 @@ const getTrendingPosts = async () => {
     cache: 'no-store'
   });
   const data: Post[] = await res.json()
-  console.log(data);
   return data;
 }
 
@@ -29,6 +29,7 @@ export default async function Home() {
       <TrendingFromCategory category="Kultura" />
       <TrendingFromCategory category="Sport" />
       <TrendingFromCategory category="Drustvo" />
+      <Footer />
     </main>
   )
 }

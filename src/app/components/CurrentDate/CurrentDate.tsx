@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Skeleton } from "../ui/skeleton";
 import Moment from 'react-moment';
-import 'moment/locale/sr';
+import 'moment/locale/bs';
 
 const CurrentDate = () => {
 
@@ -24,7 +24,7 @@ const CurrentDate = () => {
 
     return (
         <p className="text-gray-400 min-[540px]:text-md max-[540px]:text-xs max-[420px]:xs right-0">
-            <Moment locale="sr" local format="dddd DD/MM/YYYY">{date}</Moment>
+            <Moment locale="bs" local format="dddd DD/MM/YYYY">{date}</Moment>
         </p>
   )
 }

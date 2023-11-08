@@ -11,20 +11,21 @@ type Props = {
 const TrendingNews: React.FunctionComponent<Props> = ({ posts }) => {
   return (
     <div className='flex w-full bg-background mt-3 mb-10'>
-        <div className='grid h-full w-full max-[600px]:grid-cols-2 grid-rows-6 min-[600px]:grid-cols-3 min-[600px]:grid-rows-3 min-[1200px]:grid-cols-4 min-[1200px]:grid-rows-2 gap-2'>
-            <div className='col-start-1 col-span-2 row-span-2 h-64'>
+        <div className='grid h-full w-full max-[600px]:grid-cols-2 grid-rows-3 min-[600px]:grid-cols-3 min-[600px]:grid-rows-3 gap-2'>
+           
+            <div className='col-start-1 max-[600px]:col-span-2 max-[600px]:row-span-1  max-[600px]:h-64 min-[600px]:row-span-2 min-[600px]:row-start-1 min-[600px]:row-end-3 min-[600px]:col-span-2 '>
                 <TrendingNewsThumbnail big post={posts[0]} />
             </div>
-            <div className='col-span-1 row-span-2 h-64'>
+            <div className='max-[600px]:col-span-1 max-[600px]:row-span-1 max-[600px]:h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[1]} />
             </div>
-            <div className='col-span-1 row-span-2 h-64'>
+            <div className='max-[600px]:col-span-1 max-[600px]:row-span-1  max-[600px]:h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[2]} />
             </div>
-            <div className='col-span-1 row-span-2 h-64'>
+            <div className='max-[600px]:col-span-1 max-[600px]:row-span-1  min-[600px]:col-span-2 max-[600px]:h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[3]} />
             </div>
-            <div className='col-span-1 row-span-2 h-64'>
+            <div className='max-[600px]:col-span-1 max-[600px]:row-span-1 max-[600px]:h-64'>
                 <TrendingNewsThumbnail big={false} post={posts[4]} />
             </div>
         </div>  

@@ -41,7 +41,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     }, [])
 
     return (
-    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.id}`}>
+    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.slug}`}>
         {/* <div className="rounded-md background-image-blured" 
             style={{ backgroundImage: `url(${post.image})`, backgroundRepeat: 'none', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}    
         >

@@ -31,7 +31,6 @@ export const verifyJWT = async <T>(token: string): Promise<T> => {
         )
       ).payload as T;
     } catch (error: any) {
-      console.log(error);
       throw new Error(error);
     }
 };
