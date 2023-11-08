@@ -16,13 +16,13 @@ const getPost = async (id: string) => {
     }
 }   
 
-export async function generateStaticParams() {
-    const posts = await fetch('http://localhost:3000/api/posts/all').then((res) => res.json())
+// export async function generateStaticParams() {
+//     const posts = await fetch('http://localhost:3000/api/posts/all').then((res) => res.json())
 
-    return posts.map((post: Post) => ({
-      id: post.id,
-    }))
-  }
+//     return posts.map((post: Post) => ({
+//       id: post.id,
+//     }))
+//   }
 
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
