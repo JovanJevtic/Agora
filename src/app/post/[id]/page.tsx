@@ -10,20 +10,31 @@ const getPost = async (id: string) => {
         })
         const data = await res.json()
         return data;
+       
     } catch (error) {
-        console.log(error);
         redirect('/')
     }
 }   
 
+export async function generateStaticParams() {
+    const posts: Post[] = await fetch('https://www.agoraportal.net/api/posts/all').then((res) => res.json())
+   
+    return posts.map((post) => ({
+      slug: post.slug,
+    }))
+}
+
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
     const post: Post = await getPost(id);
-    return <div className='w-full h-full'>
-        
-        <article className="prose lg:prose-xl">
+    return (
+        <div className='w-full h-90vh'>
+        <h1 className='text-red-500 text-lg'>{post.title}</h1>
+        <p>{post.subtitle}</p>
+        {/* <article className="prose lg:prose-xl">
             { post.body }
-        </article>
+        </article> */}
        
     </div>
+    )
 }

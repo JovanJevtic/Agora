@@ -5,13 +5,13 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   -webkit-transition: .4s;
   transition: .4s;
   cursor: pointer;
 }
 
 .trending-news-th-image:hover::before {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
 }
 /*# sourceMappingURL=style.css.map */

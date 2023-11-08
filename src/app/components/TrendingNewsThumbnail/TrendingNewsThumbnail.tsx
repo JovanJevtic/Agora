@@ -19,10 +19,8 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
     <div className='h-full w-full min-h-[180px]'>
         <div className={`relative h-full trending-news-th-image`} style={{ backgroundImage: `url(${post.image})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <div className='h-full w-full flex justify-end flex-col'>
-                <h1 style={{maxWidth: '90%', fontSize: '90%'}} className={`font-bold relative ml-3 capitalize`}>{post.title}</h1>
-                {/* <p className='relative text-lg text-gray-400 ml-3'>{post.subtitle}</p> */}
-                
-                <p className='text-xs ml-3 mb-1 text-gray-400'><TrendingNewsDate date={post.createdAt} /></p>
+                <h1 style={{maxWidth: '94%'}} className={`font-bold relative ml-3 capitalize text-md`}>{post.title}</h1>
+                <p className='text-xs ml-3 mb-5 text-white'><TrendingNewsDate date={post.createdAt}/></p>
                
             </div>
         </div>
