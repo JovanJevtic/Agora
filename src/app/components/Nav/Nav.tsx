@@ -15,35 +15,36 @@ export type NavLink = {
     route: string;
 }
 
+export const links: NavLink[] = [
+    {
+        name: 'Novosti',
+        route: '/category/Novosti'
+    },
+    {
+        name: 'Politika',
+        route: '/category/Politika'
+    },
+    {
+        name: 'Sport',
+        route: '/category/Sport'
+    },
+    {
+        name: 'Kultura',
+        route: '/category/Kultura'
+    },
+    {
+        name: 'Drustvo',
+        route: '/category/Drustvo'
+    },
+    {
+        name: 'O nama',
+        route: '/Onama'
+    }
+]
+
 const Nav = async () => {
     const session = await getServerSession(authOptions);
 
-    const links: NavLink[] = [
-        {
-            name: 'Novosti',
-            route: '/category/Novosti'
-        },
-        {
-            name: 'Politika',
-            route: '/category/Politika'
-        },
-        {
-            name: 'Sport',
-            route: '/category/Sport'
-        },
-        {
-            name: 'Kultura',
-            route: '/category/Kultura'
-        },
-        {
-            name: 'Drustvo',
-            route: '/category/Drustvo'
-        },
-        {
-            name: 'O nama',
-            route: '/Onama'
-        }
-    ]
 
     return (
         <nav className='h-20 bg-black fixed w-full border-b-[0.1px] border-background z-[1000]'>
@@ -105,5 +106,6 @@ const Nav = async () => {
         </nav>
   )
 }
+
 
 export default Nav
