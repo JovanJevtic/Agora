@@ -19,7 +19,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     const getSubcategory = async () => {
         try {
             setLoadingSub(true)
-            const res = await fetch(`http://www:agoraporta.net/api/posts/subcategory/getById?id=${post.subcategoryId}`, {
+            const res = await fetch(`https://www.agoraporta.net/api/posts/subcategory/getById?id=${post.subcategoryId}`, {
                 method: 'GET',
                 cache: 'no-cache'
             })
