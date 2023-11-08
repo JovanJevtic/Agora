@@ -19,7 +19,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     const getSubcategory = async () => {
         try {
             setLoadingSub(true)
-            const res = await fetch(`http://localhost:3000/api/posts/subcategory/getById?id=${post.subcategoryId}`, {
+            const res = await fetch(`http://www:agoraporta.net/api/posts/subcategory/getById?id=${post.subcategoryId}`, {
                 method: 'GET',
                 cache: 'no-cache'
             })
@@ -41,7 +41,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     }, [])
 
     return (
-    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.slug}`}>
+    <Link className="min-[840px]:w-[31%] h-full max-[840px]:w-full max-[840px]:mb-5" href={`/post/${post.id}`}>
         {/* <div className="rounded-md background-image-blured" 
             style={{ backgroundImage: `url(${post.image})`, backgroundRepeat: 'none', backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}    
         >

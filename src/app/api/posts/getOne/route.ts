@@ -11,12 +11,12 @@ export const GET = async (request: NextRequest) => {
 
         const post = await prisma.post.findUnique({ 
             where: { 
-                slug: slug
+                id: slug
             } 
         });
         if (!post) return NextResponse.json({ status: 500 });
 
-        return NextResponse.json(post);
+        return NextResponse.json({post});
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }

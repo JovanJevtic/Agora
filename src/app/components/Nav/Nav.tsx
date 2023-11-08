@@ -21,23 +21,23 @@ const Nav = async () => {
     const links: NavLink[] = [
         {
             name: 'Novosti',
-            route: '/Novosti'
+            route: '/category/Novosti'
         },
         {
             name: 'Politika',
-            route: '/Politika'
+            route: '/category/Politika'
         },
         {
             name: 'Sport',
-            route: '/Sport'
+            route: '/category/Sport'
         },
         {
             name: 'Kultura',
-            route: '/Kultura'
+            route: '/category/Kultura'
         },
         {
             name: 'Drustvo',
-            route: '/Drustvo'
+            route: '/category/Drustvo'
         },
         {
             name: 'O nama',

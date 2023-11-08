@@ -2,9 +2,9 @@ import ThumbnailCategory from '@/app/components/ThumbnailCategory'
 import { Post } from '@prisma/client'
 import { redirect } from 'next/navigation'
 
-const getPost = async (slug: string) => {
+const getPost = async (id: string) => {
     try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?slug=${slug}`, {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?slug=${id}`, {
             method: 'GET',
             cache: 'no-cache'
         })
@@ -16,9 +16,9 @@ const getPost = async (slug: string) => {
     }
 }   
 
-export default async function Page({ params }: { params: { slug: string } }) {
-    const slug = params.slug;
-    const post: Post = await getPost(slug);
+export default async function Page({ params }: { params: { id: string } }) {
+    const id = params.id;
+    const post: Post = await getPost(id);
     return <div className='w-full h-full'>
         
         <article className="prose lg:prose-xl">
