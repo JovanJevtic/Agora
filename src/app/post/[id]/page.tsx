@@ -17,10 +17,11 @@ const getPost = async (id: string) => {
 }   
 
 export async function generateStaticParams() {
-    const posts: Post[] = await fetch('https://www.agoraportal.net/api/posts/all').then((res) => res.json())
+    const res = await fetch('https://www.agoraportal.net/api/posts/all');
+    const posts: Post[] = await res.json();
    
     return posts.map((post) => ({
-      slug: post.slug,
+      id: post.id,
     }))
 }
 
