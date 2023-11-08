@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
         
         {posts.map((post) => (
-            <div className='mb-10'>
+            <div className='mb-10' key={post.id}>
                 <ThumbnailCategory post={post} key={post.id} />
             </div>
         ))}
