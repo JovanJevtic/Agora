@@ -58,7 +58,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
         <Card className="flex flex-col h-full w-full border-none">
             <div className="flex-[4] w-full bg-primary">
                 {/* <Image src={post.image} alt="a" width={'100'} height={100} /> */}
-                <div style={{width: '100%', position: 'relative', minHeight: '200px', height: '100%'}}>
+                <div style={{width: '100%', position: 'relative', minHeight: '240px', height: '100%'}}>
                     <Image
                         src={post.image} alt="a"
                         layout="fill"
@@ -76,15 +76,15 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                         {
                             subcategory  ? 
                             <div className="flex mt-1 items-center">
-                                <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div>
-                                <p className="ml-2 text-xs text-gray-400">{subcategory.name}</p>
+                                {/* <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div> */}
+                                <p className=" text-xs" style={{ color: `#${subcategory.colorHex}` }}>{subcategory.name}</p>
                             </div>
                             : loadingSub ?
                             <Skeleton className="h-4 w-12" /> : <></>
                         }
                     </div>
                     <div className="flex-1 flex items-center justify-end">
-                        <p className="text-xs text-gray-400 mt-1">
+                        <p className="text-xs text-gray-400">
                             <TrendingNewsDate date={post.createdAt} />
                         </p>
                     </div>

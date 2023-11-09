@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         
         
         {posts.map((post) => (
-            <div className='mb-10 h-96 max-w-[500px]' key={post.id}>
+            <div className='mb-10 max-w-[500px]' key={post.id}>
                 <ThumbnailCategory post={post} />
             </div>
         ))}
