@@ -76,7 +76,11 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                             subcategory  ? 
                             <div className="flex mt-1 items-center">
                                 {/* <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div> */}
-                                <p className=" text-xs" style={{ color: `#${subcategory.colorHex}` }}>{subcategory.name}</p>
+                                <p className="text-xs text-gray-400"
+                                    // style={{ color: `#${subcategory.colorHex}` }}
+                                >
+                                    {subcategory.name}
+                                </p>
                             </div>
                             : loadingSub ?
                             <Skeleton className="h-4 w-12" /> : <></>
