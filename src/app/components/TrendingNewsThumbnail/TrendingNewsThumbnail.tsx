@@ -1,3 +1,5 @@
+'use client'
+
 import { Post } from '@prisma/client'
 import React, { useEffect, useState } from 'react'
 import TrendingNewsDate from '../TrendingNews/TrendingNewsDate';
@@ -12,12 +14,6 @@ type Props = {
 const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) => {
     const [category, setCategory] = useState<Category | null>(null);
     const [loadingSub, setLoadingSub] = useState(false);
-
-    if (!post || !post.image) {
-        return (
-            <Skeleton className='h-full w-full' />
-        )
-    }
 
     const getCategory = async () => {
         try {
@@ -42,6 +38,13 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
     useEffect(() => {
         getCategory()
     }, [])
+
+    if (!post || !post.image) {
+        return (
+            <Skeleton className='h-full w-full' />
+        )
+    }
+
   return (
     <div className='h-full w-ful'>
         {/* <div className={`w-full`} style={{ backgroundImage: `url(${post.image})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}> */}
