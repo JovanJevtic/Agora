@@ -56,7 +56,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
         </div>
         </div> */}
         <Card className="flex flex-col h-full w-full border-none">
-            <div className="flex-[4] w-full bg-primary">
+            <div className="flex-[4] w-full">
                 {/* <Image src={post.image} alt="a" width={'100'} height={100} /> */}
                 <div style={{width: '100%', position: 'relative', minHeight: '240px', height: '100%'}}>
                     <Image
