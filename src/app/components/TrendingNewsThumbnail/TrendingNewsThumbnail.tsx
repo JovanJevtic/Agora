@@ -82,7 +82,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
             <div className="absolute h-full w-full opacity-100" style={{ backgroundImage: 'linear-gradient(180deg, transparent, black)' }}></div>
             <div className='absolute h-full w-full bg-transparent'>
                 <div className='h-full w-full p-5 flex flex-col justify-end'>
-                    <h1 className='text-lg mb-2 font-bold line-clamp-3'>{post.title}</h1>
+                    <h1 className='text-sm mb-2 font-bold line-clamp-3 lg:text-lg'>{post.title}</h1>
                     <div className="flex items-center">
                         {
                             category  ? 
