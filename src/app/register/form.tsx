@@ -99,7 +99,7 @@ const Form = () =>   {
                 <MailCheck className="h-4 w-4" />
                 <AlertTitle>Uspjesno!</AlertTitle>
                 <AlertDescription>
-                    Provjerite Vase email sanduce i verifikujte se!
+                    Provjerite Vaše email sanduce i verifikujte se!
                 </AlertDescription>
                 </Alert>
             }
@@ -108,7 +108,7 @@ const Form = () =>   {
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
-                        <Link className="underline mt-1" href={'/login'}>Vec imas racun? Prijavi se</Link></CardDescription>
+                        <Link className="underline mt-1" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
                 </CardHeader>
                 <CardContent>
                     <FormComponent {...form}>

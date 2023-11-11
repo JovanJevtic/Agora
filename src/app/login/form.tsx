@@ -119,7 +119,7 @@ const Form = () =>   {
                 <CardHeader>
                     <CardTitle>Prijava</CardTitle>
                     <CardDescription>Prijavi se ako vec imas racun ili nastavi sa Google-om. <br></br>
-                        <Link className="underline mt-1" href={'/register'}>Nemas racun? Registruj se</Link>
+                        <Link className="underline mt-1" href={'/register'}>Nemas račun? Registruj se</Link>
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
