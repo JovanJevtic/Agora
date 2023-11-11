@@ -30,7 +30,7 @@ const getPost = async (id: string) => {
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const postData = getPost(id);
     const post: Post = await postData;
-    console.log(post.title);
+    // console.log(post);
 
     return (
         <div className='h-[90vh] w-full'>
