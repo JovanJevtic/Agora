@@ -1,34 +1,37 @@
-import InProgress from '@/app/components/InProgress/InProgress'
-import ThumbnailCategory from '@/app/components/ThumbnailCategory'
 import { Post } from '@prisma/client'
-import { redirect } from 'next/navigation'
-
-const getPost = async (id: string) => {
-    try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?slug=${id}`, {
-            method: 'GET',
-            cache: 'no-cache'
-        })
-        const data = await res.json()
-        return data;
-       
-    } catch (error) {
-        redirect('/')
+type Props = {
+    params: {
+        id: string
     }
+}
+
+const getPost = async (id: string): Promise<Post> => {
+    const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?slug=${id}`, {
+        method: 'GET',
+        cache: 'no-cache'
+    })
+    const data = await res.json()
+    return data.post;
 }   
 
-// export async function generateStaticParams() {
-//     const posts = await fetch('http://localhost:3000/api/posts/all').then((res) => res.json())
+export async function generateStaticParams() {
+    const posts = await fetch('https://www.agoraportal.net/api/posts/all').then((res) => res.json())
 
-//     return posts.map((post: Post) => ({
-//       id: post.id,
-//     }))
-//   }
+    return posts.posts.map((post: Post) => ({
+      id: post.id,
+    }))
+}
 
-export default async function Page({ params }: { params: { id: string } }) {
-    const id = params.id;
-    const post: Post = await getPost(id);
+const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
+    const postData = getPost(id);
+    const post = await postData;
+    console.log(post.title);
+
     return (
-        <InProgress />
+        <div className='h-[90vh] w-full'>
+            <h1>{post.title}</h1>
+        </div>
     )
 }
+
+export default Page

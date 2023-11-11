@@ -16,10 +16,6 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
     const { data: session, status } = useSession()
     const pathname = usePathname()
 
-    useEffect(() => {
-        console.log(session);
-    }, [])
-
     if (status === "authenticated") {
         return(
             <div className='flex items-center ml-5'>
