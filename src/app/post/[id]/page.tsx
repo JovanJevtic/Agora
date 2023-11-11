@@ -15,10 +15,10 @@ const getPost = async (id: string): Promise<Post> => {
 }   
 
 export async function generateStaticParams() {
-    const posts = await fetch('https://www.agoraportal.net/api/posts/all').then((res) => res.json())
+    const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
 
-    return posts.posts.map((post: Post) => ({
-      id: post.id,
+    return ids.map((id: string) => ({
+      id: id
     }))
 }
 
