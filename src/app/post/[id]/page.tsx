@@ -14,13 +14,13 @@ const getPost = async (id: string): Promise<Post> => {
     return data.post;
 }   
 
-export async function generateStaticParams() {
-    const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
+// export async function generateStaticParams() {
+//     const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
 
-    return ids.map((id: string) => ({
-      id: id
-    }))
-}
+//     return ids.map((id: string) => ({
+//       id: id
+//     }))
+// }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const postData = getPost(id);
