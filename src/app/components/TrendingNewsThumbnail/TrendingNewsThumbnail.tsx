@@ -63,6 +63,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         ${ !big && 'lg:text-lg' }
                         
                     `}>{post.title}</h1>
+                    { big && <p className='text-xs lg:text-sm text-gray-400'>{post.subtitle}</p> }
                     <div className="flex items-center">
                         {
                             category  ? 

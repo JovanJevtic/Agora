@@ -1,4 +1,5 @@
 import { Post } from '@prisma/client'
+import { redirect } from 'next/navigation'
 type Props = {
     params: {
         id: string
@@ -12,28 +13,28 @@ const getPost = async (id: string) => {
             cache: 'no-cache'
         })
         const data = await res.json()
-        return data.post;
+        return data;
     } catch (error: any) {
         throw new Error(error)
+        redirect('/')
     }
 }   
 
-// export async function generateStaticParams() {
-//     const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
+export async function generateStaticParams() {
+    const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
 
-//     return ids.map((id: string) => ({
-//       id: id
-//     }))
-// }
+    return ids.map((id: string) => ({
+      id: id
+    }))
+}
 
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const postData = getPost(id);
     const post: Post = await postData;
-    // console.log(post);
 
     return (
         <div className='h-[90vh] w-full'>
-            {/* <h1>{post.title}</h1> */}
+            <h1>{post.title}</h1>
         </div>
     )
 }
