@@ -14,7 +14,6 @@ const getPost = async (id: string) => {
         const data = await res.json()
         return data.post;
     } catch (error: any) {
-        console.log(error, 'error');
         throw new Error(error)
     }
 }   
@@ -34,7 +33,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
 
     return (
         <div className='h-[90vh] w-full'>
-            <h1>{post.title}</h1>
+            {/* <h1>{post.title}</h1> */}
         </div>
     )
 }
