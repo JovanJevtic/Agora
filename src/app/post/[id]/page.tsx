@@ -1,5 +1,9 @@
+import PostComponent from '@/app/components/Post/PostComponent'
+import PostPageDetails, { PostPageDetailsLoading } from '@/app/components/PostPageDetails/PostPageDetails'
 import { Post } from '@prisma/client'
+import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 type Props = {
     params: {
         id: string
@@ -19,6 +23,32 @@ const getPost = async (id: string) => {
     }
 }   
 
+const getCategory = async (categoryId: string) => {
+    try {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/category/getById?id=${categoryId}`, {
+            method: 'GET',
+            cache: 'no-cache'
+        });
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        return null
+    }
+}
+
+const getSubcategory = async (subcategoryId: string) => {
+    try {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`, {
+            method: 'GET',
+            cache: 'no-cache'
+        });
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        return null
+    }
+}
+
 export async function generateStaticParams() {
     const ids = await fetch('https://www.agoraportal.net/api/posts/all/staticParams').then((res) => res.json())
 
@@ -28,12 +58,20 @@ export async function generateStaticParams() {
 }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
-    const postData = getPost(id);
-    const post: Post = await postData;
+    const postData: Promise<Post> = getPost(id);
+    const post = await postData;
+
+    const categoryData = getCategory(post.categoryId)
+    const subcategoryData = getSubcategory(post.subcategoryId as string);
 
     return (
-        <div className='h-[90vh] w-full'>
-            <h1>{post.title}</h1>
+        <div className='min-h-[90vh] w-full'>
+             {/* <Suspense fallback={<PostPageDetailsLoading />}> */}
+                <PostPageDetails categoryPromise={categoryData} subcategoryPromise={subcategoryData} />
+            {/* </Suspense> */}
+            <div className='container'>
+                <PostComponent post={post} />
+            </div>
         </div>
     )
 }

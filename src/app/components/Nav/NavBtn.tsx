@@ -19,7 +19,7 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
     if (status === "authenticated") {
         return(
             <div className='flex items-center ml-5'>
-                <Button className='h-9 text-xs ml-5' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button>
+                <Button className='h-9 text-xs ml-5 rounded-md' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button>
                 <Link href={'/profile'} className='flex h-full items-center'>
                     {
                         session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
@@ -36,13 +36,13 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
         return(
             <div className='flex items-center ml-5'>
                 <Link className='max-[780px]:text-xs mr-0' href={'/login'}>
-                    <Button className='max-[780px]:text-xs' variant={"outline"}>
-                        Prijavi se                
+                    <Button className='max-[780px]:text-xs rounded-md' variant={"outline"}>
+                        Prijavi se
                     </Button>
                 </Link>
                 
                 <Link className='max-[500px]:hidden' href={'/register'}>
-                    <Button className='min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
+                    <Button className='rounded-md min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
                         Registruj se                
                     </Button>
                 </Link>
@@ -53,12 +53,12 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
     return(
         <div className='flex items-center ml-5'>
             <Link className='max-[500px]:hidden' href={'/login'}>
-                <Button className='mr-3 max-[780px]:text-xs' variant={"outline"}>
-                    Prijavi se                
+                <Button className='mr-3 max-[780px]:text-xs rounded-md' variant={"outline"}>
+                    Prijavi se
                 </Button>
             </Link>
             
-            <Link className='max-[780px]:text-xs' href={'/register'}>
+            <Link className='max-[780px]:text-xs rounded-md' href={'/register'}>
                 <Button className='min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
                     Registruj se                
                 </Button>

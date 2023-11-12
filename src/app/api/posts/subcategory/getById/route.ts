@@ -15,7 +15,7 @@ export const GET = async (request: NextRequest) => {
         });
         if (!subcategory) return NextResponse.json({ status: 500 });
 
-        return NextResponse.json({ subcategory });
+        return NextResponse.json( subcategory );
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }

@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav'
 import SessionProvider from './components/SessionProvider'
 import { getServerSession } from 'next-auth'
 import { ThemeProvider } from "@/app/components/theme-provider"
+import Footer from './components/Footer'
 
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
 
@@ -33,9 +34,10 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <Nav />
             <div style={{height: '10vh'}}></div>
-            <main className='container'>
+            <main className=' min-h-[60vh]'>
               {children}
             </main>
+            <Footer />
           </SessionProvider>
         </ThemeProvider>
       </body>

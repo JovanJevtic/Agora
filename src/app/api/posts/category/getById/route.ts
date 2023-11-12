@@ -14,7 +14,7 @@ export const GET = async (request: NextRequest) => {
         });
         if (!category) return NextResponse.json({ status: 500 });
 
-        return NextResponse.json({ category });
+        return NextResponse.json( category );
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }
