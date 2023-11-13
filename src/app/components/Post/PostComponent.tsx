@@ -60,7 +60,7 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
                         />
                     </div>
                         
-                    <div className="w-[1000px] mt-10 prose prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
+                    <div className=" mt-10 prose prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
                     
                         <div className="w-full" dangerouslySetInnerHTML={{__html: post.body}} />
                         
