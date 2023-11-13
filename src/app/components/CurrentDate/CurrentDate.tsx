@@ -23,7 +23,7 @@ const CurrentDate = () => {
     if (!date) return <Skeleton className="h-4 w-20"></Skeleton>
 
     return (
-        <p className="text-gray-400 min-[540px]:text-md max-[540px]:text-xs max-[420px]:xs right-0">
+        <p className="text-gray-400 min-[540px]:text-md max-[540px]:text-xs max-[420px]:xs right-0 text-right">
             <Moment locale="bs" local format="dddd DD/MM/YYYY">{date}</Moment>
         </p>
   )
