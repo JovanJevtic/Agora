@@ -37,7 +37,7 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise
                 <ul className="flex w-full h-full items-center">
                     {
                        subcategorys.map(obj => (
-                        <Link  className={`h-full transition mr-0 hover:bg-secondary ${obj.name === subcategory.name ? `bg-secondary font-bold` : 'bg-black'}`} href={`/subcategory/${obj.name}`}>
+                        <Link key={obj.id} className={`h-full transition mr-0 hover:bg-secondary ${obj.name === subcategory.name ? `bg-secondary font-bold` : 'bg-black'}`} href={`/subcategory/${obj.name}`}>
                             <li className={`h-full flex items-center pl-5 pr-5`}>
                                 <p className="text-sm">{obj.name}</p>
                             </li>
