@@ -17,7 +17,7 @@ export default async function Home() {
   const trendingPosts = await getTrendingPosts()
   return (
     <div className="container flex min-h-screen flex-col ">
-      <div className="h-10 w-ful flex items-center">
+      <div className="h-10 w-ful flex items-center mt-1">
         <h1 className="font-bold min-[540px]:text-xl max-[540px]:text-sm flex-[5] max-[360px]:text-xs">Dobrodošli na Agora portal</h1>
         <div className="flex-[3] flex justify-end items-center h-full">
           <CurrentDate />
