@@ -1,7 +1,6 @@
 import PostComponent from '@/app/components/Post/PostComponent'
 import PostPageDetails, { PostPageDetailsLoading } from '@/app/components/PostPageDetails/PostPageDetails'
 import { Post } from '@prisma/client'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
 type Props = {
