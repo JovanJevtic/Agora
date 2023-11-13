@@ -10,7 +10,7 @@ type Props = {
 
 const getAuthor = async (authorId: string) => {
     try {
-        const res = await fetch(`https://wwww.agoraportal.net/api/users/author/getById?id=${authorId}`, {
+        const res = await fetch(`https://www.agoraportal.net/api/users/author/getById?id=${authorId}`, {
             method: 'GET',
             cache: 'no-cache'
         });
