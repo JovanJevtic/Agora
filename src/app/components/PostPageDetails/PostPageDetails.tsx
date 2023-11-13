@@ -9,7 +9,7 @@ type Props = {
 }
 
 const getAllSubcategorys = async (categoryId: string) => {
-    const res = await fetch(`https://wwww.agoraportal.net/api/posts/category/getSubcategorys?id=${categoryId}`, {
+    const res = await fetch(`https://www.agoraportal.net/api/posts/category/getSubcategorys?id=${categoryId}`, {
         method: 'GET',
         cache: 'no-cache'
     });
