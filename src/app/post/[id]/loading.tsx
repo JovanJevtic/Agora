@@ -2,7 +2,7 @@ import { Skeleton } from "@/app/components/ui/skeleton"
 
 const Loading = () => {
   return (
-    <Skeleton className="h-52 w-full"></Skeleton>
+    <Skeleton className="h-[70vh] w-full"></Skeleton>
   )
 }
 

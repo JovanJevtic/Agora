@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { BsTiktok } from 'react-icons/bs';
 import { FaXTwitter } from 'react-icons/fa6';
-// import Tiktok from '../../../public/icons8-tiktok.svg'
 
 const Footer = () => {
   return (
@@ -15,12 +14,12 @@ const Footer = () => {
             <div className="flex-1 flex flex-col">
                 <div className="grid flex-1 border-b-[1px] border-background border-solid w-full mt-5 mb-0 ">
                     <ul className="flex-1 h-full items-center flex max-[600px]:flex-col max-[600px]:items-start">
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/privacy-policy'}>Početna</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Novosti</Link></li>
+                    <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/kontakt'}>Početna</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/privacy-policy'}>Novosti</Link></li>
                         <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Politika</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/kontakt'}>Društvo</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Kultura</Link></li>
                         <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/kontakt'}>Sport</Link></li>
-                        <li className="text-sm font-bold text-white mr-10"><Link className="w-[100px]" href={'/kontakt'}>Kultura</Link></li>
+                        <li className="text-sm font-bold text-white mr-10"><Link className="w-[100px]" href={'/kontakt'}>Društvo</Link></li>
                     </ul>
                 </div>
                 <div className="flex mb-2 max-[800px]:flex-col max-[800px]:mt-5 min-[800px]:mt-5">

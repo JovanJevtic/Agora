@@ -28,7 +28,7 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
     return (
         <div className="flex">
             <div className="flex-[7]">
-                <article className="prose-neutral lg:prose-xl">
+                <article className="prose-neutral lg:prose-xl prose-h1:leading-tight">
                     <h1 className='text-3xl text-white font-bold'>{post.title}</h1>
                     <p className="text-gray-500 text-sm">
                         <TrendingNewsDate date={post.createdAt} />
