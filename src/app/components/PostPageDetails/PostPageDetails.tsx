@@ -14,7 +14,6 @@ const getAllSubcategorys = async (categoryId: string) => {
         cache: 'no-cache'
     });
     const data = await res.json();
-    console.log(data);
     return data;
 }
 

@@ -4,11 +4,13 @@ import Moment from "react-moment";
 import 'moment/locale/sr'
 
 type Props = {
-    date: Date;
+  date: Date;
+  full?: boolean;
 }
-const TrendingNewsDate: React.FunctionComponent<Props> = ({date}) => {
+
+const TrendingNewsDate: React.FunctionComponent<Props> = ({date, full}) => {
   return (
-    <Moment locale="sr" local format="DD/MM/YYYY" date={date} />
+    <Moment locale="sr" local format={`${full ? "hh:mm DD/MM/YYYY": "DD/MM/YYYY"}`} date={date} />
   )
 }
 

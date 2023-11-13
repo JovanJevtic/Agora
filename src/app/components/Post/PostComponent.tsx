@@ -3,6 +3,7 @@ import { Post } from "../../../../prisma/generated/client";
 import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
 import { User } from "@prisma/client";
 import { User2 } from "lucide-react";
+import { FaUserCircle } from 'react-icons/fa'
 
 type Props = {
     post: Post;
@@ -17,7 +18,7 @@ const getAuthor = async (authorId: string) => {
         const data = await res.json();
         return data;
     } catch (error: any) {
-        console.log(error);
+        return null
     }
 }
 
@@ -28,21 +29,26 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
     return (
         <div className="flex">
             <div className="flex-[7]">
-                <article className="prose-neutral lg:prose-xl prose-h1:leading-tight">
+                <article className="w-full prose-neutral prose-p:mt-0 prose-p:mb-0 prose-p:pt-0 lg:prose-xl prose-h1:leading-tight prose-h1:mb-0 prose-h1:pb-0">
                     <h1 className='text-3xl text-white font-bold'>{post.title}</h1>
-                    <p className="text-gray-500 text-sm">
-                        <TrendingNewsDate date={post.createdAt} />
-                    </p>
-                    {
-                        (post.createdAt === post.updatedAt) && <p className="text-gray-500 text-sm"><TrendingNewsDate date={post.updatedAt} /></p>
-                    }
-                    
-                    <div className="flex items-center">
-                        {
-                            (author.image) ? <Image className='mr-2' style={{borderRadius: '50%'}} src={author.image} height={24} width={24} alt="profile" />
-                            :<User2 className='mr-3' />
-                        }
-                        <p className='text-sm max-[600px]:hidden'>{author.name}</p>
+                   
+                    <div className="flex w-full items-center mt-5">
+                        <div className="flex items-center mr-10">
+                            {
+                                (author.image) ? <Image className='mr-2' style={{borderRadius: '50%'}} src={author.image} height={24} width={24} alt="profile" />
+                                :<FaUserCircle className='mr-3' />
+                            }
+                            <p className='text-sm max-[600px]:hidden'>{author.name}</p>
+                        </div>
+
+                        <div className="flex-1 flex items-center">
+                            <p className="text-gray-500 text-sm">
+                                <TrendingNewsDate full date={post.createdAt} />
+                            </p>
+                            {
+                                (post.createdAt === post.updatedAt) && <p className="text-gray-500 text-sm">Izmjenjeno: <TrendingNewsDate date={post.updatedAt} /></p>
+                            }
+                        </div>
                     </div>
                 
                     <div className='relative min-h-[400px] w-[100%] mb-20'>
@@ -54,10 +60,10 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
                         />
                     </div>
                         
-                    <div className="mt-10">
-                        <p>
-                        { post.body }
-                        </p>
+                    <div className="w-[1000px] mt-10 prose prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
+                    
+                        <div className="w-full" dangerouslySetInnerHTML={{__html: post.body}} />
+                        
                     </div>
                 </article>
             </div>
