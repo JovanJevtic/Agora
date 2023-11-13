@@ -1,7 +1,9 @@
 import { Instagram, Twitter, X, Youtube } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Tiktok from '../../../public/icons8-tiktok.svg'
+import { BsTiktok } from 'react-icons/bs';
+import { FaXTwitter } from 'react-icons/fa6';
+// import Tiktok from '../../../public/icons8-tiktok.svg'
 
 const Footer = () => {
   return (
@@ -20,10 +22,14 @@ const Footer = () => {
                         <li className="text-xs text-gray-400 mr-10"><Link className="w-[100px]" href={'/'}>Kontaktirajte nas</Link></li>
                     </ul>
                     <ul className="h-full flex items-center w-40 justify-between">
-                        <li className=""><Link href={''}><Instagram size={20} /></Link></li>
-                        <li className=""><Link href={''}><Youtube size={20} /></Link></li>
-                        <li className=""><Link href={''}><X size={20} /></Link></li>
-                        <li className=""><Link className="w-[10px]" href={''}><Image src={Tiktok} height={10} width={10} alt="tiktok" /></Link></li>
+                        <li className=""><Link rel="noopener noreferrer" target="_blank" href={'https://www.instagram.com/agoraportal_/'}><Instagram size={18} /></Link></li>
+                        <li className=""><Link rel="noopener noreferrer" target="_blank" href={'https://www.youtube.com/@Agora-Portal'}><Youtube size={20} /></Link></li>
+                        <li className=""><Link rel="noopener noreferrer" target="_blank" href={'https://twitter.com/agoraportal_'}><FaXTwitter /></Link></li>
+                        <li className="">
+                            <Link rel="noopener noreferrer" target="_blank" className="w-[10px]" href={'https://www.tiktok.com/@agoraportal_'}>
+                                <BsTiktok />
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="">

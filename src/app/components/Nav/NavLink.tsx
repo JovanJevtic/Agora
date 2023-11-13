@@ -23,7 +23,7 @@ const NavBarLink: React.FunctionComponent<NavBarLinkPropTypes> = ({ link, setIsO
         >
             <p className={`
                 text-sm hover:text-white hover:underline underline-offset-8 transition
-                ${ link.name === "Novosti" ? "decoration-primary" : link.name === "Sport" ? "decoration-green-500" : link.name === "Kultura" ? "decoration-purple-700" : link.name === "Drustvo" ? "decoration-blue-500" : link.name === "Politika" ? "decoration-red-700" :  "decoration-white" }
+                ${ link.name === "Novosti" ? "decoration-yellow-500" : link.name === "Sport" ? "decoration-green-500" : link.name === "Kultura" ? "decoration-purple-700" : link.name === "Drustvo" ? "decoration-blue-500" : link.name === "Politika" ? "decoration-red-700" :  "decoration-white" }
             `}
             style={{
                 textDecorationColor: `${ link.name === "Novosti" ? "yellow" : link.name === "Sport" ? "" : "" }`

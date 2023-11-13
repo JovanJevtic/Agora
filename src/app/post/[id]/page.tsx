@@ -67,7 +67,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     return (
         <div className='min-h-[90vh] w-full'>
              {/* <Suspense fallback={<PostPageDetailsLoading />}> */}
-                <PostPageDetails categoryPromise={categoryData} subcategoryPromise={subcategoryData} />
+                <PostPageDetails categoryId={post.categoryId} categoryPromise={categoryData} subcategoryPromise={subcategoryData} />
             {/* </Suspense> */}
             <div className='container'>
                 <PostComponent post={post} />

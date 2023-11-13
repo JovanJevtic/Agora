@@ -13,11 +13,11 @@ const About = () => {
 <p className='mt-3 text-sm'>Dobrodošli na našu kontakt stranicu! Ako želite ostati u kontaktu s nama ili pratiti najnovije vijesti i informacije o našem radu, slobodno koristite sljedeće linkove do naših društvenih mreža:</p>
 
 <div className='flex flex-col mt-10'>
-    <Link className='underline text-primary' href={'https://www.instagram.com/agoraportal_/'}>Instagram</Link>
+    <Link rel="noopener noreferrer" target="_blank" className='underline text-primary' href={'https://www.instagram.com/agoraportal_/'}>Instagram</Link>
     {/* <Link className='underline text-primary' href={''}>Facebook</Link> */}
-    <Link className='underline text-primary' href={'https://www.tiktok.com/@agoraportal_'}>TikTok</Link>
-    <Link className='underline text-primary' href={'https://www.youtube.com/@Agora-Portal'}>Youtube</Link>
-    <Link className='underline text-primary' href={'https://twitter.com/agoraportal_'}>X</Link>
+    <Link rel="noopener noreferrer" target="_blank" className='underline text-primary' href={'https://www.tiktok.com/@agoraportal_'}>TikTok</Link>
+    <Link rel="noopener noreferrer" target="_blank" className='underline text-primary' href={'https://www.youtube.com/@Agora-Portal'}>Youtube</Link>
+    <Link rel="noopener noreferrer" target="_blank" className='underline text-primary' href={'https://twitter.com/agoraportal_'}>X</Link>
 </div>
 
 <p className='mt-5 text-sm'>

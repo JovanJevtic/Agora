@@ -24,10 +24,10 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
             })
             const data = await res.json();
             setLoadingSub(false)
-            if (!data.category) {
+            if (!res.ok) {
                 setCategory(null)
             } else {
-                setCategory(data.category)
+                setCategory(data)
             }
         } catch (error) {
             setCategory(null)
@@ -71,7 +71,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         {
                             category ? 
                             <div className="flex mb-0 items-center mt-0">
-                                <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-primary" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
                                 <p className="text-sm max-[700px]:text-xs" 
                                 >{category.name}</p>
                             </div>

@@ -33,8 +33,8 @@ export default async function RootLayout({
         >
           <SessionProvider session={session}>
             <Nav />
-            <div style={{height: '10vh'}}></div>
-            <main className=' min-h-[60vh]'>
+            <div className='h-20'></div>
+            <main className='min-h-[60vh]'>
               {children}
             </main>
             <Footer />

@@ -24,10 +24,10 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             })
             const data = await res.json();
             setLoadingSub(false)
-            if (!data.subcategory) {
+            if (!res.ok) {
                 setSubcategory(null)
             } else {
-                setSubcategory(data.subcategory)
+                setSubcategory(data)
             }
         } catch (error) {
             setSubcategory(null)
