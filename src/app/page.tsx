@@ -16,19 +16,21 @@ const getTrendingPosts = async () => {
 export default async function Home() {
   const trendingPosts = await getTrendingPosts()
   return (
-    <div className="container flex min-h-screen flex-col ">
-      <div className="h-10 w-ful flex items-center mt-1">
-        <h1 className="font-bold min-[540px]:text-xl max-[540px]:text-sm flex-[5] max-[360px]:text-xs">Dobrodošli na Agora portal</h1>
-        <div className="flex-[3] flex justify-end items-center h-full">
+    <div className="flex min-h-screen flex-col ">
+      <div className="h-10 w-ful flex items-center mt-0 bg-card">
+        {/* <h1 className="font-bold min-[540px]:text-xl max-[540px]:text-sm flex-[5] max-[360px]:text-xs">Dobrodošli na Agora portal</h1> */}
+        <div className="flex-[3] flex justify-start items-center h-full container">
           <CurrentDate />
         </div>
       </div>
       <TrendingNews posts={trendingPosts} />
-      <TrendingFromCategory category="Novosti" />
-      <TrendingFromCategory category="Politika" />
-      <TrendingFromCategory category="Kultura" />
-      <TrendingFromCategory category="Sport" />
-      <TrendingFromCategory category="Drustvo" />
+      <div className="container">
+        <TrendingFromCategory category="Novosti" />
+        <TrendingFromCategory category="Politika" />
+        <TrendingFromCategory category="Kultura" />
+        <TrendingFromCategory category="Sport" />
+        <TrendingFromCategory category="Drustvo" />
+      </div>
     </div>
   )
 }

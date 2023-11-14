@@ -61,8 +61,8 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                     <div className='h-[90%]' style={{ backgroundImage: 'linear-gradient(180deg, transparent, black)' }}></div>
                     <div className='bg-black h-[10%]'></div>
                 </div>
-                <div className='absolute h-full w-full bg-transparent'>
-                    <div className='h-full w-full pl-3 pr-3 md:pl-5 md:pr-5 flex flex-col justify-end'>
+                <div className='absolute h-full container bg-transparent'>
+                    <div className='h-full w-full md:pl-5 md:pr-5 flex flex-col justify-end'>
                         <h1 className={`mb-0 ml-0 line-clamp-2
                             text-xl
                             font-bold
@@ -71,7 +71,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         `}>{post.title}</h1>
                         { big && <p className='text-xs w-[70%] lg:text-sm mb-1 mt-0.5 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
                         
-                        <div className='flex w-full items-center mb-3 mt-2'>
+                        <div className='flex w-full items-center mb-5 mt-2'>
                             <div className="flex items-center mt-0.5 flex-1">
                                 {
                                     category ? 
@@ -89,14 +89,15 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                     </div>
                 </div>
             </div> :
-            <div className='h-full w-full bg-card rounded-0 flex flex-col items-start pl-3 pr-3 justify-center border-b-[1px] border-solid border-secondary'>
-                <h1 className={`mb-1.5 ml-0 line-clamp-2
-                            text-lg
+            <div className='h-full mt-0 mb-0 w-full bg-transparent rounded-0 flex flex-col items-center justify-center border-b-[1px] border-solid border-secondary'>
+                <div className='container h-full flex flex-col justify-center'>
+                    <h1 className={`mb-0.5 ml-0 line-clamp-2
+                            text-sm
                             md:text-2xl
                             lg:text-3xl
-                `}>{post.title}</h1>
-                <div className='flex w-full items-center'>
-                            <div className="flex items-center mt-0.5 flex-1">
+                    `}>{post.title}</h1>
+                    <div className='flex w-full items-center mb-0'>
+                            <div className="flex items-center mt-0.0 flex-1">
                                 {
                                     category ? 
                                     <div className="flex mb-0 items-center mt-0">
@@ -110,6 +111,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                             </div>
                             <p className='md:text-xs text-gray-400 text-xs'><TrendingNewsDate date={post.createdAt} /></p>
                         </div>
+                </div>
 
             </div>
         }
