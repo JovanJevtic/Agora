@@ -54,10 +54,10 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             </div>
         </div>
         </div> */}
-        <Card className="flex flex-col h-full w-full border-none">
-            <div className="flex-[4] w-full">
+        <Card className="flex md:flex-col h-full w-full border-none max-h-[200px]">
+            <div className="flex-[5] md:flex-[4] w-full">
                 {/* <Image src={post.image} alt="a" width={'100'} height={100} /> */}
-                <div style={{width: '100%', position: 'relative', minHeight: '240px', height: '100%'}}>
+                <div style={{width: '100%', position: 'relative', minHeight: '200px', height: '100%'}}>
                     <Image
                         src={post.image} alt="a"
                         layout="fill"
@@ -66,15 +66,15 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                     />
                 </div>
             </div>
-            <div className=" w-full p-3">
-                <h1 className=" mt-1 capitalize text-lg hover:underline transition">{post.title}</h1>
-                <p className="text-gray-500 text-xs mt-1">{post.subtitle}</p>
+            <div className="flex-[5] flex flex-col w-full p-3">
+                <h1 className=" mt-1 capitalize font-bold text-lg hover:underline transition line-clamp-3">{post.title}</h1>
+                <p className="text-gray-500 text-xs mt-0.5 line-clamp-2">{post.subtitle}</p>
                 <div className="h-5"></div>
-                <div className="flex mb-1">
-                    <div className="flex-1 flex items-center">
+                <div className="flex flex-1 items-end bottom-0">
+                    <div className="flex-1 flex items-center h-full">
                         {
                             subcategory  ? 
-                            <div className="flex mt-1 items-center">
+                            <div className="flex items-end h-full">
                                 {/* <div className={`h-6 w-[1px]`} style={{ background: `#${subcategory.colorHex}` }}></div> */}
                                 <p className="text-xs text-gray-400"
                                     // style={{ color: `#${subcategory.colorHex}` }}
@@ -87,7 +87,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                         }
                     </div>
                     <div className="flex-1 flex items-center justify-end">
-                        <p className="text-xs text-gray-400">
+                        <p className="text-[10px] text-gray-400">
                             <TrendingNewsDate date={post.createdAt} />
                         </p>
                     </div>

@@ -64,12 +64,12 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 <div className='absolute h-full container bg-transparent'>
                     <div className='h-full w-full md:pl-5 md:pr-5 flex flex-col justify-end'>
                         <h1 className={`mb-0 ml-0 line-clamp-2
-                            text-xl
+                            text-2xl
                             font-bold
                             md:text-2xl
                             lg:text-3xl
                         `}>{post.title}</h1>
-                        { big && <p className='text-xs w-[70%] lg:text-sm mb-1 mt-0.5 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
+                        { big && <p className='text-xs w-[70%] lg:text-sm mb-2 mt-0.5 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
                         
                         <div className='flex w-full items-center mb-5 mt-2'>
                             <div className="flex items-center mt-0.5 flex-1">
@@ -91,7 +91,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
             </div> :
             <div className='h-full mt-0 mb-0 w-full bg-transparent rounded-0 flex flex-col items-center justify-center border-b-[1px] border-solid border-secondary'>
                 <div className='container h-full flex flex-col justify-center'>
-                    <h1 className={`mb-0.5 ml-0 line-clamp-2
+                    <h1 className={`mb-1 ml-0 line-clamp-2
                             text-sm
                             md:text-2xl
                             lg:text-3xl
