@@ -89,7 +89,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                     </div>
                 </div>
             </div> :
-            <div className='h-full w-full bg-card rounded-lg flex flex-col items-start pl-3 pr-3 justify-center'>
+            <div className='h-full w-full bg-card rounded-0 flex flex-col items-start pl-3 pr-3 justify-center border-b-[1px] border-solid border-secondary'>
                 <h1 className={`mb-1.5 ml-0 line-clamp-2
                             text-lg
                             md:text-2xl
