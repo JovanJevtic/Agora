@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import TrendingNewsDate from '../TrendingNews/TrendingNewsDate';
 import { Skeleton } from '../ui/skeleton';
 import Image from 'next/image';
-import { Category } from '../../../../prisma/generated/client';
+import { Category } from '@prisma/client';
 
 type Props = {
     post: Post;

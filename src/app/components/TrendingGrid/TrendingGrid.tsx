@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { Post } from "../../../../prisma/generated/client"
+import { Post } from "@prisma/client"
 import TrendingNewsThumbnail from "../TrendingNewsThumbnail/TrendingNewsThumbnail"
 
 type Props = {

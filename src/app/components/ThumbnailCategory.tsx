@@ -5,7 +5,7 @@ import Image from "next/image"
 import TrendingNewsDate from "./TrendingNews/TrendingNewsDate"
 import { Skeleton } from "./ui/skeleton"
 import Link from "next/link"
-import { Post, Subcategory } from "../../../prisma/generated/client"
+import { Post, Subcategory } from "@prisma/client"
 
 type Props = {
     post: Post

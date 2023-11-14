@@ -1,4 +1,4 @@
-import { Post } from '../../../../prisma/generated/client'
+import { Post } from '@prisma/client'
 import React from 'react'
 import TrendingGrid from '../TrendingGrid/TrendingGrid'
 
