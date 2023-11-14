@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { Post } from "../../../../prisma/generated/client";
 import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
-import { User } from "@prisma/client";
+import { Post, User } from "@prisma/client";
 import { User2 } from "lucide-react";
 import { FaUserCircle } from 'react-icons/fa'
 
@@ -29,16 +28,19 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
     return (
         <div className="flex">
             <div className="flex-[7]">
-                <article className="w-full prose-neutral prose-p:mt-0 prose-p:mb-0 prose-p:pt-0 lg:prose-xl prose-h1:leading-tight prose-h1:mb-0 prose-h1:pb-0">
+                <article className="w-full prose-neutral prose-h1:text-4xl prose-p:mt-0 prose-p:mb-0 prose-p:pt-0 prose-p:pb-0 lg:prose-xl prose-h1:leading-tight prose-h1:mb-0 prose-h1:pb-0">
                     <h1 className='text-3xl text-white font-bold'>{post.title}</h1>
                    
-                    <div className="flex w-full min-[600px]:items-center mt-5 max-[1024px]:mb-5 max-[600px]:flex-col">
-                        <div className="flex items-center mr-10 max-[600px]:mb-1">
+                    <div className="flex w-full mt-7 flex-col mb-5 min-[1024px]:mb-0">
+                        <div className="flex items-center mr-10 ">
+                            <p className="text-gray-500 text-sm mr-2">Autor:</p>
+                            <p className='text-sm mr-1'>{author.name}</p>
                             {
-                                (author.image) ? <Image className='mr-2' style={{borderRadius: '50%'}} src={author.image} height={24} width={24} alt="profile" />
-                                :<FaUserCircle className='mr-3' />
+                                (author.image) ? <Image className='mr-0' style={{borderRadius: '50%'}} src={author.image} height={30} width={30} alt="profile" />
+                                :
+                                // <FaUserCircle className='mr-0 w-[30px]' />
+                                <></>
                             }
-                            <p className='text-sm'>{author.name}</p>
                         </div>
 
                         <div className="flex-1 flex items-center">
@@ -51,16 +53,21 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
                         </div>
                     </div>
                 
-                    <div className='relative min-h-[400px] w-[100%] mb-20'>
+                    <div className='relative h-auto w-[100%]'>
                         <Image
                             alt='thumbnail'
                             src={post.image}
-                            layout='fill'
-                            objectFit='cover'
+                            layout='responsive'
+                            // objectFit='contain'
+                            width={100}
+                            height={100}
                         />
                     </div>
+                    <div className="mt-3">
+                    <p className="mt-3 text-gray-400 text-sm">FOTO: {post.fotoIzvor}</p>
+                    </div>
                         
-                    <div className=" mt-10 prose prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
+                    <div className="mt-5 prose prose-p:text-lg prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
                     
                         <div className="w-full" dangerouslySetInnerHTML={{__html: post.body}} />
                         

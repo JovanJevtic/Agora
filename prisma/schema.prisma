@@ -92,6 +92,8 @@ model Post {
   position3       Boolean         @default(false)
   position4       Boolean         @default(false)
   position5       Boolean         @default(false)
+
+  fotoIzvor       String          @default("")
 }
 
 model Category {

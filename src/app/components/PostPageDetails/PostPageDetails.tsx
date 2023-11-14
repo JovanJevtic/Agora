@@ -25,9 +25,9 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise
     const subcategorys = await subcategorysData;
 
   return (
-    <div className={`h-28 mb-10`} style={{ background: `#${category.hexCol}` }}>
-        <div className=" flex flex-col h-full">
-            <div className="flex-[4] flex items-center justify-start border-[#333] border-b-[1px] border-solid">
+    <div className={`h-28 mb-10`}>
+        <div className="bg-secondary flex flex-col h-full">
+            <div style={{ background: `#${category.hexCol}` }} className="flex-[4] flex items-center justify-start border-[#333] border-b-[0px] border-solid">
                 <div className="container">
                     <h1 className="uppercase text-3xl font-bold text-white">{category.name}</h1>
                 </div>    
@@ -36,7 +36,7 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise
                 <ul className="flex w-full h-full items-center">
                     {
                        subcategorys.map(obj => (
-                        <Link key={obj.id} className={`h-full transition mr-0 hover:bg-secondary ${obj.name === subcategory.name ? `bg-secondary font-bold` : 'bg-black'}`} href={`/subcategory/${obj.name}`}>
+                        <Link key={obj.id} style={{background: obj.name === subcategory.name ? `#${category.hexCol}`: ''}} className={`h-full transition mr-0 hover:bg-secondary ${obj.name === subcategory.name ? `border-t-[0px] border-solid border-black font-bold` : 'bg-black'}`} href={`/subcategory/${obj.name}`}>
                             <li className={`h-full flex items-center pl-5 pr-5`}>
                                 <p className="text-sm">{obj.name}</p>
                             </li>
