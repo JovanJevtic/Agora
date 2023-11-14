@@ -47,13 +47,13 @@ const Nav = async () => {
 
 
     return (
-        <nav className='h-20 bg-black fixed w-full border-b-[0.1px] border-background z-[1000]'>
+        <nav className='h-20 bg-black fixed w-full border-b-[1px] border-secondary z-[1000] border-solid'>
             <div className="container flex w-full h-full items-center">
                 <div className='bg-background mr-2 min-[820px]:hidden'>
                     <HamburgerMenu />
                 </div>
-                <Link href={'/search'} className='h-10 rounded-sm flex items-center cursor-pointer min-[820px]:hidden max-[420px]:mr-2'>
-                        <Search height={18} />
+                <Link href={'/search'} className='ml-1 h-10 rounded-sm flex items-center cursor-pointer min-[820px]:hidden max-[420px]:mr-2'>
+                        <Search height={20} />
                 </Link>
                 <div className='min-[1000px]:mr-10 flex items-center max-[820px]:flex-1 max-[820px]:justify-center'>
                     <Link href={'/'} className='flex h-full items-center'>

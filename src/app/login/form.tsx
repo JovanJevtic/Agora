@@ -114,8 +114,8 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col justify-center h-[90vh] items-center">
-            <Card className="max-[800px]:w-[97%] min-[800px]:w-[750px] border-secondary">
+        <div className="flex flex-col justify-center items-center">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-10">
                 <CardHeader>
                     <CardTitle>Prijava</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Prijavi se ako vec imas racun ili nastavi sa Google-om. <br></br>
