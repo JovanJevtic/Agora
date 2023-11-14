@@ -115,11 +115,11 @@ const Form = () =>   {
 
     return (
         <div className="flex flex-col justify-center h-[90vh] items-center">
-            <Card className="max-[800px]:w-[100%] max-[800px]:ml-[0%] min-[800px]:w-[750px] border-gray-700">
+            <Card className="max-[800px]:w-[97%] min-[800px]:w-[750px] border-secondary">
                 <CardHeader>
                     <CardTitle>Prijava</CardTitle>
-                    <CardDescription>Prijavi se ako vec imas racun ili nastavi sa Google-om. <br></br>
-                        <Link className="underline mt-1" href={'/register'}>Nemas račun? Registruj se</Link>
+                    <CardDescription className="max-[800px]:text-xs">Prijavi se ako vec imas racun ili nastavi sa Google-om. <br></br>
+                        <Link className="underline mt-1 max-[800px]:text-xs" href={'/register'}>Nemas račun? Registruj se</Link>
                     </CardDescription>
                 </CardHeader>
                 <CardContent>

@@ -83,7 +83,7 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col justify-center h-[90vh]">
+        <div className="flex flex-col items-center justify-center h-[90vh]">
             {
                 resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
                 <AlertCircle className="h-4 w-4" />
@@ -104,11 +104,11 @@ const Form = () =>   {
                 </Alert>
             }
 
-            <Card className="max-[800px]:w-[100%] max-[800px]:ml-[0%] min-[800px]:w-[750px] border-gray-700">
+            <Card className="max-[800px]:w-[97%] min-[800px]:w-[750px] border-secondary">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
-                    <CardDescription>Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
-                        <Link className="underline mt-1" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
+                    <CardDescription className="max-[800px]:text-xs">Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
+                        <Link className="underline mt-1 max-[800px]:text-xs" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
                 </CardHeader>
                 <CardContent>
                     <FormComponent {...form}>

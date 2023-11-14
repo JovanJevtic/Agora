@@ -35,15 +35,9 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
     if (pathname == '/register') {
         return(
             <div className='flex items-center ml-5'>
-                <Link className='max-[780px]:text-xs mr-0' href={'/login'}>
-                    <Button className='max-[780px]:text-xs rounded-md font-bold' variant={"outline"}>
+                <Link className='rounded-md mr-0' href={'/login'}>
+                    <Button className='min-[1000px]:mr-3 max-[420px]:w-[80px] max-[420px]:h-[32px] max-[420px]:text-[11px]' variant={"outline"}>
                         Prijavi se
-                    </Button>
-                </Link>
-                
-                <Link className='max-[500px]:hidden' href={'/register'}>
-                    <Button className='font-bold rounded-md min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
-                        Registruj se                
                     </Button>
                 </Link>
             </div>
@@ -52,14 +46,8 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
 
     return(
         <div className='flex items-center ml-5'>
-            <Link className='max-[500px]:hidden' href={'/login'}>
-                <Button className='font-bold mr-3 max-[780px]:text-xs rounded-md' variant={"outline"}>
-                    Prijavi se
-                </Button>
-            </Link>
-            
-            <Link className='max-[780px]:text-xs rounded-md' href={'/register'}>
-                <Button className='font-bold min-[1000px]:mr-3 max-[420px]:w-[90px] max-[780px]:text-xs'>
+            <Link className='rounded-md' href={'/register'}>
+                <Button className='min-[1000px]:mr-3 max-[420px]:w-[80px] max-[420px]:h-[32px] max-[420px]:text-[11px]'>
                     Registruj se                
                 </Button>
             </Link>
