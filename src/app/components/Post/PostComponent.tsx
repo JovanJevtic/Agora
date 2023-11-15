@@ -29,7 +29,7 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
         <div className="flex">
             <div className="flex-[7]">
                 <article className="w-full prose-neutral prose-h1:text-4xl prose-p:mt-0 prose-p:mb-0 prose-p:pt-0 prose-p:pb-0 lg:prose-xl prose-h1:leading-tight prose-h1:mb-0 prose-h1:pb-0">
-                    <h1 className='text-3xl text-white font-bold'>{post.title}</h1>
+                    <h1 className='text-2xl md:text-3xl text-white font-bold'>{post.title}</h1>
                    
                     <div className="flex w-full mt-7 flex-col mb-5 min-[1024px]:mb-0">
                         <div className="flex items-center mr-10 ">
