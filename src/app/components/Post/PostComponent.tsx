@@ -67,7 +67,7 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
                     <p className="mt-3 text-gray-400 text-sm">FOTO: {post.fotoIzvor}</p>
                     </div>
                         
-                    <div className="mt-5 prose prose-p:text-lg prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
+                    <div className="mt-5 prose prose-strong:text-white prose-p:text-lg prose-xl prose-headings:text-white prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
                     
                         <div className="w-full" dangerouslySetInnerHTML={{__html: post.body}} />
                         

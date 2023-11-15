@@ -37,3 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 //{ categoryId: 'clomrvf600000r5iwe7vw9v9u' }
 asdjaskldj10jd19jdaskjdlj12JKASJD#
+
+<p>Najbolji teniser svijeta Novak Đoković poražen je od Janika Sinera u drugom kolu Završnog mastersa u Torinu u drami koja je trajala više od tri časa u tri seta, od kojih su dva otišla u tajbrejk.</p></br>
+<p><strong>Po setovima je bilo 7:5, 6:7 (5), 7:6 (2).</strong></p></br>
+<p>Prava drama viđena je u ovom meču, Đoković je odlično servirao, ali Italijan nošen publikom uspio je da ostane u meču, i na kraju u tajbrejku trećeg seta dođe do pobjede, koja mu je gotovo obezbijedila nastup u polufinalu, dok će Đoković to tražiti u trećem kolu. </p></br>
+<p>Srpski as je imao bolju statistiku, 20 as servisa, Siner 15, potom 46 direktnih poena, dok je Italijan sakupio 37, ali to Đokoviću nije pomoglo da izbjegne poraz, prvi u sudaru sa teniserom iz Italije.</p>
+<p>Đoković će u trećem kolu Završnog mastersa igrati protiv Poljaka Huberta Hurkača, koji će zamjeniti Grka Stefana Cicipasa. </p></br>
+<p>Naime, u prvom meču današnjeg dana Cicipas je zbog povrede nakon samo tri gema predao meč Runeu, a nedugo potom se i povukao sa Mastersa u Torinu.  </p>

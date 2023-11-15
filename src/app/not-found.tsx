@@ -1,6 +1,6 @@
 const NotFound = () => {
   return (
-    <div className="container">Nepostojeca stranica!</div>
+    <div className="container min-[70vh]:">Nepostojeca stranica!</div>
   )
 }
 
