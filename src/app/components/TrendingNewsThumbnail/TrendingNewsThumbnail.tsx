@@ -110,7 +110,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                                     <Skeleton className="h-4 w-12" /> : <></>
                                 }
                             </div>
-                            <p className='md:text-xs text-gray-400 text-xs'><TrendingNewsDate date={post.createdAt} /></p>
+                            <p className='md:text-xs hidden text-gray-400 text-xs'><TrendingNewsDate date={post.createdAt} /></p>
                         </div>
                 </div>
 
