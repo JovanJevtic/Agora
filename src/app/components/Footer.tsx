@@ -40,6 +40,9 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
+                <div className="mb-1 mt-1">
+                    <p className="text-xs">Designed and developed by: <Link className="underline font-bold" href={'https://github.com/JovanJevtic'}>Jovan Jevtić</Link></p>
+                </div>
                 <div className="mt-0">
                     <p className="text-xs text-gray-400 mb-3 font-bold">Copyright © 2023 Agora</p>
                 </div>
