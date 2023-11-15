@@ -55,18 +55,18 @@ const Form = () =>   {
 
         if (!response.ok) {
             const errors = responseData.errors;
-      
-            if (errors.email) {
+            console.log(errors);
+            if (errors?.email) {
               setError("email", {
                 type: "server",
                 message: errors.email,
               });
-            } else if (errors.password) {
+            } else if (errors?.password) {
               setError("password", {
                 type: "server",
                 message: errors.password,
               });
-            } else if (errors.confirmPassword) {
+            } else if (errors?.confirmPassword) {
               setError("confirmPassword", {
                 type: "server",
                 message: errors.confirmPassword,
@@ -84,6 +84,7 @@ const Form = () =>   {
 
     return (
         <div className="flex flex-col items-center justify-center min-[70vh]">
+            <div className="mt-20"></div>
             {
                 
                     resError &&
@@ -108,7 +109,7 @@ const Form = () =>   {
                     </Alert></div>
             }
 
-            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-20">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>

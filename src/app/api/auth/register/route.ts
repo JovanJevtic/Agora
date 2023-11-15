@@ -20,6 +20,7 @@ export const POST = async (request: NextRequest) => {
             password,
             confirmPassword
         } = (await request.json()) as RegisterUserData;
+        console.log(email);
 
         const validateResponse = registerFormSchema.safeParse({ email, password, name, confirmPassword });
         // if (!validateResponse.success) return NextResponse.json({ error: 'Greska u unosu...' }, { status: 400 });
