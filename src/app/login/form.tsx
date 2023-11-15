@@ -22,6 +22,7 @@ import { AlertCircle, MailCheck } from "lucide-react"
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const Form = () =>   {
     const form = useForm<TSLoginSchema>({
@@ -167,13 +168,13 @@ const Form = () =>   {
                     </div> 
                 </div> 
                 <Button
-                    className="w-full mt-2"
+                    className="w-full mt-2 border-gray-600 border-solid border-[1px] h-10]"
                     onClick={() => signIn("google")}
                     variant={"secondary"}
-                    disabled
                 >
-                    <Wrench height={16} className="mr-3" />
-                    Google</Button>
+                    <FcGoogle className="w-[50px] h-[22px]" />
+                            <p className="">Nastavi uz Google</p>
+                    </Button>
                 </CardContent>
             </Card>
         </div>

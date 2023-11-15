@@ -8,6 +8,8 @@ import { Form as FormComponent, FormControl, FormDescription, FormField, FormIte
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { EyeIcon, Loader2, Wrench } from "lucide-react"
+import { FcGoogle } from "react-icons/fc";
+
 import {
     Card,
     CardContent,
@@ -20,6 +22,8 @@ import { signIn } from "next-auth/react";
 import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert"
 import { AlertCircle, MailCheck } from "lucide-react"
 import Link from "next/link";
+import { FaGoogle } from "react-icons/fa6";
+import { BsGoogle } from "react-icons/bs";
 
 const Form = () =>   {
     const form = useForm<TSRegisterSchema>({
@@ -184,13 +188,17 @@ const Form = () =>   {
                     </div> 
                 </div> 
                 <Button
-                    disabled
-                    className="w-full mt-2"
-                    onClick={() => signIn("google")}
+
+                    className="w-full mt-2 border-gray-600 border-solid border-[1px]"
+                    onClick={() => {
+                        // signIn("google")
+                    }}
                     variant={"secondary"}
                 >
-                    <Wrench height={16} className="mr-3" />
-                    Google</Button>
+                    {/* <Wrench height={16} className="mr-3" /> */}
+                            <FcGoogle className="w-[50px] h-[22px]" />
+                            <p className="">Nastavi uz Google</p>
+                    </Button>
                 </CardContent>
             </Card>
         </div>
