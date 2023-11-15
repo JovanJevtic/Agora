@@ -6,8 +6,8 @@ import { Card } from '../components/ui/card'
 
 const About = () => {
   return (
-    <div>
-        <Card className='p-5 border-gray-600'>
+    <div className='container'>
+        <Card className='p-5 border-gray-600 mt-10'>
         <h1 className='mt-5 font-bold text-lg'>Kontaktirajte Nas</h1>
 
 <p className='mt-3 text-sm'>Dobrodošli na našu kontakt stranicu! Ako želite ostati u kontaktu s nama ili pratiti najnovije vijesti i informacije o našem radu, slobodno koristite sljedeće linkove do naših društvenih mreža:</p>

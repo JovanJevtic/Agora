@@ -8,7 +8,7 @@ const Register = async () => {
         redirect('/profile')
     }
     return (
-    <div>
+    <div className="">
       <Form />
     </div>
   )

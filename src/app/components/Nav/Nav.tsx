@@ -36,15 +36,10 @@ export const links: NavLink[] = [
         name: 'Društvo',
         route: '/category/Drustvo'
     },
-    {
-        name: 'Kontakt',
-        route: '/kontakt'
-    }
 ]
 
 const Nav = async () => {
     const session = await getServerSession(authOptions);
-
 
     return (
         <nav className='h-20 bg-black fixed w-full border-b-[1px] border-secondary z-[1000] border-solid'>
@@ -63,7 +58,7 @@ const Nav = async () => {
                     <div className='h-6 bg-background right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
                 </div>
                 <div className='flex-1 max-[820px]:hidden'>
-                    <ul className='flex justify-between min-[1000px]:mr-10 max-[1000px]:mr-2'>
+                    <ul className='flex justify-between min-[1000px]:mr-20 max-[1000px]:mr-2'>
                         {
                             links.map(link => <NavLink key={link.route} link={link} />)
                         }

@@ -124,6 +124,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 src={post.image}
                 layout='fill'
                 objectFit='cover'
+                objectPosition='top'
             />
             <div className="absolute h-full w-full opacity-100 flex flex-col">
                 <div className='h-[95%]' style={{ backgroundImage: 'linear-gradient(180deg, transparent, black)' }}></div>

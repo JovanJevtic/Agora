@@ -83,32 +83,32 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[70vh]">
+        <div className="flex flex-col items-center justify-center min-[70vh]">
             {
-                <div className="container">
-                    resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertTitle>Greska!</AlertTitle>
-                    <AlertDescription>
-                        Nesto je poslo po zlu..Pokusajte ponovo!
-                    </AlertDescription>
-                    </Alert>
-                </div>
+                
+                    resError &&
+                    <div className="container">
+                         <Alert className="mb-5 bg-background" variant={"destructive"}>
+                        <AlertCircle className="h-4 w-4" />
+                        <AlertTitle>Greska!</AlertTitle>
+                        <AlertDescription>
+                            Nesto je poslo po zlu..Pokusajte ponovo!
+                        </AlertDescription>
+                        </Alert>
+                    </div>
             }
             
             {
-                <div className="container">
-                    response && <Alert className="mb-5 bg-background border-primary" variant={"default"}>
+                    response && <div className="container"><Alert className="mb-5 bg-background border-primary" variant={"default"}>
                     <MailCheck className="h-4 w-4" />
                     <AlertTitle>Uspjesno!</AlertTitle>
                     <AlertDescription>
                         Provjerite Vaše email sanduce i verifikujte se!
                     </AlertDescription>
-                    </Alert>
-                </div>
+                    </Alert></div>
             }
 
-            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-10">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-20">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>

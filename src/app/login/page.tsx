@@ -9,7 +9,7 @@ const Login = async () => {
     }
 
   return (
-    <div>
+    <div className="">
         <Form />
     </div>
   )

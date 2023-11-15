@@ -6,7 +6,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <div className="min-h-60 w-full bg-background mt-10">
+    <div className="min-h-60 w-full bg-background mt-10 ">
         <div className='container flex flex-col h-full w-full'>
             <div>
                 <h1 className="mt-5 font-bold lg:text-lg text-lg">Istraži Agoru</h1>

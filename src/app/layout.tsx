@@ -28,7 +28,7 @@ export default async function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9275537803067099"
         crossOrigin="anonymous"></script>
       </head>
-      <body className={`${inter.className} bg-black`} >
+      <body className={`${inter.className} bg-black min-h-screen`} >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -36,12 +36,14 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <SessionProvider session={session}>
-            <Nav />
-            <div className='h-20'></div>
-            <main className='min-h-[60vh]'>
-              {children}
-            </main>
-            <Footer />
+            <div className='flex flex-col min-h-screen'>
+              <Nav />
+              <div className='h-20'></div>
+              <main className='flex-1'>
+                {children}
+              </main>
+              <Footer />
+            </div>
           </SessionProvider>
         </ThemeProvider>
       </body>
