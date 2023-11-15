@@ -88,7 +88,7 @@ const Form = () =>   {
             {
                 
                     resError &&
-                    <div className="container">
+                    <div className="max-[800px]:w-[96%] min-[800px]:w-[750px]">
                          <Alert className="mb-5 bg-background" variant={"destructive"}>
                         <AlertCircle className="h-4 w-4" />
                         <AlertTitle>Greska!</AlertTitle>
@@ -100,7 +100,7 @@ const Form = () =>   {
             }
             
             {
-                    response && <div className="container"><Alert className="mb-5 bg-background border-primary" variant={"default"}>
+                    response && <div className="max-[800px]:w-[96%] min-[800px]:w-[750px]"><Alert className="mb-5 bg-background border-primary" variant={"default"}>
                     <MailCheck className="h-4 w-4" />
                     <AlertTitle>Uspjesno!</AlertTitle>
                     <AlertDescription>
