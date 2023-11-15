@@ -59,15 +59,17 @@ export const POST = async (request: NextRequest) => {
         const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
 
         const transporter = nodemailer.createTransport({ 
-            service: 'gmail',
-            auth: {     
-                user: process.env.NODEMAILER_AUTH_EMAIL, 
-                pass: process.env.NODEMAILER_AUTH_PWD
-            } 
+            host: 'www.agoraportal.net',
+            port: 465,
+            secure: true, // true for 465, false for other ports
+            auth: {
+                user: 'kontakt@agoraportal.net', // your domain email address
+                pass: 'FNOM0OQhOwVDI1N' // your password
+            }
         });
 
         const mailOptions = { 
-            from: process.env.NODEMAILER_AUTH_EMAIL, 
+            from: '"Servis" <kontakt@agoraportal.net>', 
             to: email,     
             subject: 'Account Verification Code', 
             html: 'Pozdrav,  '+ name +',\n\n' + `verifikuj svoj racun klikom na sledeci link: <a href="${url}">${url}</a>`+'\n\n, Hvala!\n' 
