@@ -114,7 +114,7 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center min-h-[70vh]">
             <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-10">
                 <CardHeader>
                     <CardTitle>Prijava</CardTitle>

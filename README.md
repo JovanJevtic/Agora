@@ -37,4 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 //{ categoryId: 'clomrvf600000r5iwe7vw9v9u' }
 asdjaskldj10jd19jdaskjdlj12JKASJD#
+FNOM0OQhOwVDI1N
 
+<p>Košarkaši Crvene zvezde ubjedljivo su pobijedili ekipu Fenerbahčea rezultatom 87:56, u okviru 8. kola Evrolige. Po četvrtinama je bilo <strong>25:16, 20:10, 15:14 i 27:16.</strong></p></br> <p>Utakmica je odigrana pred prepunom <strong><em>&quot;Štark arenom&quot;</em></strong> u Beogradu. Najbolji košarkaši na terenu u sastavu Zvezde bili su <strong>Miloš Teodosić sa 18 poena i tri asistencije</strong>, i <strong>DŽoel Bolomboj koji je dodao 14.</strong></p></br> <p>U turskom timu istakao se <strong>Najdžel Hejs sa 12 koševa i tri skoka</strong>. U narednom kolu Evrolige, Zvezda gostuje <strong>Olimpijakosu</strong>, u četvrtak, <em>16. novembra od 20 časova i 15 minuta</em>, dok je isti dan <strong>Fenerbahče</strong> gost <strong>Makabiju</strong> u Beogradu, a <em>susret počinje u 20 časova i 15 minuta.</em></p>  

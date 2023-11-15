@@ -83,25 +83,29 @@ const Form = () =>   {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center min-h-[70vh]">
             {
-                resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Greska!</AlertTitle>
-                <AlertDescription>
-                    Nesto je poslo po zlu..Pokusajte ponovo!
-                </AlertDescription>
-                </Alert>
+                <div className="container">
+                    resError && <Alert className="mb-5 bg-background" variant={"destructive"}>
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Greska!</AlertTitle>
+                    <AlertDescription>
+                        Nesto je poslo po zlu..Pokusajte ponovo!
+                    </AlertDescription>
+                    </Alert>
+                </div>
             }
             
             {
-                response && <Alert className="mb-5 bg-background border-primary" variant={"default"}>
-                <MailCheck className="h-4 w-4" />
-                <AlertTitle>Uspjesno!</AlertTitle>
-                <AlertDescription>
-                    Provjerite Vaše email sanduce i verifikujte se!
-                </AlertDescription>
-                </Alert>
+                <div className="container">
+                    response && <Alert className="mb-5 bg-background border-primary" variant={"default"}>
+                    <MailCheck className="h-4 w-4" />
+                    <AlertTitle>Uspjesno!</AlertTitle>
+                    <AlertDescription>
+                        Provjerite Vaše email sanduce i verifikujte se!
+                    </AlertDescription>
+                    </Alert>
+                </div>
             }
 
             <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary mt-10">
