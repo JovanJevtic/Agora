@@ -59,7 +59,7 @@ export const POST = async (request: NextRequest) => {
         const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
 
         const transporter = nodemailer.createTransport({ 
-            host: 'www.agoraportal.net',
+            host: 'agoraportal.net',
             port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
