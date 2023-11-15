@@ -8,8 +8,8 @@ type Props = {
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
   return (
-    <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[350px] bg-card md:bg-transparent md:mt-5'>
-        <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-3'>
+    <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-5'>
+        <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-1'>
            
             <Link href={`/post/${posts[0].id}`} className='col-start-1 row-start-1 row-end-[13] col-span-2 md:row-span-10 md:col-span-2 md:row-span-2'>
                 <TrendingNewsThumbnail big post={posts[0]} />

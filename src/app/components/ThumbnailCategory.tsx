@@ -67,8 +67,8 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                 </div>
             </div>
             <div className=" w-full p-3">
-                <h1 className=" mt-1 capitalize text-lg hover:underline transition">{post.title}</h1>
-                <p className="text-gray-500 text-xs mt-1">{post.subtitle}</p>
+                <h1 className=" mt-1 capitalize text-lg hover:underline transition line-clamp-3">{post.title}</h1>
+                <p className="text-gray-500 text-xs mt-1 line-clamp-2">{post.subtitle}</p>
                 <div className="h-5"></div>
                 <div className="flex mb-1">
                     <div className="flex-1 flex items-center">

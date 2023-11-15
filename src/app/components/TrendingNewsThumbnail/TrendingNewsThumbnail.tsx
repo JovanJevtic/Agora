@@ -127,19 +127,22 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 objectPosition='top'
             />
             <div className="absolute h-full w-full opacity-100 flex flex-col">
-                <div className='h-[95%]' style={{ backgroundImage: 'linear-gradient(180deg, transparent, black)' }}></div>
-                <div className='bg-black h-[5%]'></div>
+                <div className={`${big ? 'h-full' : 'h-[50%]'}`}
+                 style={{ backgroundImage: big ? 'linear-gradient(180deg, transparent, black)' : '' }}
+                ></div>
+                <div className={`${!big && 'bg-black opacity-75 h-[50%]'}`}></div>
             </div>
             <div className='absolute h-full w-full bg-transparent'>
-                <div className='h-full w-full pl-3 pr-3 md:pl-5 md:pr-5 flex flex-col justify-end'>
-                    <h1 className={`mb-0 ml-0 font-bold line-clamp-2
+                <div className={`h-full w-full pl-3 md:pl-5 md:pr-5 flex flex-col justify-end ${big ? 'md:pr-20' : 'md:pr-5'}`}>
+                    <h1 className={`ml-0 line-clamp-2
                         text-sm
-                        ${ big && 'lg:text-2xl' }
-                        ${ !big && 'lg:text-lg' }
-                        
+                        ${big ? `md:text-4xl` : `md:text-lg`}
+                        ${big ? `leading-normal` : `md:leading-tight`}
+                        ${!big && 'mb-1'}
+                        ${big && 'font-bold'}
                     `}>{post.title}</h1>
                     { big && <p className='text-xs lg:text-sm mb-2 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
-                    <div className="flex items-center mt-0.5">
+                    <div className={`flex items-center mt-0.5`}>
                         {
                             category ? 
                             <div className="flex mb-0 items-center mt-0">
@@ -151,7 +154,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                             <Skeleton className="h-4 w-12" /> : <></>
                         }
                     </div>
-                    <p className='md:text-xs text-gray-400 text-xs'><TrendingNewsDate date={post.createdAt} /></p>
+                    <p className={`md:text-xs text-gray-400 text-xs ${big ? 'mb-7' : 'mb-2'}`}><TrendingNewsDate date={post.createdAt} /></p>
                 </div>
             </div>
         </div>
