@@ -60,24 +60,47 @@ export const POST = async (request: NextRequest) => {
         const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
 
         const transporter = nodemailer.createTransport({ 
-            name: 'www.agoraportal.net',
-            host: 'smtp.agoraportal.net',
-            port: 465,
-            secure: true, // true for 465, false for other ports
+            service: 'gmail',
+            // host: 'smtp.gmail.com',
             auth: {
-                user: 'kontakt@agoraportal.net', // your domain email address
-                pass: 'FNOM0OQhOwVDI1N' // your password
-            }
+                user: 'kontaktagoraa@gmail.com', // your domain email address
+                pass: 'nsahjqkjijvdizzq' // your password
+            },
         });
 
+        await new Promise((resolve, reject) => {
+            // verify connection configuration
+            transporter.verify(function (error, success) {
+                if (error) {
+                    reject(error);
+                    console.log(error);
+                } else {
+                    resolve(success);
+                }
+            });
+        });
+        
         const mailOptions = { 
-            from: '"Servis" <kontakt@agoraportal.net>', 
+            from: 'kontakt@agoraportal.net', 
             to: email,     
             subject: 'Verifikacijski kod', 
             html: 'Pozdrav,  '+ name +',\n\n' + `verifikuj svoj racun klikom na sledeci link: <a href="${url}">${url}</a>`+'\n\n, Hvala!\n' 
         };
 
-        const sendResult = await transporter.sendMail(mailOptions);
+        await new Promise((resolve, reject) => {
+            // send mail
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    reject(err);
+                    console.log(err);
+
+                } else {
+                    resolve(info);
+                }
+            });
+        });
+
+        // const sendResult = await transporter.sendMail(mailOptions);
         return NextResponse.json({ message: 'success' }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
