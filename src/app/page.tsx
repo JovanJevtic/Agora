@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 const getTrendingPosts = async () => {
   const res = await fetch('https://www.agoraportal.net/api/posts/trending', {
     method: 'GET',
-    cache: 'no-store'
+    cache: 'no-cache'
   });
   const data: Post[] = await res.json()
   return data;

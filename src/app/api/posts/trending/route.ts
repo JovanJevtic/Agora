@@ -16,7 +16,7 @@ export const GET = async (request: NextRequest) => {
                 OR: [
                     { position1: true }, { position2: true }, { position3: true }, { position4: true }, { position5: true }
                 ] 
-            }, take: 5
+            }, take: 5, orderBy: { createdAt: 'desc' }
         })
         return NextResponse.json(posts, { status: 200 })
     } catch (error) {
