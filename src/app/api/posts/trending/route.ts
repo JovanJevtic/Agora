@@ -6,7 +6,7 @@ export const GET = async (request: NextRequest) => {
         const posts = await prisma.post.findMany({ 
             where: {
                 AND: [
-                    { categoryId: 'clomrvf600000r5iwe7vw9v9u'},
+                    { categoryId: 'clop313zk0000ju089a48am77'},
                     { OR: [
                         { position1: true }, { position2: true }, { position3: true }, { position4: true }, { position5: true }
                     ] }
