@@ -14,19 +14,19 @@ const Footer = () => {
             <div className="flex-1 flex flex-col">
                 <div className="grid flex-1 border-b-[1px] border-background border-solid w-full mt-5 min-[800px]:mb-1 ">
                     <ul className="flex-1 h-full items-center flex max-[600px]:flex-col max-[600px]:items-start">
-                    <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/kontakt'}>Početna</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/privacy-policy'}>Novosti</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Politika</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Kultura</Link></li>
-                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/kontakt'}>Sport</Link></li>
-                        <li className="text-sm font-bold text-white mr-10"><Link className="w-[100px]" href={'/kontakt'}>Društvo</Link></li>
+                    <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Početna</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/category/Novosti'}>Novosti</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/category/Politika'}>Politika</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/category/Kultura'}>Kultura</Link></li>
+                        <li className="text-sm font-bold text-white mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/category/Sport'}>Sport</Link></li>
+                        <li className="text-sm font-bold text-white mr-10"><Link className="w-[100px]" href={'/category/Drustvo'}>Društvo</Link></li>
                     </ul>
                 </div>
                 <div className="flex  max-[800px]:flex-col max-[800px]:mt-5 min-[800px]:mt-5">
                     <ul className="flex-1 h-full items-center flex max-[600px]:flex-col max-[600px]:items-start mb-5 max-[800px]:mt-3">
-                        <li className="text-xs text-gray-400 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/privacy-policy'}>Uslovi korišćenja</Link></li>
-                        <li className="text-xs text-gray-400 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>O Agori</Link></li>
-                        <li className="text-xs text-gray-400 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/'}>Pravila privatnosti</Link></li>
+                        <li className="text-xs text-gray-800 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/#'}>Uslovi korišćenja</Link></li>
+                        <li className="text-xs text-gray-800 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/#'}>O Agori</Link></li>
+                        <li className="text-xs text-gray-400 mr-10 max-[600px]:mb-3"><Link className="w-[100px]" href={'/privacy-policy'}>Pravila privatnosti</Link></li>
                         <li className="text-xs text-gray-400 mr-10"><Link className="w-[100px]" href={'/kontakt'}>Kontaktirajte nas</Link></li>
                     </ul>
                     <ul className="h-full flex items-center w-40 justify-between max-[800px]:mb-5 max-[800px]:mt-2">

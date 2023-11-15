@@ -1,8 +1,6 @@
-import React from 'react'
-
 const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className='min-h-[70vh] container'>
         <h1>Privacy Policy</h1>
         <p>Last updated: 04/November/2023</p>
         <p>

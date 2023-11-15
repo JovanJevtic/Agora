@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     }
     const posts = await getPosts(params.slug);
     return(
-        <div className='container'>
+        <div className='container min-h-[70vh]'>
         <div className='flex h-14 items-center'>
     <div className={`absolute h-6 ${ category === "Novosti" ? "bg-yellow-500" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-red-700" :  "bg-white" }`} style={{width: '2px'}}></div>
     <h1 className='ml-2 font-bold text-lg'>{category}</h1>
