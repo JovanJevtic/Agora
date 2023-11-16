@@ -13,7 +13,7 @@ type Props = {
 
 const getPost = async (id: string) => {
     try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?slug=${id}`, {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${id}`, {
             method: 'GET',
             cache: 'no-cache'
         })
@@ -58,21 +58,21 @@ export async function generateStaticParams() {
     }))
 }
 
-// export async function generateMetadata(
-//     { params }: Props,
-//   ): Promise<Metadata> {
-//     // read route params
-//     const id = params.id
+export async function generateMetadata(
+    { params }: Props,
+  ): Promise<Metadata> {
+    // read route params
+    const id = params.id
    
-//     // fetch data
-//     const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${id}`).then((res) => res.json())
-//     console.log(post);
+    // fetch data
+    const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${id}`).then((res) => res.json())
+    console.log(post);
 
-//     return {
-//       title: post.title,
-//     //   description: post.subtitle
-//     }
-//   }
+    return {
+      title: post.title,
+    //   description: post.subtitle
+    }
+  }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const postData: Promise<Post> = getPost(id);
