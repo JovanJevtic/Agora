@@ -66,11 +66,13 @@ export async function generateMetadata(
    
     // fetch data
     const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${id}`).then((res) => res.json())
-    console.log(post);
 
     return {
       title: post.title,
-    //   description: post.subtitle
+      description: post.subtitle,
+      openGraph: {
+        images: post.image,
+      },
     }
   }
 
