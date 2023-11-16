@@ -71,11 +71,18 @@ export async function generateMetadata(
       title: post.title,
       description: post.subtitle,
       openGraph: {
-        images: {
+        title: post.title,
+        description: post.subtitle,
+        siteName: 'Agora',
+        images: [
+          {
             url: post.image,
             width: 800,
             height: 600,
-        }
+          }
+        ],
+        locale: 'en_US',
+        type: 'website',
       },
     }
   }
