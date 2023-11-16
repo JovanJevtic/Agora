@@ -71,7 +71,11 @@ export async function generateMetadata(
       title: post.title,
       description: post.subtitle,
       openGraph: {
-        images: post.image,
+        images: {
+            url: post.image,
+            width: 800,
+            height: 600,
+        }
       },
     }
   }
