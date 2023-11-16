@@ -68,7 +68,7 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
                     <ArrowRight className="text-gray-500 ml-1" size={16} />
                 </div>
             </div>
-            <div className="min-[1200px]:flex w-full min-[1200px]:justify-between min-[1200px]:h-[460px] max-[760px]:grid-cols-1 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:grid-rows-2 gap-x-5">
+            <div className="min-[1200px]:flex w-full min-[1200px]:justify-between min-[1200px]:h-[460px] max-[760px]:grid-cols-1 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:grid-rows-1 gap-x-5">
             {/* max-[840px]:flex-col max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:grid-rows-2 gap-x-5 */}
                 {data?.map(post => (
                     <ThumbnailCategory post={post} key={post.id} />
