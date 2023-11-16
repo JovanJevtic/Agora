@@ -3,6 +3,8 @@ import PostPageDetails, { PostPageDetailsLoading } from '@/app/components/PostPa
 import { Post } from '@prisma/client'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
+import { Metadata, ResolvingMetadata } from 'next'
+
 type Props = {
     params: {
         id: string
@@ -55,6 +57,21 @@ export async function generateStaticParams() {
       id: id
     }))
 }
+
+export async function generateMetadata(
+    { params }: Props,
+  ): Promise<Metadata> {
+    // read route params
+    const id = params.id
+   
+    // fetch data
+    const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${id}`).then((res) => res.json())
+
+    return {
+      title: post.title,
+      description: post.subtitle
+    }
+  }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const postData: Promise<Post> = getPost(id);

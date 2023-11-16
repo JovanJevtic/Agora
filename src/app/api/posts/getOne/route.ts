@@ -6,7 +6,7 @@ export const GET = async (request: NextRequest) => {
     try {
         
         const url = new URL(request.url)
-        const slug = url.searchParams.get("slug");
+        const slug = url.searchParams.get("id");
         if (!slug) return NextResponse.json({ status: 500 });
 
         const post = await prisma.post.findUnique({ 
