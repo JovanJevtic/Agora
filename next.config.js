@@ -1,8 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['i.imgur.com', 'lh3.googleusercontent.com', 'imgur.com'],
-    },
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'i.imgur.com',
+            pathname: '**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'lh3.googleusercontent.com',
+            pathname: '**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'imgur.com',
+            pathname: '**',
+          }
+        ],
+      },
     async headers() {
         return [
             {
