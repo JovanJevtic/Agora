@@ -4,7 +4,7 @@ import NavBtn from './NavBtn';
 import Image from 'next/image';
 import Logo from '../../../../public/LogoTip-01.png'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/libs/authOptions';
 import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 import { Search } from 'lucide-react'
 import { Input } from '../ui/input';
