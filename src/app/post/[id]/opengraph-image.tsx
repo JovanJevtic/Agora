@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/og'
- 
+import ImageComponent from 'next/image'
+import { Post } from '@prisma/client'
+
 export const runtime = 'edge'
  
 export const alt = 'Agora'
@@ -10,28 +12,20 @@ export const size = {
 export const contentType = 'image/png'
  
 export default async function Image({ params }: { params: { id: string } }) {
-  const post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${params.id}`).then((res) =>
+  const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${params.id}`).then((res) =>
     res.json()
   )
  
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 48,
-          background: 'white',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {post.title}
-      </div>
+      <ImageComponent
+        alt={alt}
+        src={post.image}
+      />
     ),
     {
       ...size,
+      
     }
   )
 }
