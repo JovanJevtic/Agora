@@ -7,6 +7,12 @@ type Props = {
     posts: Post[]
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
+
+    const firstPost = posts.filter((post) => {
+        return post.position2 === true
+    })
+    console.log(firstPost);
+
   return (
     <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-5'>
         <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-1'>

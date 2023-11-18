@@ -54,8 +54,8 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
                     Registruj se                
                 </Button>
                 <div className='md:hidden w-full h-full flex justify-end items-center'>
-                   <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-card z-[1000]'>
-                        <User className='' size={20} />
+                   <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-slate-50 dark:bg-card z-[1000]'>
+                        <UserPlus className='' size={20} />
                    </div>
                 </div>
             </Link>

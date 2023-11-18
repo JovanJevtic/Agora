@@ -42,7 +42,7 @@ const Nav = async () => {
     // const session = await getServerSession(authOptions);
 
     return (
-        <nav className='h-20 bg-black fixed w-full border-b-[1px] border-secondary z-[1000] border-solid'>
+        <nav className='h-20 bg-white dark:bg-black fixed w-full border-b-[1px] border-secondary z-[1000] border-solid'>
             <NavWrapp />
         </nav>
   )

@@ -74,7 +74,7 @@ model Post {
   authorId        String
 
   title           String
-  subtitle        String
+  subtitle        String      @db.Text
   body            String      @db.Text
   image           String      @db.Text
   slug            String      @unique

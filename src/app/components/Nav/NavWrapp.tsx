@@ -9,6 +9,7 @@ import NavBtn from "./NavBtn";
 import { links } from './Nav'
 import Logo from '../../../../public/LogoTip-01.png'
 import { useState } from "react";
+import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 
 const NavWrapp = () => {
 
@@ -33,7 +34,7 @@ const NavWrapp = () => {
                     href={'/'} className='flex h-full items-center'
                 >
                     <Image src={Logo} alt='logo' height={35} className='z-[1000] md:z-[1]' />
-                    <p className='text-sm font-bold ml-1 max-[480px]:hidden'>Agora</p>
+                    <p className='text-sm font-bold ml-1 max-[480px]:hidden z-[1000] md:z-[1]'>Agora</p>
                 </Link>
                 
                 <div className='h-6 bg-background right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
@@ -59,9 +60,13 @@ const NavWrapp = () => {
             <Link href={'/search'} className='h-10 rounded-sm flex items-center cursor-pointer hidden'>
                     <Search height={18} />
             </Link>
+
+            {/* <div className="absolute right-[65px] z-[1000] md:z-[1]">
+                <DarkModeToggle />
+            </div> */}
                 
             <div className="relative h-full min-[820px]:ml-5">
-                <div className=' right-0 max-[820px]:absolute flex items-center h-full w-full justify-end'>
+                <div className='right-0 max-[820px]:absolute flex items-center h-full w-full justify-end'>
                     <NavBtn setOpen={setIsOpen} />
                 </div>
             </div>

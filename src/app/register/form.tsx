@@ -113,11 +113,11 @@ const Form = () =>   {
                     </Alert></div>
             }
 
-            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary max-[420px]:border-none max-[420px]:bg-transparent">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
-                        <Link className="underline mt-1 max-[800px]:text-xs" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
+                        <Link className="underline mt-1 max-[800px]:text-xs text-primary" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
                 </CardHeader>
                 <CardContent>
                     <FormComponent {...form}>

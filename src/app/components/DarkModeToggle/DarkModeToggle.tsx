@@ -38,9 +38,9 @@ const DarkModeToggle = () => {
             className='mr-5'
             checked={darkMode as boolean}
             onChange={toggleDarkMode}
-            size={26}
-            moonColor='#fff'
-            sunColor='#fff'
+            size={20}
+            moonColor='#000'
+            sunColor='#fafafa'
         />
     )
 }
