@@ -2,17 +2,17 @@
 
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
-import { User, UserCircle2Icon, User2 } from 'lucide-react'
+import { User, UserCircle2Icon, User2, UserCircle2, UserCircleIcon, User2Icon, UserCheck2, UserCogIcon, UserPlus } from 'lucide-react'
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { SetStateAction, useEffect } from 'react';
 
-interface NavBarBtnProps {
-   
+type NavBarBtnProps = {
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
+const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
     const { data: session, status } = useSession()
     const pathname = usePathname()
 
@@ -32,24 +32,32 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({  }) => {
         )
     }
 
-    if (pathname == '/register') {
-        return(
-            <div className='flex items-center ml-5'>
-                <Link className='rounded-md mr-0' href={'/login'}>
-                    <Button className='min-[1000px]:mr-3 max-[420px]:w-[80px] max-[420px]:h-[32px] max-[420px]:text-[11px]' variant={"outline"}>
-                        Prijavi se
-                    </Button>
-                </Link>
-            </div>
-        )
-    }
+    // if (pathname == '/register') {
+    //     return(
+    //         <div className='flex items-center ml-5'>
+    //             <Link className='rounded-md mr-0' href={'/login'}>
+    //                 <Button className='min-[1000px]:mr-3 max-[420px]:w-[80px] max-[420px]:h-[32px] max-[420px]:text-[11px]' variant={"outline"}>
+    //                     Prijavi se
+    //                 </Button>
+    //             </Link>
+    //         </div>
+    //     )
+    // }
 
     return(
-        <div className='flex items-center ml-5'>
-            <Link className='rounded-md' href={'/register'}>
-                <Button className='min-[1000px]:mr-3 max-[420px]:w-[80px] max-[420px]:h-[32px] max-[420px]:text-[11px]'>
+        <div className='flex items-center  max-[420px]:w-[52px]'>
+            <Link 
+                className='rounded-md' href={'/register'}
+                onClick={() => setOpen(false)}    
+            >
+                <Button className='hidden md:block max-[420px]:h-[32px] max-[420px]:text-[11px]'>
                     Registruj se                
                 </Button>
+                <div className='md:hidden w-full h-full flex justify-end items-center'>
+                   <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-card z-[1000]'>
+                        <User className='' size={20} />
+                   </div>
+                </div>
             </Link>
         </div>
     )
