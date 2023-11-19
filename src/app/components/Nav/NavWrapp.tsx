@@ -10,6 +10,7 @@ import { links } from './Nav'
 import Logo from '../../../../public/LogoTip-01.png'
 import { useState } from "react";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
+import { fraunces } from "@/app/layout";
 
 const NavWrapp = () => {
 
@@ -33,11 +34,11 @@ const NavWrapp = () => {
                     onClick={() => setIsOpen(false)}
                     href={'/'} className='flex h-full items-center'
                 >
-                    <Image src={Logo} alt='logo' height={35} className='z-[1000] md:z-[1]' />
-                    <p className='text-sm font-bold ml-1 max-[480px]:hidden z-[1000] md:z-[1]'>Agora</p>
+                    <Image src={Logo} alt='logo' height={35} className='z-[1000] md:z-[1] mr-1' />
+                    <p className={`text-sm font-bold ml-1 max-[480px]:hidden z-[1000] md:z-[1]`}>Agora</p>
                 </Link>
                 
-                <div className='h-6 bg-background right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
+            <div className='h-[18px] bg-[#333] right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
             </div>
             
             <div className='flex-1 max-[820px]:hidden'>

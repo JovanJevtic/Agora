@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Poppins, Hanuman } from 'next/font/google'
 import './globals.css'
 import './style/style.css'
 import Nav from './components/Nav/Nav'
@@ -9,8 +9,9 @@ import { ThemeProvider } from "@/app/components/theme-provider"
 import Footer from './components/Footer'
 
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
+export const fraunces = Hanuman({ subsets: ["latin"], weight: "400"  })
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Agora',
   description: 'Agora portal',
 }
