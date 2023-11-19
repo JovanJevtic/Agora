@@ -7,6 +7,7 @@ import { Skeleton } from '../ui/skeleton';
 import Image from 'next/image';
 import { Category } from '@prisma/client';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { useTheme } from 'next-themes';
 
 type Props = {
     post: Post;
@@ -15,6 +16,8 @@ type Props = {
 const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) => {
     const [category, setCategory] = useState<Category | null>(null);
     const [loadingSub, setLoadingSub] = useState(false);
+
+    const { setTheme, theme } = useTheme()
 
     const getCategory = async () => {
         try {
@@ -59,7 +62,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                     objectPosition='top'
                 />
                 <div className="absolute h-full w-full opacity-100 flex flex-col">
-                    <div className='h-[90%]' style={{ backgroundImage: 'linear-gradient(180deg, transparent, black)' }}></div>
+                    <div className='h-[90%]' style={{ backgroundImage: theme === "dark" ? 'linear-gradient(180deg, transparent, black)' :  'linear-gradient(180deg, transparent, black)'}}></div>
                     <div className='bg-black h-[10%]'></div>
                 </div>
                 <div className='absolute h-full container bg-transparent'>
@@ -69,9 +72,9 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                             font-bold
                             md:text-2xl
                             lg:text-3xl
-                            text-white
+                        text-white
                         `}>{post.title}</h1>
-                        { big && <p className='text-xs w-[70%] lg:text-sm mb-2 mt-0.5 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
+                        { big && <p className='text-xs w-[70%] lg:text-sm mb-2 mt-0.5 text-gray-400  line-clamp-2'>{post.subtitle}</p> }
                         
                         <div className='flex w-full items-center mb-5 mt-2'>
                             <div className="flex items-center mt-0.5 flex-1">
@@ -79,7 +82,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                                     category ? 
                                     <div className="flex mb-0 items-center mt-0">
                                         <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
-                                        <p className="text-sm max-[700px]:text-xs text-gray-400" 
+                                        <p className="text-sm max-[700px]:text-xs text-gray-400 " 
                                         >{category.name}</p>
                                     </div>
                                     : loadingSub ?
@@ -141,14 +144,15 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         ${big ? `leading-normal` : `md:leading-tight`}
                         ${!big && 'mb-1'}
                         ${big && 'font-bold'}
+                        text-white
                     `}>{post.title}</h1>
-                    { big && <p className='text-xs lg:text-sm mb-2 text-gray-400 line-clamp-2'>{post.subtitle}</p> }
+                    { big && <p className='text-xs lg:text-sm mb-2 text-gray-400 dark:text-gray-400 line-clamp-2'>{post.subtitle}</p> }
                     <div className={`flex items-center mt-0.5`}>
                         {
                             category ? 
                             <div className="flex mb-0 items-center mt-0">
                                 <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
-                                <p className="text-sm max-[700px]:text-xs" 
+                                <p className="text-sm max-[700px]:text-xs text-gray-400 " 
                                 >{category.name}</p>
                             </div>
                             : loadingSub ?

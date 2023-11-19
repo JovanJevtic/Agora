@@ -49,6 +49,10 @@ const NavWrapp = () => {
             </div>
             
                 {/* <DarkModeToggle /> */}
+
+            <div className="hidden md:block mr-3">
+                <DarkModeToggle />
+            </div>
             
             <div className='h-full flex items-center max-[1000px]:hidden'>
                 <Link href={'/search'} className='h-10 bg-secondary w-44 rounded-sm flex items-center cursor-pointer'>
@@ -56,14 +60,15 @@ const NavWrapp = () => {
                     <p className='text-xs ml-2'>Pretražuj..</p>
                 </Link>
             </div>
+
                 
             <Link href={'/search'} className='h-10 rounded-sm flex items-center cursor-pointer hidden'>
                     <Search height={18} />
             </Link>
 
-            {/* <div className="absolute right-[65px] z-[1000] md:z-[1]">
+            <div className="absolute right-[65px] z-[1000] md:z-[1] md:hidden">
                 <DarkModeToggle />
-            </div> */}
+            </div>
                 
             <div className="relative h-full min-[820px]:ml-5">
                 <div className='right-0 max-[820px]:absolute flex items-center h-full w-full justify-end'>

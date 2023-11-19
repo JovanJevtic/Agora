@@ -95,7 +95,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
     const subcategoryData = getSubcategory(post.subcategoryId as string);
 
     return (
-        <div className='min-h-[90vh] w-full'>
+        <div className='min-h-[90vh] w-full bg-slate-50 dark:bg-black'>
              {/* <Suspense fallback={<PostPageDetailsLoading />}> */}
                 <PostPageDetails categoryId={post.categoryId} categoryPromise={categoryData} subcategoryPromise={subcategoryData} />
             {/* </Suspense> */}
