@@ -59,7 +59,7 @@ const Form = () =>   {
 
         if (!response.ok) {
             const errors = responseData.errors;
-            // console.log(errors);
+            console.log(errors);
             if (errors?.email) {
               setError("email", {
                 type: "server",
@@ -194,7 +194,7 @@ const Form = () =>   {
                         signIn("google")
                     }}
                     variant={"ghost"}
-                    disabled
+                    // disabled
                 >
                     {/* <Wrench height={16} className="mr-3" /> */}
                             <FcGoogle className="w-[50px] h-[22px]" />
