@@ -21,7 +21,7 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
             <div className='flex items-center ml-5'>
                 {/* <Button className='h-9 text-xs ml-5 rounded-md mr-1' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button> */}
                 <Link href={'/profile'} className='flex h-full items-center'>
-                    <p className='text-sm max-[600px]:hidden'>{session.user.name}</p>
+                    {/* <p className='text-sm max-[600px]:hidden'>{session.user.name}</p> */}
                     {
                         session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
                         :<UserCircle2Icon className='mr-3' />

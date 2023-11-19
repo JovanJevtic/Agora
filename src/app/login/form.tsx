@@ -173,7 +173,7 @@ const Form = () =>   {
                         signIn("google")
                     }}
                     variant={"ghost"}
-                    disabled
+                    // disabled
                 >
                     <FcGoogle className="w-[50px] h-[22px]" />
                             <p className="">Nastavi uz Google</p>
