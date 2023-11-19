@@ -19,7 +19,7 @@ const NavBarLink: React.FunctionComponent<NavBarLinkPropTypes> = ({ link, setIsO
         <Link 
             href={link.route} 
             key={link.route}
-            style={pathname === link.route ? { color: '#fff' } : { color: '#737373' }}
+            className={`${pathname === link.route ? 'text-black dark:text-white' : 'text-[#737373]'}`}
         >
             <p className={`
                 text-sm hover:text-white hover:underline underline-offset-8 transition
