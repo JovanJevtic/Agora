@@ -59,7 +59,7 @@ const Form = () =>   {
 
         if (!response.ok) {
             const errors = responseData.errors;
-            console.log(errors);
+            // console.log(errors);
             if (errors?.email) {
               setError("email", {
                 type: "server",

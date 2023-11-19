@@ -20,7 +20,7 @@ export const POST = async (request: NextRequest) => {
             password,
             confirmPassword
         } = (await request.json()) as RegisterUserData;
-        console.log(email);
+        // console.log(email);
 
         const validateResponse = registerFormSchema.safeParse({ email, password, name, confirmPassword });
         // if (!validateResponse.success) return NextResponse.json({ error: 'Greska u unosu...' }, { status: 400 });
@@ -73,7 +73,7 @@ export const POST = async (request: NextRequest) => {
             transporter.verify(function (error, success) {
                 if (error) {
                     reject(error);
-                    console.log(error);
+                    // console.log(error);
                 } else {
                     resolve(success);
                 }
@@ -92,7 +92,7 @@ export const POST = async (request: NextRequest) => {
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
                     reject(err);
-                    console.log(err);
+                    // console.log(err);
 
                 } else {
                     resolve(info);

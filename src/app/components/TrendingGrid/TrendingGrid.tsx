@@ -11,7 +11,7 @@ const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
     const firstPost = posts.filter((post) => {
         return post.position2 === true
     })
-    console.log(firstPost);
+    // console.log(firstPost);
 
   return (
     <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-5'>
