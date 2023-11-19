@@ -193,7 +193,8 @@ const Form = () =>   {
                     onClick={() => {
                         signIn("google")
                     }}
-                    variant={"secondary"}
+                    variant={"ghost"}
+                    disabled
                 >
                     {/* <Wrench height={16} className="mr-3" /> */}
                             <FcGoogle className="w-[50px] h-[22px]" />

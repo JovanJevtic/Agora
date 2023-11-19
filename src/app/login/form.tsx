@@ -172,7 +172,8 @@ const Form = () =>   {
                     onClick={() => {
                         signIn("google")
                     }}
-                    variant={"secondary"}
+                    variant={"ghost"}
+                    disabled
                 >
                     <FcGoogle className="w-[50px] h-[22px]" />
                             <p className="">Nastavi uz Google</p>
