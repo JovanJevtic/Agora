@@ -17,6 +17,10 @@ export type NavLink = {
 
 export const links: NavLink[] = [
     {
+        name: 'Početna',
+        route: '/'
+    },
+    {
         name: 'Novosti',
         route: '/category/Novosti'
     },
