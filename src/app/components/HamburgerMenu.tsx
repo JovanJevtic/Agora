@@ -18,7 +18,7 @@ const HamburgerMenu: React.FunctionComponent<Props> = ({ isOpen, setOpen }) => {
     <>
     <div className='max-[820px]:absolute h-20 top-0 flex items-center z-[1000]'>
       <div className='bg-slate-50 dark:bg-card'>
-        <Hamburger hideOutline color={`${theme === "dark" ? "#fafafa" : "#333"}`} direction='right' size={24} toggled={isOpen} toggle={()=> {setOpen(!isOpen)}} />
+        <Hamburger hideOutline color={`${theme === "dark" ? "#ffffff" : "#333333"}`} direction='right' size={24} toggled={isOpen} toggle={()=> {setOpen(!isOpen)}} />
       </div>
     </div>
       <div className='bg-white dark:bg-black' style={{ position: 'absolute', width: '100%',height: '100vh', display: isOpen ? "block" : "none", left: 0,  zIndex: 100, top: 0}}>
