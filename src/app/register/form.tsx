@@ -191,7 +191,7 @@ const Form = () =>   {
 
                     className="w-full mt-2 border-gray-600 border-solid border-[1px]"
                     onClick={() => {
-                        // signIn("google")
+                        signIn("google")
                     }}
                     variant={"secondary"}
                 >

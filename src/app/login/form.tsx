@@ -170,7 +170,7 @@ const Form = () =>   {
                 <Button
                     className="w-full mt-2 border-gray-600 border-solid border-[1px] h-10]"
                     onClick={() => {
-                        // signIn("google")
+                        signIn("google")
                     }}
                     variant={"secondary"}
                 >
