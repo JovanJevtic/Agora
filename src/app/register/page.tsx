@@ -8,7 +8,7 @@ const Register = async () => {
         redirect('/profile')
     }
     return (
-    <div className="">
+    <div className="bg-slate-50 dark:bg-black">
       <Form />
     </div>
   )

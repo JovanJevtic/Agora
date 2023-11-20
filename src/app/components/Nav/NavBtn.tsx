@@ -47,12 +47,19 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
     return(
         <div className='flex items-center  max-[420px]:w-[52px]'>
             <Link 
-                className='rounded-md' href={'/register'}
+                className='rounded-md' href={`${pathname === '/register' ? '/login' : '/register'}`}
                 onClick={() => setOpen(false)}    
             >
-                <Button className='hidden md:block max-[420px]:h-[32px] max-[420px]:text-[11px]'>
-                    Registruj se                
-                </Button>
+                {
+                    pathname === '/register' ? 
+                        <Button className='hidden md:block max-[420px]:h-[32px] max-[420px]:text-[11px]'>
+                            Prijavi se                
+                        </Button>
+                        :
+                        <Button className='hidden md:block max-[420px]:h-[32px] max-[420px]:text-[11px]'>
+                            Registruj se                
+                        </Button>
+                }
                 <div className='md:hidden w-full h-full flex justify-end items-center'>
                    <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-slate-50 dark:bg-card z-[1000]'>
                         <UserPlus className='' size={20} />
