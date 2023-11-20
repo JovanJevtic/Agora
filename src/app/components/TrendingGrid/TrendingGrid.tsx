@@ -8,29 +8,32 @@ type Props = {
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
 
-    const firstPost = posts.filter((post) => {
-        return post.position2 === true
+    const primary = posts.filter((post) => {
+        return post.positionPrimary === true 
     })
-    // console.log(firstPost);
+
+    const secondary = posts.filter((post) => {
+        return post.positionSecondary === true
+    })
 
   return (
     <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-5'>
         <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-1'>
            
             <Link href={`/post/${posts[0].id}`} className='col-start-1 row-start-1 row-end-[13] col-span-2 md:row-span-10 md:col-span-2 md:row-span-2'>
-                <TrendingNewsThumbnail big post={posts[0]} />
+                <TrendingNewsThumbnail big post={primary[0]} />
             </Link>
             <Link href={`/post/${posts[1].id}`} className='col-span-2 row-span-1  md:col-span-1'>
-                <TrendingNewsThumbnail big={false} post={posts[1]} />
+                <TrendingNewsThumbnail big={false} post={secondary[0]} />
             </Link> 
             <Link href={`/post/${posts[2].id}`} className='col-span-2 row-span-1  md:col-span-1'>
-                <TrendingNewsThumbnail big={false} post={posts[2]} />
+                <TrendingNewsThumbnail big={false} post={secondary[1]} />
             </Link>
             <Link href={`/post/${posts[3].id}`} className='col-span-2 row-span-1  md:col-span-1'>
-                <TrendingNewsThumbnail big={false} post={posts[3]} />
+                <TrendingNewsThumbnail big={false} post={secondary[2]} />
             </Link>
             <Link href={`/post/${posts[4].id}`} className='col-span-2 row-span-1  md:col-span-1'>
-                <TrendingNewsThumbnail big={false} post={posts[4]} />
+                <TrendingNewsThumbnail big={false} post={secondary[3]} />
             </Link>
         </div>  
     </div>

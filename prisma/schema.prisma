@@ -87,11 +87,8 @@ model Post {
   subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
   subcategoryId    String?
 
-  position1       Boolean         @default(false)
-  position2       Boolean         @default(false)
-  position3       Boolean         @default(false)
-  position4       Boolean         @default(false)
-  position5       Boolean         @default(false)
+  positionPrimary Boolean?         @default(false)
+  positionSecondary Boolean?       @default(false)
 
   fotoIzvor       String          @default("")
 }
