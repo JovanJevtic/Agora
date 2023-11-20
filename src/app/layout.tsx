@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
 export const fraunces = Hanuman({ subsets: ["latin"], weight: "400"  })
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Agora',
   description: 'Agora portal',
 }
