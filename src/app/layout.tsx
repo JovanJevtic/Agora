@@ -26,6 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      
       <head>
         <Script
           async
@@ -33,7 +34,21 @@ export default async function RootLayout({
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
+        <Script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=G-Q4S936TPXX'
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-Q4S936TPXX');
+          `}
+        </Script>
       </head>
+
       <body className={`${inter.className} dark:bg-black min-h-screen bg-slate-50`} >
         <ThemeProvider
           attribute="class"
