@@ -60,9 +60,8 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
                 <div className="w-full relative min-h-[160px] md:min-h-[240px] h-full">
                     <Image
                         src={post.image} alt="a"
-                        layout="fill"
-                        objectFit='cover' 
-                        objectPosition="top"
+                        fill
+                        style={{objectFit:"cover", objectPosition: 'top'}}
                     />
                 </div>
             </div>

@@ -57,9 +57,8 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 <Image 
                     alt='thumbnail'
                     src={post.image}
-                    layout='fill'
-                    objectFit='cover'
-                    objectPosition='top'
+                    fill
+                    style={{objectFit:"cover", objectPosition: 'top'}}
                 />
                 <div className="absolute h-full w-full opacity-100 flex flex-col">
                     <div className='h-[90%]' style={{ backgroundImage: theme === "dark" ? 'linear-gradient(180deg, transparent, black)' :  'linear-gradient(180deg, transparent, black)'}}></div>
@@ -126,9 +125,8 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
             <Image 
                 alt='thumbnail'
                 src={post.image}
-                layout='fill'
-                objectFit='cover'
-                objectPosition='top'
+                fill
+                style={{objectFit:"cover", objectPosition: "top"}}
             />
             <div className="absolute h-full w-full opacity-100 flex flex-col">
                 <div className={`${big ? 'h-full' : 'h-[50%]'}`}

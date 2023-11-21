@@ -7,6 +7,7 @@ import SessionProvider from './components/SessionProvider'
 import { getServerSession } from 'next-auth'
 import { ThemeProvider } from "@/app/components/theme-provider"
 import Footer from './components/Footer'
+import Script from 'next/script'
 
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
 export const fraunces = Hanuman({ subsets: ["latin"], weight: "400"  })
@@ -26,8 +27,12 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9275537803067099"
-        crossOrigin="anonymous"></script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9275537803067099"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
       </head>
       <body className={`${inter.className} dark:bg-black min-h-screen bg-slate-50`} >
         <ThemeProvider
