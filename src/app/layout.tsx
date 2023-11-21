@@ -26,7 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      
+
       <head>
         <Script
           async
@@ -36,7 +36,7 @@ export default async function RootLayout({
         />
         <Script
           async
-          src='https://www.googletagmanager.com/gtag/js?id=G-Q4S936TPXX'
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q4S936TPXX"
         />
         <Script id="google-analytics">
           {`
