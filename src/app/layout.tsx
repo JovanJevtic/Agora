@@ -34,6 +34,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
+
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-Q4S936TPXX"

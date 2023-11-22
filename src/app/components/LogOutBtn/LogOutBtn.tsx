@@ -3,9 +3,13 @@
 import { signOut } from "next-auth/react"
 import { Button } from "../ui/button"
 
-const LogOutBtn = () => {
+type Props = {
+  classnames?: string;
+}
+
+const LogOutBtn: React.FunctionComponent<Props> = ({ classnames }) => {
   return (
-    <Button variant={"destructive"} onClick={() => { signOut() }}>Odjavi se</Button>
+    <Button className={classnames} variant={"destructive"} onClick={() => { signOut() }}>Odjavi se</Button>
   )
 }
 

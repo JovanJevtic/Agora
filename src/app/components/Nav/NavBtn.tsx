@@ -26,6 +26,9 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
                         session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
                         :<UserCircle2Icon className='mr-3' />
                     }
+                    {/* {
+                        session.user.role === "admin" && <Link className='ml-3' href={'/admin'}><Button variant={'default'}>Admin</Button></Link>
+                    } */}
                 </Link>
                 {/* <div className='h-6 bg-slate-700 right-0 ml-5' style={{width: '1px'}}></div> */}
             </div>
