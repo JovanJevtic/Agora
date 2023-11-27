@@ -10,7 +10,6 @@ import { ControllerRenderProps, FieldValues, useForm } from "react-hook-form";
 import { Textarea } from "@/app/components/ui/textarea";
 import Markdown from '@/app/components/Markdown/Markdown'
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { transformMd } from "./page";
 import MdEditor from "@/app/components/MarkdownEditor";
 import { Button } from "@/app/components/ui/button";
 
