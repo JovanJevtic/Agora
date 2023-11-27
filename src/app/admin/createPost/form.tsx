@@ -156,4 +156,4 @@ const CreatePostForm = () => {
   )
 }
 
-export default createPostForm
+export default CreatePostForm
