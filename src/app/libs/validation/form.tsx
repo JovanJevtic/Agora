@@ -15,5 +15,19 @@ export const registerFormSchema = z.object({
   path: ['confirmPassword']
 })
 
+export const postCreationFormSchema = z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  body: z.string(),
+  categoryId: z.string(),
+  fotoIzvor: z.string(),
+  image: z.string(),
+  slug: z.string(),
+  subcategoryId: z.string(),
+  positionPrimary: z.boolean(),
+  positionSecondary: z.boolean()
+})
+
 export type TSRegisterSchema = z.infer<typeof registerFormSchema>;
 export type TSLoginSchema = z.infer<typeof loginFormSchema>;
+export type TSPostWritingSchema = z.infer<typeof postCreationFormSchema>;

@@ -38,7 +38,7 @@ const NavWrapp = () => {
                     <p className={`text-sm font-bold ml-1 max-[480px]:hidden z-[1000] md:z-[1]`}>Agora</p>
                 </Link>
                 
-            <div className='h-[18px] bg-[#333] right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
+            <div className='h-[18px] hidden bg-gray-400 dark:bg-[#333] right-0 ml-5 max-[820px]:hidden' style={{width: '1px'}}></div>
             </div>
             
             <div className='flex-1 max-[820px]:hidden'>
@@ -49,12 +49,6 @@ const NavWrapp = () => {
                 </ul>
             </div>
             
-                {/* <DarkModeToggle /> */}
-
-            <div className="hidden md:block mr-3">
-                <DarkModeToggle />
-            </div>
-            
             <div className='h-full flex items-center max-[1000px]:hidden'>
                 <Link href={'/search'} className='h-10 bg-secondary w-44 rounded-sm flex items-center cursor-pointer'>
                     <Search height={14} className='ml-2' />
@@ -62,6 +56,9 @@ const NavWrapp = () => {
                 </Link>
             </div>
 
+            <div className="hidden ml-[50px] md:block mr-0">
+                <DarkModeToggle />
+            </div>
                 
             <Link href={'/search'} className='h-10 rounded-sm flex items-center cursor-pointer hidden'>
                     <Search height={18} />
@@ -71,8 +68,8 @@ const NavWrapp = () => {
                 <DarkModeToggle />
             </div>
                 
-            <div className="relative h-full min-[820px]:ml-5">
-                <div className='right-0 max-[820px]:absolute flex items-center h-full w-full justify-end'>
+            <div className="relative h-full min-[820px]:ml-0">
+                <div className='right-0 z-[1000] max-[820px]:absolute flex items-center h-full w-full justify-end'>
                     <NavBtn setOpen={setIsOpen} />
                 </div>
             </div>

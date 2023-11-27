@@ -24,7 +24,7 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
                     {/* <p className='text-sm max-[600px]:hidden'>{session.user.name}</p> */}
                     {
                         session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
-                        :<UserCircle2Icon className='mr-3' />
+                        :<UserCircle2Icon className='mr-0' />
                     }
                     {/* {
                         session.user.role === "admin" && <Link className='ml-3' href={'/admin'}><Button variant={'default'}>Admin</Button></Link>
@@ -64,9 +64,10 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
                         </Button>
                 }
                 <div className='md:hidden w-full h-full flex justify-end items-center'>
-                   <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-slate-50 dark:bg-card z-[1000]'>
-                        <UserPlus className='' size={20} />
-                   </div>
+                   {/* <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-slate-50 dark:bg-card z-[1000]'>
+                        <UserCircle2Icon className='' size={20} />
+                   </div> */}
+                   <UserCircle2Icon className='' size={24} />
                 </div>
             </Link>
         </div>

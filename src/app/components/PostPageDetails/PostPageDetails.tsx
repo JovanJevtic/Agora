@@ -24,10 +24,12 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise
     const subcategorysData: Promise<Subcategory[]> = getAllSubcategorys(categoryId)
     const subcategorys = await subcategorysData;
 
+    const categoryHex = category.hexCol;
+
   return (
     <div className={`h-28 mb-10`}>
         <div className="dark:bg-secondary bg-white flex flex-col h-full">
-            <div style={{ background: `#${category.hexCol}` }} className="flex-[4] flex items-center justify-start border-[#333] border-b-[0px] border-solid">
+            <div style={{ background: `${category.hexCol}` }} className="flex-[4] flex items-center justify-start border-[#333] border-b-[0px] border-solid">
                 <div className="container">
                     <h1 className="uppercase text-3xl font-bold text-white">{category.name}</h1>
                 </div>    
@@ -35,10 +37,20 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise
             <div className="flex-[2] container">
                 <ul className="flex w-full h-full items-center">
                     {
-                       subcategorys.map(obj => (
-                        <Link key={obj.id} style={{background: obj.name === subcategory.name ? `#${category.hexCol}`: '',color: obj.name === subcategory.name ? `#fff`: '' }} className={`h-full transition mr-0 hover:bg-secondary ${obj.name === subcategory.name ? `border-t-[0px] border-solid border-black font-bold` : 'bg-slate-100 dark:bg-black'}`} href={`#`}>
+                       subcategorys.map(subcategoryCard => (
+                        <Link 
+                            key={subcategoryCard.id} 
+                            style={{
+                                background: subcategoryCard.name === subcategory.name ? `${category.hexCol}`: '', 
+                            }} 
+                            className={
+                                `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
+                                ${subcategoryCard.name === subcategory.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
+                            `} 
+                            href={``}
+                        >
                             <li className={`h-full flex items-center pl-5 pr-5`}>
-                                <p className="text-sm">{obj.name}</p>
+                                <p className="text-sm">{subcategoryCard.name}</p>
                             </li>
                         </Link>
                                 

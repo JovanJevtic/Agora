@@ -13,7 +13,7 @@ const Profile = async () => {
 
     return (
     <div className='container flex items-center justify-center h-[70vh] w-full'>
-        <Card className='border-secondary'>
+        <Card className='border-secondary w-[200px]'>
           <CardContent className='p-5'>
             <div className='flex w-full mb-5 flex-col items-center'>
               <div className='h-[40px] w-[40px] flex items-center justify-center bg-slate-50 dark:bg-black rounded-[50%] mb-1'>

@@ -3,6 +3,10 @@ import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
 import { Post, User } from "@prisma/client";
 import { User2 } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
+import Markdown from '../Markdown/Markdown'
+import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";;
+import { GetStaticProps } from "next";
+import { serialize } from 'next-mdx-remote/serialize'
 
 type Props = {
   post: Post;
@@ -24,22 +28,34 @@ const getAuthor = async (authorId: string) => {
   }
 };
 
+// export const getStaticProps: GetStaticProps<{
+  // mdxSource: MDXRemoteSerializeResult
+// }> = async () => {
+  // const mdxSource = await serialize()
+  // return { props: { mdxSource } }
+// }
+
 const Post: React.FunctionComponent<Props> = async ({ post }) => {
   const authorData: Promise<User> = getAuthor(post.authorId);
   const author = await authorData;
 
+  const mdxSource = await serialize(post.body, { mdxOptions: { development: process.env.NODE_ENV === "development" } })
+  
   return (
     <div className="flex">
-      <div className="flex-[7]">
-        <article className="w-full prose-neutral prose-h1:text-4xl prose-p:mt-0 prose-p:mb-0 prose-p:pt-0 prose-p:pb-0 lg:prose-xl prose-h1:leading-tight prose-h1:mb-0 prose-h1:pb-0">
-          <h1 className="text-2xl md:text-3xl dark:text-white text-black font-bold">
+      <div className="flex-[9]">
+        <article className="w-full">
+          <h1 className="text-4xl md:text-5xl dark:text-white text-black font-bold md:leading-tight">
             {post.title}
           </h1>
+          <p className="text-xs md:text-sm text-gray-500 mt-3  md:w-[80%]">
+            {post.subtitle}
+          </p>
 
-          <div className="flex w-full mt-7 flex-col mb-5 min-[1024px]:mb-0">
+          <div className="flex w-full mt-8 md:mt-10 flex-col mb-3">
             <div className="flex items-center mr-10 ">
               <p className="text-gray-500 text-sm mr-2">Autor:</p>
-              <p className="text-sm mr-1">{author.name}</p>
+              <p className="text-xs md:text-sm mr-1 text-gray-950 dark:text-gray-50">{author.name}</p>
               {author.image ? (
                 <Image
                   className="mr-0"
@@ -55,12 +71,12 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
               )}
             </div>
 
-            <div className="flex-1 flex items-center">
-              <p className="text-gray-500 text-sm">
+            <div className="flex-1 flex items-center mt-0">
+              <p className="text-gray-950 dark:text-gray-50 text-xs md:text-sm font-bold capitalize">
                 <TrendingNewsDate full date={post.createdAt} />
               </p>
               {post.createdAt === post.updatedAt && (
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-50 text-xs md:text-sm">
                   Izmjenjeno: <TrendingNewsDate date={post.updatedAt} />
                 </p>
               )}
@@ -77,19 +93,23 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
               height={100}
             />
           </div>
-          <div className="mt-3">
-            <p className="mt-3 text-gray-400 text-sm">FOTO: {post.fotoIzvor}</p>
+
+          <div className="mt-1">
+            <p className="text-gray-400 text-xs md:text-sm">FOTO: {post.fotoIzvor}</p>
           </div>
 
-          <div className="mt-5 prose prose-strong:text-black dark:prose-strong:text-white prose-p:text-lg prose-xl prose-headings:text-black dark:prose-headings:text-white prose-p:text-black dark:prose-p:text-white prose-blockquote:border-l-2 prose-blockquote:border-gray-500">
-            <div
-              className="w-full"
-              dangerouslySetInnerHTML={{ __html: post.body }}
-            />
+          <div className="mt-5 prose w-full max-w-full 
+           prose-headings:text-black prose-p:text-black prose-strong:text-black prose-blockquote:text-gray-500
+           prose-headings:dark:text-white prose-p:dark:text-white prose-strong:dark:text-white prose-blockquote:dark:text-gray-500
+           ">
+            <Markdown source={mdxSource} />
           </div>
         </article>
       </div>
-      <div className="lg:flex-[4]"></div>
+
+      <div className="lg:flex-[5]">
+
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ type Props = {
 
 const TrendingNewsDate: React.FunctionComponent<Props> = ({date, full}) => {
   return (
-    <Moment locale="sr" local format={`${full ? "hh:mm DD/MM/YYYY": "DD/MM/YYYY"}`} date={date} />
+    <Moment locale="sr" local format={`${full ? "dddd hh:mm DD/MM/YYYY": "DD/MM/YYYY"}`} date={date} />
   )
 }
 

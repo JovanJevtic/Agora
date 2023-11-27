@@ -44,7 +44,7 @@ export const POST = async (request: NextRequest) => {
         const token = await signJWT({
            email: email,
            tokenCode: tokenCode
-    })  
+        })  
         
         const emailVerifyToken = await prisma.emailVerificationToken.create({
             data: {

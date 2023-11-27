@@ -113,11 +113,11 @@ const Form = () =>   {
                     </Alert></div>
             }
 
-            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary max-[420px]:border-none max-[420px]:bg-transparent">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary max-[420px]:shadow-none max-[420px]:border-none max-[420px]:bg-transparent">
                 <CardHeader>
                     <CardTitle>Registracija</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Registruj se uz pomoc Google ili manuelno uz e-mail adresu.<br></br>
-                        <Link className="underline mt-1 max-[800px]:text-xs text-primary" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
+                        <Link className="underline mt-1 max-[800px]:text-xs font-bold text-black dark:text-white md:text-primary" href={'/login'}>Vec imas račun? Prijavi se</Link></CardDescription>
                 </CardHeader>
                 <CardContent>
                     <FormComponent {...form}>
@@ -170,7 +170,11 @@ const Form = () =>   {
                                 </FormItem>
                             )}
                         />
-                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading || !isValid } type="submit" variant={"default"}>
+                        <Button 
+                            className="mt-5 w-full font-bold" 
+                            // disabled={isSubmitting || isLoading || !isValid } 
+                            type="submit" variant={"default"}
+                        >
                             {
                                 (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             }
@@ -193,7 +197,7 @@ const Form = () =>   {
                     onClick={() => {
                         signIn("google")
                     }}
-                    variant={"ghost"}
+                    variant={"outline"}
                     // disabled
                 >
                     {/* <Wrench height={16} className="mr-3" /> */}

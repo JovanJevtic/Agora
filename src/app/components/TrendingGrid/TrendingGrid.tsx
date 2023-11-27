@@ -35,6 +35,7 @@ const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
             <Link href={`/post/${secondary[3].id}`} className='col-span-2 row-span-1  md:col-span-1'>
                 <TrendingNewsThumbnail big={false} post={secondary[3]} />
             </Link>
+            
         </div>  
     </div>
   )

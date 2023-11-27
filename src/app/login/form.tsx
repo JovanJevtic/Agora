@@ -116,11 +116,11 @@ const Form = () =>   {
 
     return (
         <div className="flex flex-col justify-center items-center min-h-[70vh]">
-            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary max-[420px]:border-none max-[420px]:bg-transparent">
+            <Card className="max-[800px]:w-[96%] min-[800px]:w-[750px] border-secondary max-[420px]:shadow-none max-[420px]:border-none max-[420px]:bg-transparent">
                 <CardHeader>
                     <CardTitle>Prijava</CardTitle>
                     <CardDescription className="max-[800px]:text-xs">Prijavi se ako vec imas racun ili nastavi sa Google-om. <br></br>
-                        <Link className="underline mt-1 max-[800px]:text-xs text-primary" href={'/register'}>Nemas račun? Registruj se</Link>
+                        <Link className="underline mt-1 max-[800px]:text-xs font-bold text-black dark:text-white md:text-primary" href={'/register'}>Nemas račun? Registruj se</Link>
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -150,7 +150,7 @@ const Form = () =>   {
                                 </FormItem>
                             )}
                         />
-                        <Button className="mt-5 w-full" disabled={isSubmitting || isLoading } type="submit" variant={"default"}>
+                        <Button className="mt-5 w-full font-bold" disabled={isSubmitting || isLoading } type="submit" variant={"default"}>
                             {
                                 (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             }
@@ -172,7 +172,7 @@ const Form = () =>   {
                     onClick={() => {
                         signIn("google")
                     }}
-                    variant={"ghost"}
+                    variant={"outline"}
                     // disabled
                 >
                     <FcGoogle className="w-[50px] h-[22px]" />
