@@ -14,7 +14,7 @@ import { transformMd } from "./page";
 import MdEditor from "@/app/components/MarkdownEditor";
 import { Button } from "@/app/components/ui/button";
 
-const createPostForm = () => {
+const CreatePostForm = () => {
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),
         defaultValues: {
