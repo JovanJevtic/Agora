@@ -1,4 +1,4 @@
-import MDEditor from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '../ui/skeleton';
@@ -32,7 +32,7 @@ const MdEditor: React.FunctionComponent<Props> = ({ onChange, value }) => {
                 // defaultValue={"Pisi ovdje"}
                 onChange={onChange}
                 // commands={[]}
-                extraCommands={[]}
+                extraCommands={[commands.fullscreen]}
                 preview='edit'
                 data-color-mode={theme === 'dark' ? 'dark' : 'light'}
                 // style={{ background: '#000' }}
