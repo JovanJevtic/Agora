@@ -6,7 +6,7 @@ import { User } from 'lucide-react';
 import Link from 'next/link';
 import { Category, Subcategory } from '@prisma/client';
 
-const getCategorys = async () => {
+export const getCategorys = async () => {
   const res = await fetch('https://www.agoraportal.net/api/posts/category/getAll', {
     cache: 'no-cache',
     method: 'GET'
@@ -15,7 +15,7 @@ const getCategorys = async () => {
   return data
 }
 
-const getSubcategorys = async () => {
+export const getSubcategorys = async () => {
   const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
     cache: 'no-cache',
     method: 'GET'

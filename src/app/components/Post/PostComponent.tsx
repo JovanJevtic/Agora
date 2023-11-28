@@ -7,6 +7,12 @@ import Markdown from '../Markdown/Markdown'
 import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";;
 import { GetStaticProps } from "next";
 import { serialize } from 'next-mdx-remote/serialize'
+import { getServerSession } from "next-auth";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/app/libs/authOptions";
+import Btns from "./Btns";
 
 type Props = {
   post: Post;
@@ -40,7 +46,8 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
   const author = await authorData;
 
   const mdxSource = await serialize(post.body, { mdxOptions: { development: process.env.NODE_ENV === "development" } })
-  
+  const session = await getServerSession(authOptions);
+
   return (
     <div className="flex">
       <div className="flex-[9]">
@@ -58,11 +65,11 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
               <p className="text-xs md:text-sm mr-1 text-gray-950 dark:text-gray-50">{author.name}</p>
               {author.image ? (
                 <Image
-                  className="mr-0"
+                  className="mr-0 ml-1"
                   style={{ borderRadius: "50%" }}
                   src={author.image}
-                  height={30}
-                  width={30}
+                  height={20}
+                  width={20}
                   alt="profile"
                 />
               ) : (
@@ -71,17 +78,21 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
               )}
             </div>
 
-            <div className="flex-1 flex items-center mt-0">
+            <div className="flex-1 flex items-start mt-3 flex-col">
               <p className="text-gray-950 dark:text-gray-50 text-xs md:text-sm font-bold capitalize">
                 <TrendingNewsDate full date={post.createdAt} />
               </p>
-              {post.createdAt === post.updatedAt && (
-                <p className="text-gray-50 text-xs md:text-sm">
-                  Izmjenjeno: <TrendingNewsDate date={post.updatedAt} />
+              {post.createdAt !== post.updatedAt && (
+                <p className="text-gray-400 text-xs md:text-sm">
+                  Izmjenjeno: <TrendingNewsDate full date={post.updatedAt} />
                 </p>
               )}
             </div>
           </div>
+
+          {
+            session?.user.role === "admin" && <Btns postId={post.id} />
+          }
 
           <div className="relative h-auto w-[100%]">
             <Image

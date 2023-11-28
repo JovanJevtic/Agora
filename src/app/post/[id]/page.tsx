@@ -13,7 +13,7 @@ type Props = {
   };
 };
 
-const getPost = async (id: string) => {
+export const getPost = async (id: string) => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
@@ -29,7 +29,7 @@ const getPost = async (id: string) => {
   }
 };
 
-const getCategory = async (categoryId: string) => {
+export const getCategory = async (categoryId: string) => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/category/getById?id=${categoryId}`,
@@ -45,7 +45,7 @@ const getCategory = async (categoryId: string) => {
   }
 };
 
-const getSubcategory = async (subcategoryId: string) => {
+export const getSubcategory = async (subcategoryId: string) => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`,
