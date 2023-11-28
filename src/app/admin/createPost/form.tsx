@@ -78,7 +78,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
                 body: JSON.stringify(object)
             });
             const resData: Post = await res.json();
-            redirect(`/post/${resData.id}`)
+            redirect(`/`)
         } catch (error) {
             console.log(error);
         }
@@ -86,7 +86,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
 
     useEffect(() => {
         console.log(errors);
-        console.log(userSession?.user.id, 'user');
     }, [errors])
 
     useEffect(() => {
