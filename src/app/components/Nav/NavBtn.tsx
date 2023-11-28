@@ -42,7 +42,7 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
     // }
 
     return(
-        <div className='flex items-center  max-[420px]:w-[52px]'>
+        <div className='flex items-center justify-end'>
             <Link 
                 className='rounded-md' href={`${pathname === '/register' ? '/login' : '/register'}`}
                 onClick={() => setOpen(false)}    
@@ -57,11 +57,11 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
                             Registruj se                
                         </Button>
                 }
-                <div className='md:hidden w-full h-full flex justify-end items-center'>
+                <div className='md:hidden w-full h-full flex justify-end items-center mr-0'>
                    {/* <div className='flex items-center justify-center rounded-[50%] h-[38px] w-[38px] bg-slate-50 dark:bg-card z-[1000]'>
                         <UserCircle2Icon className='' size={20} />
                    </div> */}
-                   <UserCircle2Icon className='' size={24} />
+                   <UserCircle2Icon className='mr-0' size={24} />
                 </div>
             </Link>
         </div>
