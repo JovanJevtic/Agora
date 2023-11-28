@@ -76,7 +76,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
                 ...data,
                 authorId: userSession?.user.id as string
             }
-            const res = await fetch(`https://agoraportal.net/api/admin/createPost?id=${post.id}`, {
+            const res = await fetch(`https://www.agoraportal.net/api/admin/createPost?id=${post.id}`, {
                 method: 'PUT',
                 body: JSON.stringify(object)
             });
