@@ -18,7 +18,7 @@ import { Switch } from "@/app/components/ui/switch";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type Props = {
     categorys: Category[];
@@ -80,7 +80,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
                 body: JSON.stringify(object)
             });
             const resData: Post = await res.json();
-            router.replace(`/post/${resData.id}`)
+            router.push(`/post/${resData.id}`)
         } catch (error) {
             console.log(error);
         }
@@ -96,7 +96,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
 
     useEffect(() => {
         if (status === "unauthenticated") {  
-            router.replace('/login')   
+            router.push('/login')   
         }
     }, [])
 
