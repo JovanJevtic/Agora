@@ -15,7 +15,7 @@ const Btns: React.FunctionComponent<Props> = ({ postId }) => {
     const deletePost = async (postId: string) => {
         try {
           const res = await fetch(
-            `http://localhost:3000/api/admin/deletePost?id=${postId}`,
+            `https://agoraportal.net/api/admin/deletePost?id=${postId}`,
             {
               method: 'DELETE'
             }
