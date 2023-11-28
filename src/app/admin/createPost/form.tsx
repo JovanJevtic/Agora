@@ -79,8 +79,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
                 method: 'POST',
                 body: JSON.stringify(object)
             });
-            const resData: Post = await res.json();
-            router.push(`/post/${resData.id}`)
+            const resData = await res.json();
+            router.push(`/post/${resData.post.id}`)
         } catch (error) {
             console.log(error);
         }
