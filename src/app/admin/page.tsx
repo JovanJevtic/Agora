@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 const Admin = () => {
   return (
-    <div className='container h-full pt-5'>
+    <div className='container h-full pt-5 max-[600px]:justify-center max-[600px]:flex'>
       <Link href={'/admin/createPost'}>
-        <Card className='w-[220px] cursor-pointer'>
+        <Card className='w-[220px] cursor-pointer hover:bg-black transition'>
           <CardHeader className='flex items-center justify-center'>
             <CardTitle className='text-center'>Dodaj novu objavu</CardTitle>
           </CardHeader>

@@ -12,8 +12,22 @@ import Markdown from '@/app/components/Markdown/Markdown'
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import MdEditor from "@/app/components/MarkdownEditor";
 import { Button } from "@/app/components/ui/button";
+import { Category, Post, Subcategory } from "@prisma/client";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
+import { Switch } from "@/app/components/ui/switch";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { redirect } from 'next/navigation'
 
-const CreatePostForm = () => {
+type Props = {
+    categorys: Category[];
+    subcategorys: Subcategory[];
+}
+
+const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategorys }) => {
+    const { data: userSession, status } = useSession()
+
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),
         defaultValues: {
@@ -28,7 +42,7 @@ const CreatePostForm = () => {
             subtitle: '',
             title: ''
         },
-        mode: 'onTouched'
+        // mode: 'onTouched'
     });
 
     const [response, setResponse] = useState<string | null>(null);
@@ -42,19 +56,53 @@ const CreatePostForm = () => {
         reset,
         getValues,
         setError,
+        watch,
     } = form
 
+    const { categoryId } = watch()
+    const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
+
+    const filterSubcategorys = (categoryId: string) => {
+        const filtered = subcategorys.filter((curr) => { return curr.categoryId === categoryId })
+        setFilteredSubcategorys(filtered)
+    }
+
     const onSubmit = async (data: FieldValues) => {
+        try {
+            const object = {
+                ...data,
+                authorId: userSession?.user.id as string
+            }
+            const res = await fetch(`http://localhost:3000/api/admin/createPost`, {
+                method: 'POST',
+                body: JSON.stringify(object)
+            });
+            const resData: Post = await res.json();
+            redirect(`/post/${resData.id}`)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {
-        console.log(form.getValues("body"));
-    }, [form.getValues("body"), form.getValues("title")])
+        console.log(errors);
+        console.log(userSession?.user.id, 'user');
+    }, [errors])
+
+    useEffect(() => {
+        filterSubcategorys(categoryId)
+    }, [categoryId])
+
+    useEffect(() => {
+        if (status === "unauthenticated") {  
+            redirect('/login')   
+        }
+    }, [])
 
     return (
         <div>
             <Form {...form}>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <FormField
                         control={form.control}
                         name="title"
@@ -148,9 +196,127 @@ const CreatePostForm = () => {
                             </FormItem>
                         )}
                     />
+
+                    <FormField
+                        control={form.control}
+                        name="categoryId"
+                        render={({ field }) => (
+                            <FormItem className="mt-3">
+                                <FormLabel>Kategorija</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Selektuj kategoriju kojoj pripada" />
+                                    </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        {
+                                        categorys.map((category) => (
+                                            <SelectItem key={category.id} value={category.id}>{category.name}</SelectItem>
+                                        ))
+                                        }
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    {
+                        categoryId.length < 1 ?
+                        <FormField
+                            control={form.control}
+                            name="subcategoryId"
+                            render={({ field }) => (
+                                <FormItem className="mt-3">
+                                    <FormLabel>Subkategorija</FormLabel>
+                                    <Input disabled placeholder="Selektuj subkategoriju kojoj pripada" />
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        :
+                        <FormField
+                            control={form.control}
+                            name="subcategoryId"
+                            render={({ field }) => (
+                                <FormItem className="mt-3">
+                                    <FormLabel>Subkategorija</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Selektuj subkategoriju kojoj pripada" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                                {
+                                                    filteredSubcategorys?.map((subcategorys) => (
+                                                        <SelectItem key={subcategorys.id} value={subcategorys.name}>{subcategorys.name}</SelectItem>
+                                                    ))
+                                                }
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    }
+
+                    <FormField
+                        control={form.control}
+                        name="positionPrimary"
+                        render={({ field }) => (
+                            <FormItem className="mt-10 flex flex-row items-center justify-between rounded-lg border p-4">
+                            <div className="space-y-0.5">
+                                <FormLabel className="text-base">Primarna pozicija</FormLabel>
+                                <FormDescription>
+                                Clanak ce biti smjestena na primarno mjesto na pocetku stranice
+                                </FormDescription>
+                            </div>
+                            <FormControl>
+                                <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                    // disabled
+                                    aria-readonly
+                                />
+                            </FormControl>  
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="positionSecondary"
+                        render={({ field }) => (
+                            <FormItem className="mt-3 flex flex-row items-center justify-between rounded-lg border p-4">
+                            <div className="space-y-0.5">
+                                <FormLabel className="text-base">Sekundarna pozicija</FormLabel>
+                                <FormDescription>
+                                Clanak ce biti smjestena na sekundarni mjesto na pocetku stranice
+                                </FormDescription>
+                            </div>
+                            <FormControl>
+                                <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                    // disabled
+                                    aria-readonly
+                                />
+                            </FormControl>  
+                            </FormItem>
+                        )}
+                    />
+                    <Button className="mt-5 w-full font-bold" disabled={isSubmitting || isLoading } type="submit" variant={"default"}>
+                            {
+                                (isSubmitting || isLoading) && <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            }
+                            Potvrdi
+                    </Button>
+
+                    {/* <Button variant={"default"} type="submit" className="bg-green-600 w-full font-bold mt-10 text-white">Potvrdi</Button> */}
                 </form>
             </Form>
-            <Button onClick={(e) => {e.preventDefault(); console.log(getValues("body"));}}>btn</Button>
         </div>
   )
 }

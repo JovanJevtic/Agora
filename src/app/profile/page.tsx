@@ -22,8 +22,9 @@ const Profile = async () => {
                   <Image
                     src={session.user.image}
                     alt='profile'
-                    height={24}
-                    width={24}
+                    height={34}
+                    width={34}
+                    className='rounded-[50%]'
                   />
                   :
                   <User height={24} width={24} />
@@ -34,7 +35,7 @@ const Profile = async () => {
             {
               session?.user.role === "admin" && 
               <div className='w-full'>
-                <Link className='w-full' href={'/admin'}><Button className='w-full' variant={'default'}>Admin</Button></Link>
+                <Link className='w-full' href={'/admin'}><Button className='w-full font-bold' variant={'default'}>Admin</Button></Link>
               </div>
             }
 

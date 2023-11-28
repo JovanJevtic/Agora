@@ -16,16 +16,17 @@ export const registerFormSchema = z.object({
 })
 
 export const postCreationFormSchema = z.object({
-  title: z.string(),
+  title: z.string().min(5, "Minimalna duzina naslova je 5 karaktera"),
   subtitle: z.string(),
-  body: z.string(),
-  categoryId: z.string(),
+  body: z.string().min(20, "Minimalna duzina texta je 5 karaktera"),
+  categoryId: z.string().min(1, "Neophodno je specifikovati kategoriju"),
   fotoIzvor: z.string(),
-  image: z.string(),
-  slug: z.string(),
+  image: z.string().min(1, "Neophodno je unjeti sliku").startsWith("https://i.imgur.com/", "Link do slika mora da pocinje sa: https://i.imgur.com/"),
+  slug: z.string().min(1, "Neophodno polje"),
   subcategoryId: z.string(),
   positionPrimary: z.boolean(),
-  positionSecondary: z.boolean()
+  positionSecondary: z.boolean(),
+  // authorId: z.string().min(1, "Greska sa autorom...pokusaj ponovo kasnije..")
 })
 
 export type TSRegisterSchema = z.infer<typeof registerFormSchema>;
