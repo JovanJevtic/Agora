@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
-import { User, UserCircle2Icon, User2, UserCircle2, UserCircleIcon, User2Icon, UserCheck2, UserCogIcon, UserPlus } from 'lucide-react'
+import { User, UserCircle2Icon } from 'lucide-react'
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -18,19 +18,13 @@ const NavBtn: React.FunctionComponent<NavBarBtnProps> = ({ setOpen }) => {
 
     if (status === "authenticated") {
         return(
-            <div className='flex items-center ml-5'>
-                {/* <Button className='h-9 text-xs ml-5 rounded-md mr-1' onClick={() => signOut()} variant={"outline"}>Odjavi se</Button> */}
-                <Link href={'/profile'} className='flex h-full items-center'>
-                    {/* <p className='text-sm max-[600px]:hidden'>{session.user.name}</p> */}
+            <div className=''>
+                <Link href={'/profile'} className=''>
                     {
-                        session.user.image ? <Image className='mr-2' style={{borderRadius: '50%'}} src={session.user.image} height={24} width={24} alt="profile" />
-                        :<UserCircle2Icon className='mr-0' />
+                        session?.user?.image ? <Image className='rounded-[50%]' alt='profile' src={session.user.image} height={24} width={24} />
+                        : <UserCircle2Icon className='mr-0' />
                     }
-                    {/* {
-                        session.user.role === "admin" && <Link className='ml-3' href={'/admin'}><Button variant={'default'}>Admin</Button></Link>
-                    } */}
                 </Link>
-                {/* <div className='h-6 bg-slate-700 right-0 ml-5' style={{width: '1px'}}></div> */}
             </div>
         )
     }

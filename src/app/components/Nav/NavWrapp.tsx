@@ -56,7 +56,7 @@ const NavWrapp = () => {
                 </Link>
             </div>
 
-            <div className="hidden ml-[50px] md:block mr-0">
+            <div className="hidden ml-[50px] pr-[20px] md:block mr-0">
                 <DarkModeToggle />
             </div>
                 
@@ -68,8 +68,8 @@ const NavWrapp = () => {
                 <DarkModeToggle />
             </div>
                 
-            <div className="relative h-full min-[820px]:ml-0">
-                <div className='right-0 z-[1000] max-[820px]:absolute flex items-center h-full w-full justify-end'>
+            <div className="relative h-fullmin-[820px]:ml-0">
+                <div className='right-0 min-w-[50px] max-[820px]:absolute z-[10000] flex items-center h-full w-full justify-end'>
                     <NavBtn setOpen={setIsOpen} />
                 </div>
             </div>

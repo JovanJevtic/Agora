@@ -48,4 +48,4 @@ const MdEditor: React.FunctionComponent<Props> = ({ onChange, value }) => {
   )
 }
 
-export default MdEditor
+export default MdEditor 
