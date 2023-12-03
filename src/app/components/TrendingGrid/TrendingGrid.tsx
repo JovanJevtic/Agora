@@ -7,6 +7,10 @@ type Props = {
     posts: Post[]
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ posts }) => {
+    posts.map((post) => {
+        console.log(post.positionPrimary, post.positionSecondary);
+    })
+
     const primary = posts.filter((post) => {
         return post.positionPrimary === true 
     })

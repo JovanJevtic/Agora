@@ -8,8 +8,8 @@ import LandingYoutubePreview from "./components/LandingYoutubePreview";
 
 const getTrendingPosts = async () => {
   try {
-    const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
-    // const res = await fetch("http://localhost:3000/api/posts/trending", {
+    // const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
+    const res = await fetch("http://localhost:3000/api/posts/trending", {
       method: "GET",
       cache: "no-cache",
     });
