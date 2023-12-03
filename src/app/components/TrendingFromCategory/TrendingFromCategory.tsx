@@ -40,7 +40,7 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
 
     if (!data || data.length < 1) {
         return(
-            <>  
+            <div className="container">  
                 <div className="flex items-center mb-5">
                     <div className={`absolute h-6 ${ category === "Novosti" ? "bg-yellow-500" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-orange-500" :  "bg-white" }`} style={{width: '2px'}}></div>
                     <h1 className="font-bold text-lg ml-3">{category}</h1>
@@ -53,12 +53,13 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
                     <Skeleton className="min-[840px]:w-[31%] min-[840px]:h-full"></Skeleton>
                     <Skeleton className="min-[840px]:w-[31%] min-[840px]:h-full max-[840px]:h-96  max-[840px]:w-full"></Skeleton>
                 </div>
-            </>
+            </div>
         )
     }
 
   return (
-    <Link className="mt-5" href={`/category/${category}`}>
+    <div className="container">
+        <Link className="mt-5" href={`/category/${category}`}>
         {/* <Card className="p-5 mb-10 border-background"> */}
             <div className="flex mb-5 items-center">
                 <div className={`absolute h-6 ${ category === "Novosti" ? "bg-yellow-500" : category === "Sport" ? "bg-green-500" : category === "Kultura" ? "bg-purple-700" : category === "Drustvo" ? "bg-blue-500" : category === "Politika" ? "bg-red-500" :  "bg-white" }`} style={{width: '2px'}}></div>
@@ -76,6 +77,7 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
             </div>
         {/* </Card> */}
     </Link>
+    </div>
   )
 }
 

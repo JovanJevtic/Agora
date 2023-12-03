@@ -3,18 +3,43 @@ import type { User, Post } from "@prisma/client";
 import TrendingNews from "./components/TrendingNews/TrendingNews";
 import TrendingFromCategory from "./components/TrendingFromCategory/TrendingFromCategory";
 import Footer from "./components/Footer";
+import { YTVideoObjRes } from "@/types";
+import LandingYoutubePreview from "./components/LandingYoutubePreview";
 
 const getTrendingPosts = async () => {
-  const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
-    method: "GET",
-    cache: "no-cache",
-  });
-  const data: Post[] = await res.json();
-  return data;
+  try {
+    // const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
+    const res = await fetch("http://localhost:3000/api/posts/trending", {
+
+      method: "GET",
+      cache: "no-cache",
+    });
+    const data: Post[] = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching...")
+  }
 };
+
+const getYoutubeVideos = async (): Promise<YTVideoObjRes> => {
+  try {
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?channelId=${"UCcp3HUStwGKVdrqpANkgmlg"}&key=${process.env.YT_API_KEY}&maxResults=10&part=snippet,id&order=date&type=video&videoDuration=long`, {
+      method: 'GET',
+      cache: 'default'
+    });
+    const data = await res.json();
+    return data as YTVideoObjRes;
+  } catch (error: any) {
+
+    throw new Error("Error fetching...")
+  }
+}
 
 export default async function Home() {
   const trendingPosts = await getTrendingPosts();
+  const ytVideoListPromise = getYoutubeVideos();
+
   return (
     <div className="flex min-h-screen flex-col ">
       <div className="h-10 w-ful flex items-center mt-0 dark:bg-card bg-card">
@@ -24,10 +49,13 @@ export default async function Home() {
         </div>
       </div>
       <TrendingNews posts={trendingPosts} />
-      <div className="container">
+      <div className="">
         <TrendingFromCategory category="Novosti" />
         <TrendingFromCategory category="Politika" />
         <TrendingFromCategory category="Kultura" />
+
+        <LandingYoutubePreview postsPromise={ytVideoListPromise} />
+
         <TrendingFromCategory category="Sport" />
         <TrendingFromCategory category="Drustvo" />
       </div>
