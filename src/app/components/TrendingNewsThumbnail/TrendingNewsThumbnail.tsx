@@ -132,16 +132,17 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 <div className={`${big ? 'h-full' : 'h-[50%]'}`}
                  style={{ backgroundImage: big ? 'linear-gradient(180deg, transparent, black)' : '' }}
                 ></div>
-                <div className={`${!big && 'bg-black opacity-75 h-[50%]'}`}></div>
+                <div className={`${!big && 'bg-black opacity-90 h-[50%]'}`}></div>
             </div>
             <div className='absolute h-full w-full bg-transparent'>
                 <div className={`h-full w-full pl-3 md:pl-5 md:pr-5 flex flex-col justify-end ${big ? 'md:pr-20' : 'md:pr-5'}`}>
-                    <h1 className={`ml-0 line-clamp-2
+                    <h1 className={`ml-0
                         text-sm
                         ${big ? `md:text-4xl` : `md:text-lg`}
-                        ${big ? `leading-normal` : `md:leading-tight`}
-                        ${!big && 'mb-1'}
+                        ${big ? `leading-tight` : `md:leading-normal`}
+                        ${!big && 'mb-0'}
                         ${big && 'font-bold'}
+                        ${big ? 'line-clamp-3' : "line-clamp-2"}
                         text-white
                     `}>{post.title}</h1>
                     { big && <p className='text-xs lg:text-sm mb-2 text-gray-400 dark:text-gray-400 line-clamp-2'>{post.subtitle}</p> }
