@@ -18,7 +18,6 @@ export const GET = async (request: NextRequest) => {
       take: 1,
       orderBy: { createdAt: "desc" },
     });
-    console.log('api', [...postsSecondary, postPrimary]);
     return NextResponse.json([...postsSecondary, postPrimary], { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
