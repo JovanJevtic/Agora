@@ -5,6 +5,7 @@ import TrendingFromCategory from "./components/TrendingFromCategory/TrendingFrom
 import Footer from "./components/Footer";
 import { YTVideoObjRes } from "@/types";
 import LandingYoutubePreview from "./components/LandingYoutubePreview";
+import youtubeService from "./libs/youtube";
 
 const getTrendingPosts = async () => {
   try {
@@ -16,7 +17,6 @@ const getTrendingPosts = async () => {
     const data: Post[] = await res.json();
     return data;
   } catch (error) {
-    console.log(error);
     throw new Error("Error fetching...")
   }
 };
@@ -25,15 +25,28 @@ const getYoutubeVideos = async (): Promise<YTVideoObjRes> => {
   try {
     const res = await fetch(`https://www.googleapis.com/youtube/v3/search?channelId=${"UCcp3HUStwGKVdrqpANkgmlg"}&key=${process.env.YT_API_KEY}&maxResults=10&part=snippet,id&order=date&type=video&videoDuration=long`, {
       method: 'GET',
-      cache: 'default'
+      cache: 'force-cache',
+      next: {
+        revalidate: 86400 
+      }
     });
     const data = await res.json();
     return data as YTVideoObjRes;
   } catch (error: any) {
-
     throw new Error("Error fetching...")
   }
 }
+
+// const getYoutubeVideos2 = async () => {
+  // "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBOuy5OmK1RItsOkMGHXCddUCKu88xPeuE&channelId=Ccp3HUStwGKVdrqpANkgmlg&part=snippet,id&order=date&maxResults=50"
+
+  // const response = await youtubeService.videos.list({
+  //   part: 'snippet',
+  //   maxResults: 50, // Set the number of videos you want to retrieve
+  //   playlistId,
+  // });
+// }
+
 
 export default async function Home() {
   const trendingPosts = await getTrendingPosts();
@@ -50,11 +63,11 @@ export default async function Home() {
       <TrendingNews posts={trendingPosts} />
       <div className="">
         <TrendingFromCategory category="Novosti" />
+
+        <LandingYoutubePreview postsPromise={ytVideoListPromise} />
+
         <TrendingFromCategory category="Politika" />
         <TrendingFromCategory category="Kultura" />
-
-        {/* <LandingYoutubePreview postsPromise={ytVideoListPromise} /> */}
-
         <TrendingFromCategory category="Sport" />
         <TrendingFromCategory category="Drustvo" />
       </div>
