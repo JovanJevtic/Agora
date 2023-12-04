@@ -18,7 +18,7 @@ const LandingYoutubePreview: React.FunctionComponent<Props> = async ({ postsProm
                         posts?.items?.map((post) => (
                             <div className="flex-1 flex justify-center"  key={post.id.videoId}>
                                 {/* <AspectRatio className=" bg-red-700" ratio={16 / 9}> */}
-                                    <YoutubeComponent opts={{ width: post.snippet.thumbnails.medium.width, height: post.snippet.thumbnails.medium.height }} videoId={post.id.videoId} />
+                                    <YoutubeComponent title={post.snippet.title} opts={{ width: post.snippet.thumbnails.medium.width, height: post.snippet.thumbnails.medium.height }} videoId={post.id.videoId} />
                                 {/* </AspectRatio> */}
                             </div>
                         ))
