@@ -24,14 +24,14 @@ const YoutubeComponent: React.FunctionComponent<Props> = ({ videoId, opts: optio
     }
 
   return (
-    <div className='flex flex-col w-[100%]'>
-      <h1 className='text-white mb-3 mt-1 font-bold md:hidden'>{title}</h1>
+    <div className='flex flex-col items-center md:w-[90%] w-[100%]'>
+      {/* <h1 className='text-white mb-3 mt-1  font-bold md:hidden'>{title}</h1> */}
       <YouTube 
         videoId={videoId} 
         // opts={opts} 
         opts={options2}
         iframeClassName={`w-[100%]`}
-        className={` w-[90%]`}
+        className={` w-[100%] `}
       />
     </div>
   )
