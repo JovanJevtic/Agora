@@ -31,7 +31,7 @@ export const POST = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
-            authorId
+            // authorId
         } = (await request.json()) as PostCreationData;
     
         const session = await getServerSession(authOptions)
@@ -47,7 +47,8 @@ export const POST = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
-            authorId
+            // authorId
+            authorId: session?.user.id
         }
     
         const validateResponse = postCreationFormSchema.safeParse({ 
