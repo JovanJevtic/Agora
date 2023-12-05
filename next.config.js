@@ -20,6 +20,11 @@ const nextConfig = {
         hostname: "imgur.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        pathname: "**",
+      }
     ],
   },
   async headers() {

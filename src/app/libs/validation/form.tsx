@@ -21,7 +21,7 @@ export const postCreationFormSchema = z.object({
   body: z.string().min(20, "Minimalna duzina texta je 5 karaktera"),
   categoryId: z.string().min(1, "Neophodno je specifikovati kategoriju"),
   fotoIzvor: z.string(),
-  image: z.string().min(1, "Neophodno je unjeti sliku").startsWith("https://i.imgur.com/", "Link do slika mora da pocinje sa: https://i.imgur.com/"),
+  image: z.string().min(1, "Neophodno je unjeti sliku"),
   slug: z.string().min(1, "Neophodno polje"),
   subcategoryId: z.string(),
   positionPrimary: z.boolean(),

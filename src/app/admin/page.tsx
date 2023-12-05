@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { PlusCircleIcon } from 'lucide-react'
 import Link from 'next/link'
+import UploadButtonComponent from '../components/ImageUploader'
 
 const Admin = () => {
   return (
