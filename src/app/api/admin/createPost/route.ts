@@ -48,7 +48,7 @@ export const POST = async (request: NextRequest) => {
             slug,
             subcategoryId,
             // authorId
-            authorId: session?.user.id
+            authorId: session?.user.id as string
         }
     
         const validateResponse = postCreationFormSchema.safeParse({ 
