@@ -15,29 +15,36 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     const [subcategory, setSubcategory] = useState<Subcategory | null>(null);
     const [loadingSub, setLoadingSub] = useState(false);
 
-    const getSubcategory = async () => {
+    const getSubcategoryData = async (subcategoryId: string): Promise<Subcategory> => {
         try {
-            setLoadingSub(true)
-            const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getById?id=${post.subcategoryId}`, {
+            const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`, {
                 method: 'GET',
                 cache: 'no-cache'
             })
             const data = await res.json();
-            setLoadingSub(false)
-            if (!res.ok) {
-                setSubcategory(null)
-            } else {
-                setSubcategory(data)
-            }
-        } catch (error) {
-            setSubcategory(null)
-            setLoadingSub(false)
+            return data
+        } catch (error: any) {
+            throw new Error(error);
         }
     }
 
+    const getSubcategory = async () => {
+        setLoadingSub(true)
+        const res = await getSubcategoryData(post.subcategoryId as string);
+        console.log('res', res);
+        setLoadingSub(false)
+        setSubcategory(res)
+    }
+
     useEffect(() => {
-        getSubcategory()
+        if (post.subcategoryId) {
+            getSubcategory()
+        }
     }, [])
+
+    useEffect(() => {
+        console.log(subcategory);
+    }, [subcategory])
     
     return (
     <Link className="min-[1200px]:w-[31%] max-[840px]:w-full mb-5 max-[1200px]:col-span-1 max-[1200px]:row-span-1" href={`/post/${post.id}`}>

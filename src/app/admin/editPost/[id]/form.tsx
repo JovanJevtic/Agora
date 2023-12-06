@@ -19,6 +19,8 @@ import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import UploadButtonComponent from "@/app/components/ImageUploader";
+import Image from "next/image";
 
 type Props = {
     categorys: Category[];
@@ -62,7 +64,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
         watch,
     } = form
 
-    const { categoryId } = watch()
+    const { categoryId, image } = watch()
     const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
 
     const filterSubcategorys = (categoryId: string) => {
@@ -157,14 +159,32 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
 
                     { mdPreview?.compiledSource && <MDXRemote {...mdPreview} /> }
 
+                    { image.length > 0 && 
+                        // <div className="w-full relative">
+                            <Image
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                style={{ width: '100%', height: 'auto' }} // optional
+                                src={image} alt="a"
+                                loading="eager"
+                                // style={{objectFit:"cover", objectPosition: 'top'}}
+                            />
+                        // </div>  
+                    }
+
                     <FormField
                         control={form.control}
                         name="image"
                         render={({ field }) => (
                             <FormItem className="mt-2">
-                                <FormLabel>Link do naslovne slike</FormLabel>
+                                <FormLabel>Naslovna slika</FormLabel>
                                 <FormControl className="h-12">
-                                    <Input placeholder="Zalijepi link do slike" {...field} />
+                                    {/* <Input placeholder="Zalijepi link do slike" {...field} /> */}
+                                    <UploadButtonComponent
+                                        onChange={field.onChange}
+                                        value={field.value}
+                                    />
                                 </FormControl>
                                 <FormMessage style={{color: 'red'}} />
                             </FormItem>
@@ -253,7 +273,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
                                         <SelectContent>
                                                 {
                                                     filteredSubcategorys?.map((subcategorys) => (
-                                                        <SelectItem key={subcategorys.id} value={subcategorys.name}>{subcategorys.name}</SelectItem>
+                                                        <SelectItem key={subcategorys.id} value={subcategorys.id}>{subcategorys.name}</SelectItem>
                                                     ))
                                                 }
                                         </SelectContent>
