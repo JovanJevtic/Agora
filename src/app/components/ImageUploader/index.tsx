@@ -73,14 +73,12 @@ const UploadButtonComponent: React.FunctionComponent<Props> = ({ onChange, value
             }
         }}
         onClientUploadComplete={(res) => {
-          // Do something with the response
-          console.log("Files: ", res);
           onChange(res[0].url)
-        //   alert("Upload Completed");
         }}
         onUploadError={(error: Error) => {
-          // Do something with the error.
-          alert(`ERROR! ${error.message}`);
+        //   alert(`ERROR! ${error.message}`);
+        throw new Error(error.message)
+
         }}
     />
   );

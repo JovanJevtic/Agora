@@ -31,7 +31,6 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
     const getSubcategory = async () => {
         setLoadingSub(true)
         const res = await getSubcategoryData(post.subcategoryId as string);
-        console.log('res', res);
         setLoadingSub(false)
         setSubcategory(res)
     }
@@ -41,10 +40,6 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             getSubcategory()
         }
     }, [])
-
-    useEffect(() => {
-        console.log(subcategory);
-    }, [subcategory])
     
     return (
     <Link className="min-[1200px]:w-[31%] max-[840px]:w-full mb-5 max-[1200px]:col-span-1 max-[1200px]:row-span-1" href={`/post/${post.id}`}>

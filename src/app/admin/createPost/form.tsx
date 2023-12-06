@@ -84,13 +84,9 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
             const resData = await res.json();
             router.push(`/post/${resData.post.id}`)
         } catch (error) {
-            console.log(error);
+            throw new Error(error)
         }
     }
-
-    useEffect(() => {
-        console.log(image);
-    }, [image])
 
     useEffect(() => {
         if (status === "unauthenticated") {  

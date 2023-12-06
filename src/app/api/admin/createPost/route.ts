@@ -81,7 +81,6 @@ export const POST = async (request: NextRequest) => {
     
         return NextResponse.json({ post }, { status: 200 });
     } catch (error) {
-        console.log("error", error);
         return NextResponse.json({ error })
     }
 }
@@ -151,7 +150,6 @@ export const PUT = async (request: NextRequest) => {
     
         return NextResponse.json({ post }, { status: 200 });
     } catch (error) {
-        console.log("error", error);
         return NextResponse.json({ error })
     }
 }

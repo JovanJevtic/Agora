@@ -84,14 +84,10 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
             });
             const resData = await res.json();
             router.push(`/post/${resData.post.id}`)
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            throw new Error(error)
         }
     }
-
-    useEffect(() => {
-        console.log(errors);
-    }, [errors])
 
     useEffect(() => {
         filterSubcategorys(categoryId)

@@ -73,14 +73,13 @@ const getTrendingFromSubCategory = async (subcategoryId: string, postId: string)
 const getTrendingFromAll= async (postId: string): Promise<Post[]> => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/posts/trending/cards?type=all&postId=${postId}`,
+      `https://www.agoraportal.net/api/posts/trending/cards?type=all&postId=${postId}`,
       { 
         method: "GET",
         cache: "no-cache",
       }
     );
     const data = await res.json();
-      console.log(data, 'aaa');
     return data;
   } catch (error: any) {
     throw new Error(error)
