@@ -3,12 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 
 type Props = {
-  title: string;
+  title?: string;
   requestPromise: Promise<Post[]>;
   categoryHex: string;
+  text?: string;
+  subcategory?: boolean;
 }
 
-const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, requestPromise, categoryHex }) => {
+const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, requestPromise, categoryHex, text, subcategory }) => {
   const trendingFromCategory = await requestPromise;
 
   if (trendingFromCategory.length < 1) {
@@ -34,8 +36,14 @@ const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, req
     //   </CardContent>
     // </Card>
     <div className="bg-card border-secondary rounded-md">
-      <div className="pl-5 pt-3 border-solid border-b-[1px] border-secondary pb-3 rounded-t-md" style={{ background: categoryHex ? categoryHex : '#000' }}>
-        <p className="text-xl">Aktuelno iz kategorije: <span className="font-bold">{title}</span></p>
+      <div className="pl-5 pt-3 border-solid border-b-[1px] border-secondary pb-3 rounded-t-md" style={{ background: !subcategory ? categoryHex : '#000' }}>
+        {
+          title &&
+          <p className="text-xl">Aktuelno iz kategorije: <span className="font-bold">{title}</span></p>
+        }
+        {
+          text && <p className="font-bold">{text}</p>
+        }
       </div>
       <div className="pt-0">
         <ul>

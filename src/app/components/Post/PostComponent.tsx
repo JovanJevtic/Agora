@@ -166,7 +166,11 @@ const Post: React.FunctionComponent<Props> = async ({
           <div className="h-full w-full pt-10 lg:pl-5 lg:pt-0">
             <div className="h-full w-full">
               <PostPageTrendingCard categoryHex={categoryHex} requestPromise={trendingFromCategoryData} title={categoryName} />
-              { post.subcategoryId && <PostPageTrendingCard categoryHex={categoryHex} title={subcategoryName} requestPromise={trendingFromSubcategoryData} /> }
+              {
+                post.subcategoryId && <div className="mt-10">
+                <PostPageTrendingCard subcategory={false} text="Povezano:" categoryHex={categoryHex} requestPromise={trendingFromSubcategoryData} />
+              </div>
+              }
               {/* <PostPageTrendingCard title="najnovije" /> */}
             </div>
           </div>
