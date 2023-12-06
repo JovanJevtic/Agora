@@ -36,7 +36,19 @@ export const GET = async (request: NextRequest) => {
             }, take: 5 });
             
             return NextResponse.json(posts);
-        } else {
+        } else if (type === "all") {
+            const posts = await prisma.post.findMany({ 
+                where: { 
+                    NOT: {
+                        id: postId
+                    }
+                }, 
+                orderBy: { createdAt: 'desc'  
+            }, take: 5 });
+            
+            return NextResponse.json(posts);
+        }
+        else {
             return NextResponse.json({ status: 500 });
         }
 

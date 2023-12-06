@@ -5,7 +5,7 @@ import Link from "next/link";
 type Props = {
   title?: string;
   requestPromise: Promise<Post[]>;
-  categoryHex: string;
+  categoryHex?: string;
   text?: string;
   subcategory?: boolean;
 }
@@ -36,7 +36,7 @@ const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, req
     //   </CardContent>
     // </Card>
     <div className="bg-card border-secondary rounded-md">
-      <div className="pl-5 pt-3 pr-5 border-solid border-b-[1px] border-secondary pb-3 rounded-t-md" style={{ background: !subcategory ? categoryHex : '#000' }}>
+      <div className="pl-5 pt-3 pr-5 border-solid border-b-[1px] border-secondary pb-3 rounded-t-md" style={{ background: categoryHex ? categoryHex : '' }}>
         {
           title &&
           <p className="text-xl">Aktuelno iz kategorije: <span className="font-bold">{title}</span></p>

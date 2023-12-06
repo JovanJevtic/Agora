@@ -70,6 +70,23 @@ const getTrendingFromSubCategory = async (subcategoryId: string, postId: string)
   }
 }
 
+const getTrendingFromAll= async (postId: string): Promise<Post[]> => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/posts/trending/cards?type=all&postId=${postId}`,
+      { 
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    const data = await res.json();
+      console.log(data, 'aaa');
+    return data;
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
 // export const getStaticProps: GetStaticProps<{
   // mdxSource: MDXRemoteSerializeResult
 // }> = async () => {
@@ -88,6 +105,7 @@ const Post: React.FunctionComponent<Props> = async ({
 
   const trendingFromCategoryData: Promise<Post[]> = getTrendingFromCategory(post.categoryId, post.id);
   const trendingFromSubcategoryData: Promise<Post[]> = getTrendingFromSubCategory(post.subcategoryId as string, post.id);
+  const trendingFromAllData: Promise<Post[]> = getTrendingFromAll(post.id);
 
   const mdxSource = await serialize(post.body, { mdxOptions: { development: process.env.NODE_ENV === "development" } })
   const session = await getServerSession(authOptions);
@@ -110,10 +128,10 @@ const Post: React.FunctionComponent<Props> = async ({
               {author.image ? (
                 <Image
                   className="mr-0 ml-1"
-                  style={{ borderRadius: "50%" }}
+                  style={{ borderRadius: "50%", width: '25px', height: '25px' }}
                   src={author.image}
-                  height={20}
-                  width={20}
+                  height={0}
+                  width={0}
                   alt="profile"
                 />
               ) : (
@@ -168,10 +186,21 @@ const Post: React.FunctionComponent<Props> = async ({
               <PostPageTrendingCard categoryHex={categoryHex} requestPromise={trendingFromCategoryData} title={categoryName} />
               {
                 post.subcategoryId && <div className="mt-10">
-                <PostPageTrendingCard subcategory={false} text="Povezano:" categoryHex={categoryHex} requestPromise={trendingFromSubcategoryData} />
+                <PostPageTrendingCard 
+                  subcategory={false} 
+                  text="Povezano" 
+                  categoryHex={categoryHex} 
+                  requestPromise={trendingFromSubcategoryData} 
+                />
               </div>
               }
-              {/* <PostPageTrendingCard title="najnovije" /> */}
+              <div className="mt-10">
+                <PostPageTrendingCard 
+                  subcategory={false}
+                  text="Najnovije"
+                  requestPromise={trendingFromAllData}
+                />
+              </div>
             </div>
           </div>
       </div>
