@@ -3,8 +3,10 @@ import { Skeleton } from "../ui/skeleton"
 import Link from "next/link";
 
 type Props = {
-    categoryPromise: Promise<Category>;
-    subcategoryPromise: Promise<Subcategory>;
+    // categoryPromise: Promise<Category>;
+    // subcategoryPromise: Promise<Subcategory>;
+    category: Category;
+    subcategory: Subcategory;
     categoryId: string;
 }
 
@@ -17,9 +19,14 @@ const getAllSubcategorys = async (categoryId: string) => {
     return data;
 }
 
-const PostPageDetails: React.FunctionComponent<Props> = async ({ categoryPromise, subcategoryPromise, categoryId }) => {
-    const category = await categoryPromise;
-    const subcategory = await subcategoryPromise;
+const PostPageDetails: React.FunctionComponent<Props> = async ({
+    categoryId,
+    category, 
+    subcategory 
+    // categoryPromise, subcategoryPromise,  
+}) => {
+    // const category = await categoryPromise;
+    // const subcategory = await subcategoryPromise;
 
     const subcategorysData: Promise<Subcategory[]> = getAllSubcategorys(categoryId)
     const subcategorys = await subcategorysData;

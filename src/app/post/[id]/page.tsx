@@ -2,7 +2,7 @@ import PostComponent from "@/app/components/Post/PostComponent";
 import PostPageDetails, {
   PostPageDetailsLoading,
 } from "@/app/components/PostPageDetails/PostPageDetails";
-import { Post } from "@prisma/client";
+import { Category, Post, Subcategory } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
@@ -13,7 +13,7 @@ type Props = {
   };
 };
 
-export const getPost = async (id: string) => {
+export const getPost = async (id: string): Promise<Post> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
@@ -26,10 +26,11 @@ export const getPost = async (id: string) => {
     return data;
   } catch (error: any) {
     redirect("/");
+    throw new Error(error);
   }
 };
 
-export const getCategory = async (categoryId: string) => {
+export const getCategory = async (categoryId: string): Promise<Category> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/category/getById?id=${categoryId}`,
@@ -40,12 +41,12 @@ export const getCategory = async (categoryId: string) => {
     );
     const data = await res.json();
     return data;
-  } catch (error) {
-    return null;
+  } catch (error: any) {
+    throw new Error(error)
   }
 };
 
-export const getSubcategory = async (subcategoryId: string) => {
+export const getSubcategory = async (subcategoryId: string): Promise<Subcategory> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`,
@@ -56,8 +57,8 @@ export const getSubcategory = async (subcategoryId: string) => {
     );
     const data = await res.json();
     return data;
-  } catch (error) {
-    return null;
+  } catch (error: any) {
+    throw new Error(error)
   }
 };
 
@@ -107,17 +108,22 @@ const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
   const categoryData = getCategory(post.categoryId);
   const subcategoryData = getSubcategory(post.subcategoryId as string);
 
+  const category = await categoryData;
+  const subcategory = await subcategoryData;
+
   return (
     <div className="min-h-[90vh] w-full bg-slate-50 dark:bg-black">
       {/* <Suspense fallback={<PostPageDetailsLoading />}> */}
       <PostPageDetails
         categoryId={post.categoryId}
-        categoryPromise={categoryData}
-        subcategoryPromise={subcategoryData}
+        category={category}
+        subcategory={subcategory}
+        // categoryPromise={categoryData}
+        // subcategoryPromise={subcategoryData}
       />
       {/* </Suspense> */}
       <div className="container">
-        <PostComponent post={post} />
+        <PostComponent categoryHex={category.hexCol as string} categoryName={category.name} subcategoryName={subcategory.name} post={post} />
       </div>
     </div>
   );

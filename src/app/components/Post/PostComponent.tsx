@@ -1,6 +1,6 @@
 import Image from "next/image";
 import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
-import { Post, User } from "@prisma/client";
+import { Category, Post, User } from "@prisma/client";
 import { User2 } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
 import Markdown from '../Markdown/Markdown'
@@ -13,12 +13,16 @@ import { Button } from "../ui/button";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/app/libs/authOptions";
 import Btns from "./Btns";
+import PostPageTrendingCard from "../PostPageTrendingCard";
 
 type Props = {
   post: Post;
+  categoryName: string;
+  subcategoryName: string;
+  categoryHex: string;
 };
 
-const getAuthor = async (authorId: string) => {
+const getAuthor = async (authorId: string): Promise<User> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/users/author/getById?id=${authorId}`,
@@ -30,9 +34,41 @@ const getAuthor = async (authorId: string) => {
     const data = await res.json();
     return data;
   } catch (error: any) {
-    return null;
+    throw new Error(error)
   }
 };
+
+const getTrendingFromCategory = async (categoryId: string, postId: string): Promise<Post[]> => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/posts/trending/cards?type=category&categoryId=${categoryId}&postId=${postId}`,
+      {
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+const getTrendingFromSubCategory = async (subcategoryId: string, postId: string): Promise<Post[]> => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/posts/trending/cards?type=subcategory&subcategoryId=${subcategoryId}&postId=${postId}`,
+      { 
+        method: "GET",
+        cache: "no-cache",
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
 
 // export const getStaticProps: GetStaticProps<{
   // mdxSource: MDXRemoteSerializeResult
@@ -41,18 +77,26 @@ const getAuthor = async (authorId: string) => {
   // return { props: { mdxSource } }
 // }
 
-const Post: React.FunctionComponent<Props> = async ({ post }) => {
+const Post: React.FunctionComponent<Props> = async ({ 
+  post,
+  categoryName,
+  subcategoryName,
+  categoryHex
+}) => {
   const authorData: Promise<User> = getAuthor(post.authorId);
   const author = await authorData;
+
+  const trendingFromCategoryData: Promise<Post[]> = getTrendingFromCategory(post.categoryId, post.id);
+  const trendingFromSubcategoryData: Promise<Post[]> = getTrendingFromSubCategory(post.subcategoryId as string, post.id);
 
   const mdxSource = await serialize(post.body, { mdxOptions: { development: process.env.NODE_ENV === "development" } })
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row">
       <div className="flex-[9]">
         <article className="w-full">
-          <h1 className="text-4xl md:text-5xl dark:text-white text-black font-bold md:leading-tight">
+          <h1 className="text-4xl md:text-5xl dark:text-white text-black font-bold md:leading-tight lg:pr-3">
             {post.title}
           </h1>
           <p className="text-xs md:text-sm text-gray-500 mt-3  md:w-[80%]">
@@ -119,7 +163,13 @@ const Post: React.FunctionComponent<Props> = async ({ post }) => {
       </div>
 
       <div className="lg:flex-[5]">
-
+          <div className="h-full w-full pt-10 lg:pl-5 lg:pt-0">
+            <div className="h-full w-full">
+              <PostPageTrendingCard categoryHex={categoryHex} requestPromise={trendingFromCategoryData} title={categoryName} />
+              { post.subcategoryId && <PostPageTrendingCard categoryHex={categoryHex} title={subcategoryName} requestPromise={trendingFromSubcategoryData} /> }
+              {/* <PostPageTrendingCard title="najnovije" /> */}
+            </div>
+          </div>
       </div>
     </div>
   );
