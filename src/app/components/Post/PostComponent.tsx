@@ -144,9 +144,10 @@ const Post: React.FunctionComponent<Props> = async ({
                 <TrendingNewsDate full date={post.createdAt} />
               </p>
               {post.createdAt !== post.updatedAt && (
-                <p className="text-gray-400 text-xs md:text-sm">
-                  Izmjenjeno: <TrendingNewsDate full date={post.updatedAt} />
-                </p>
+                // <p className="text-gray-400 text-xs md:text-sm">
+                //   Izmjenjeno: <TrendingNewsDate full date={post.updatedAt} />
+                // </p>
+                <></>
               )}
             </div>
           </div>

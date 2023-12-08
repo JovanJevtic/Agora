@@ -7,14 +7,14 @@ import { YTVideoObjRes } from "@/types";
 import LandingYoutubePreview from "./components/LandingYoutubePreview";
 import youtubeService from "./libs/youtube";
 
-const getTrendingPosts = async () => {
+const getTrendingPosts = async (): Promise<{ primary: Post, secondary: Post[] }> => {
   try {
-    const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
-    // const res = await fetch("http://localhost:3000/api/posts/trending", {
+    // const res = await fetch("https://www.agoraportal.net/api/posts/trending", {
+    const res = await fetch("http://localhost:3000/api/posts/trending", {
       method: "GET",
       cache: "no-cache",
     });
-    const data: Post[] = await res.json();
+    const data = await res.json();
     return data;
   } catch (error) {
     throw new Error("Error fetching...")
@@ -60,7 +60,7 @@ export default async function Home() {
           <CurrentDate />
         </div>
       </div>
-      <TrendingNews posts={trendingPosts} />
+      <TrendingNews primary={trendingPosts.primary} secondary={trendingPosts.secondary} />
       <div className="">
         <TrendingFromCategory category="Novosti" />
 

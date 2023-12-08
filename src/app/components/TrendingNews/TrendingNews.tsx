@@ -3,12 +3,13 @@ import React from 'react'
 import TrendingGrid from '../TrendingGrid/TrendingGrid'
 
 type Props = {
-    posts: Post[]
+  primary: Post,
+  secondary: Post[]
 }
 
-const TrendingNews: React.FunctionComponent<Props> = ({ posts }) => {
+const TrendingNews: React.FunctionComponent<Props> = ({ primary, secondary }) => {
   return (
-    <TrendingGrid posts={posts} />
+    <TrendingGrid primary={primary} secondary={secondary} />
   )
 }
 

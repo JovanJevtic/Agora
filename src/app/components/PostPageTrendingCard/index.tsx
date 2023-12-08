@@ -39,7 +39,7 @@ const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, req
       <div className="pl-5 pt-3 pr-5 border-solid border-b-[1px] border-secondary pb-3 rounded-t-md" style={{ background: categoryHex ? categoryHex : '' }}>
         {
           title &&
-          <p className="text-xl">Aktuelno iz kategorije: <span className="font-bold">{title}</span></p>
+          <p className="text-xl text-white">Aktuelno iz kategorije: <span className="font-bold">{title}</span></p>
         }
         {
           text && <p className="font-bold">{text}</p>
