@@ -51,7 +51,7 @@ const CreatePost = async () => {
             </Link>
           </div>        */}
           <div>
-            <Link href={`/profile`} className='flex flex-col bg-card py-4 px-7 rounded-md'>
+            <Link href={`/profile`} className='flex flex-col bg-card py-4 px-3 lg:px-7 rounded-md'>
               <div className='flex justify-start items-center'>
                 <p>Autor: </p>
                 <div>
