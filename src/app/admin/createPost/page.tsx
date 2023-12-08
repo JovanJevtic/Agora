@@ -38,7 +38,7 @@ const CreatePost = async () => {
     <div className="container">
         <h1 className="font-bold mt-5 mb-5 text-2xl">Započni sa kreiranjem novog članka!</h1>
         <div className=' w-min mb-5'>
-          <div className='flex bg-card py-4 pl-4 pr-8 border-solid rounded-md'>
+          {/* <div className='flex bg-card py-4 pl-4 pr-8 border-solid rounded-md'>
             <p className='text-gray-400 text-sm'>Autor: </p>
             <Link href={`/profile`} className='flex h-full'>
               {
@@ -49,7 +49,27 @@ const CreatePost = async () => {
               }
               <p className='font-bold text-white pl-2 text-sm pr-6'>{session?.user.name}</p>
             </Link>
-          </div>       
+          </div>        */}
+          <div>
+            <Link href={`/profile`} className='flex flex-col bg-card py-4 px-7 rounded-md'>
+              <div className='flex justify-start items-center'>
+                <p>Autor: </p>
+                <div>
+                  <div className='flex items-center pl-3'>
+                    <p className='min-w-max font-bold'>{session?.user.name}</p>
+                    {
+                    session?.user.image ? 
+                      <div className='pl-2 min-w-full'><Image className='rounded-[50%]' width={24} height={24} alt='a' src={session.user.image} /> </div>
+                    : 
+                      <User height={15} width={15} />
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <p className='text-gray-500 text-sm mt-0'>{session?.user.email}</p>
+            </Link>
+          </div>
         </div>   
         <WriteForm categorys={categorys} subcategorys={subcategorys} />
     </div>
