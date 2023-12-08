@@ -94,6 +94,10 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
         }
     }, [])
 
+    useEffect(() => {
+        filterSubcategorys(categoryId)
+    }, [categoryId])
+
     return (
         <div>
             <Form {...form}>
