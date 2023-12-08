@@ -61,7 +61,7 @@ const CreatePost = async () => {
                     session?.user.image ? 
                       <div className='pl-2 min-w-full'><Image className='rounded-[50%]' width={24} height={24} alt='a' src={session.user.image} /> </div>
                     : 
-                      <User height={15} width={15} />
+                      <div className='pl-2 min-w-full'><User height={15} width={15} /></div>
                     }
                   </div>
                 </div>
