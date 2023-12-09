@@ -139,7 +139,7 @@ const Post: React.FunctionComponent<Props> = async ({
               )}
             </div>
 
-            <div className="flex-1 flex items-start mt-3 flex-col">
+            <div className="flex-1 flex items-start mt-1 flex-col">
               <p className="text-gray-950 dark:text-gray-50 text-xs md:text-sm font-bold capitalize">
                 <TrendingNewsDate full date={post.createdAt} />
               </p>

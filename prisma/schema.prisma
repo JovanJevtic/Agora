@@ -81,10 +81,10 @@ model Post {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
-  category      Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category      Category      @relation(fields: [categoryId], references: [id], onDelete: NoAction)
   categoryId    String
 
-  subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
+  subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id], onDelete: NoAction)
   subcategoryId    String?
 
   positionPrimary Boolean?         @default(false)
@@ -104,7 +104,7 @@ model Category {
 
 model Subcategory {
   id            String       @default(cuid()) @id
-  category      Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category      Category     @relation(fields: [categoryId], references: [id], onDelete: NoAction)
   categoryId    String
 
   name          String      
