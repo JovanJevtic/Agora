@@ -18,7 +18,7 @@ const SubcategorysPage = async () => {
             <Suspense fallback={<CategoryFallback />}>
                 {
                     categorys.map((category) => (
-                        <Card category={category} />
+                        <Card key={category.id} category={category} />
                     ))
                 }
             </Suspense>
