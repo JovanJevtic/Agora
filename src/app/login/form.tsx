@@ -50,43 +50,6 @@ const Form = () =>   {
         setError,
     } = form
 
-    // const onSubmit = async (data: FieldValues) => {
-    //     const response = await fetch(`/api/auth/register`, {
-    //         method: 'POST',
-    //         body: JSON.stringify(data)
-    //     })
-        
-    //     const responseData = await response.json();
-
-    //     if (!response.ok) {
-    //         const errors = responseData.errors;
-      
-    //         if (errors.email) {
-    //           setError("email", {
-    //             type: "server",
-    //             message: errors.email,
-    //           });
-    //         } else if (errors.password) {
-    //           setError("password", {
-    //             type: "server",
-    //             message: errors.password,
-    //           });
-    //         } else if (errors.confirmPassword) {
-    //           setError("confirmPassword", {
-    //             type: "server",
-    //             message: errors.confirmPassword,
-    //           });
-    //         } else {
-    //             setResponse(null)
-    //             setResError("Nesto je poslo po zlu, molimo Vas pokusajte ponovo!");
-    //         }
-    //     } else {
-    //         setResponse("Success")
-    //         setResError(null);
-    //     }
-    //     // reset();
-    // }
-
     const onSubmit = async (data: FieldValues) => {
         try {
             setLoading(true)

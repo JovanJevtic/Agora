@@ -153,4 +153,3 @@ export const PUT = async (request: NextRequest) => {
         return NextResponse.json({ error })
     }
 }
-

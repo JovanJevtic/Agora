@@ -6,22 +6,30 @@ import { User } from 'lucide-react';
 import Link from 'next/link';
 import { Category, Subcategory } from '@prisma/client';
 
-export const getCategorys = async () => {
-  const res = await fetch('https://www.agoraportal.net/api/posts/category/getAll', {
-    cache: 'no-cache',
-    method: 'GET'
-  });
-  const data = await res.json()
-  return data
+export const getCategorys = async (): Promise<Category[]> => {
+  try {
+    const res = await fetch('https://www.agoraportal.net/api/posts/category/getAll', {
+      cache: 'no-cache',
+      method: 'GET'
+    });
+    const data = await res.json()
+    return data
+  } catch (error: any) {
+    throw new Error(error)
+  }
 }
 
-export const getSubcategorys = async () => {
-  const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
-    cache: 'no-cache',
-    method: 'GET'
-  });
-  const data = await res.json()
-  return data
+export const getSubcategorys = async (): Promise<Subcategory[]> => {
+  try {
+    const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
+      cache: 'no-cache',
+      method: 'GET'
+    });
+    const data = await res.json()
+    return data
+  } catch (error: any) {
+    throw new Error(error)
+  }
 }
 
 const CreatePost = async () => {
