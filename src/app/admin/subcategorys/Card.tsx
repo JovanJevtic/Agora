@@ -1,11 +1,7 @@
 import { Category, Subcategory } from "@prisma/client"
-import { SubcategoryFallback } from "./Fallbacks";
-import { Suspense } from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/app/components/ui/popover";
-import { Button } from "@/app/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/app/components/ui/collapsible";
 import CardContent from "./CardContent";
 
+export const dynamic = 'force-dynamic'
 
 const getSubcategoryByCategory = async (categoryId: string): Promise<Subcategory[]> => {
     try {
@@ -62,5 +58,6 @@ const Card: React.FunctionComponent<Props> = async ({ category }) => {
     </div>
   )
 }
+
 
 export default Card
