@@ -9,7 +9,7 @@ import CardContent from "./CardContent";
 
 const getSubcategoryByCategory = async (categoryId: string): Promise<Subcategory[]> => {
     try {
-        const res = await fetch(`http://localhost:3000/api/posts/subcategory/getByCategory?categoryId=${categoryId}`, {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getByCategory?categoryId=${categoryId}`, {
             method: 'GET',
             cache: 'no-cache',
             next: {

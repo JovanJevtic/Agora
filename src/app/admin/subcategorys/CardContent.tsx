@@ -12,7 +12,6 @@ import { FieldValues, useForm } from "react-hook-form";
 import { TSSubcategoryCreation, subcategoryCreationFormSchema } from "@/app/libs/validation/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/app/components/ui/form";
-import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -44,7 +43,7 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
 
     const onSubmit = async (data: FieldValues) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/admin/createSubcategory`, {
+            const res = await fetch(`https://www.agoraportal.net/api/admin/createSubcategory`, {
                 method: 'POST',
                 body: JSON.stringify(data)
             })
@@ -59,7 +58,7 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
     const deleteSubcategory = async (subcategoryId: string) => {
         try {
             // setIsDeleting(true)
-            const res = await fetch(`http://localhost:3000/api/admin/createSubcategory`, {
+            const res = await fetch(`https://www.agoraportal.net/api/admin/createSubcategory`, {
                 method: 'DELETE',
                 body: JSON.stringify({subcategoryId})
             });
@@ -68,7 +67,6 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
             refresh()
         } catch (error: any) {
             // setIsDeleting(false)
-            console.log(error);
             // refresh()
             throw new Error(error)
         }
