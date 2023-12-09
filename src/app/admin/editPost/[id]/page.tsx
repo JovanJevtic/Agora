@@ -29,8 +29,6 @@ const EditPost: React.FunctionComponent<Props> = async ({ params: { id } }) => {
   const categorys = await categorysData;
   const subcategorys = await subcategorysData;
 
-  console.log('evo ga ovdje: ', subcategorys);
-
   return (
     <div className="container">
         <h1>Uredjivanje objave</h1>

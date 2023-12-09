@@ -22,7 +22,11 @@ export const getCategorys = async (): Promise<Category[]> => {
 export const getSubcategorys = async (): Promise<Subcategory[]> => {
   try {
     const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
-      method: 'GET'
+      method: 'GET',
+      cache: 'no-cache',
+      next: {
+        revalidate: 0,
+      }
     });
     const data = await res.json()
     return data
