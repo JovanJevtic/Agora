@@ -6,16 +6,14 @@ import { TSPostWritingSchema, postCreationFormSchema } from "@/app/libs/validati
 import { Form } from "@/app/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { ControllerRenderProps, FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { Textarea } from "@/app/components/ui/textarea";
-import Markdown from '@/app/components/Markdown/Markdown'
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import MdEditor from "@/app/components/MarkdownEditor";
 import { Button } from "@/app/components/ui/button";
 import { Category, Post, Subcategory } from "@prisma/client";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { Switch } from "@/app/components/ui/switch";
-import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -31,7 +29,6 @@ type Props = {
 const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategorys, post }) => {
     const { data: userSession, status } = useSession()
     const router = useRouter();
-
 
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),

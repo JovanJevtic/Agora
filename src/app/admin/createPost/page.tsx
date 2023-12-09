@@ -9,7 +9,7 @@ import { Category, Subcategory } from '@prisma/client';
 export const getCategorys = async (): Promise<Category[]> => {
   try {
     const res = await fetch('https://www.agoraportal.net/api/posts/category/getAll', {
-      cache: 'no-cache',
+      cache: 'no-store',
       method: 'GET'
     });
     const data = await res.json()
@@ -21,8 +21,7 @@ export const getCategorys = async (): Promise<Category[]> => {
 
 export const getSubcategorys = async (): Promise<Subcategory[]> => {
   try {
-    const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
-      cache: 'no-cache',
+    const res = await fetch('http://localhost:3000/api/posts/subcategory/getAll', {
       method: 'GET'
     });
     const data = await res.json()

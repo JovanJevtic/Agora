@@ -3,10 +3,7 @@ import prisma from "@/app/libs/prismadb";
 
 export const GET = async (request: NextRequest) => {
     try {
-        const subcategorys = await prisma.subcategory.findMany({ 
-            
-        });
-        if (!subcategorys) return NextResponse.json({ status: 500 });
+        const subcategorys = await prisma.subcategory.findMany()
 
         return NextResponse.json( subcategorys );
     } catch (error) {
