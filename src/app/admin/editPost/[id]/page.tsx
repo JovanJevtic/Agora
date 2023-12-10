@@ -19,6 +19,8 @@ export async function generateStaticParams() {
   }));
 }
 
+export const dynamic = 'force-dynamic'
+
 const EditPost: React.FunctionComponent<Props> = async ({ params: { id } }) => {
   const postData: Promise<Post> = getPost(id);
   const post = await postData;
