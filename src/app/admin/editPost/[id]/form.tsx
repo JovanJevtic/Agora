@@ -30,13 +30,17 @@ type Props = {
 const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => {
     const { data: userSession, status } = useSession()
     const router = useRouter();
-    
+
     const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
 
-    const getAllSubcategorys = async () => {
-        const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
-        const subcategorys = await subcategorysData;
-        setSubcategorys(subcategorys)
+   const getAllSubcategorys = async () => {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
+            method: "GET",
+            cache: 'no-store'
+        });
+        const resData = await res.json();
+        console.log(resData, 'sdasdda2333');
+        setSubcategorys(resData)
     }
 
     const form = useForm<TSPostWritingSchema>({

@@ -36,9 +36,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys }) => {
     const getAllSubcategorys = async () => {
         const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
             method: "GET",
-            next: {
-                revalidate: 1
-            }
+            cache: 'no-store'
         });
         const resData = await res.json();
         console.log(resData, 'sdasdda2333');
