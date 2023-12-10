@@ -9,15 +9,15 @@ type Props = {
     }
 };
 
-export async function generateStaticParams() {
-    const ids = await fetch(
-      "https://www.agoraportal.net/api/posts/all/staticParams/archived"
-    ).then((res) => res.json());
+// export async function generateStaticParams() {
+//     const ids = await fetch(
+//       "https://www.agoraportal.net/api/posts/all/staticParams/archived"
+//     ).then((res) => res.json());
   
-    return ids.map((id: string) => ({
-      id: id,
-    }));
-}
+//     return ids.map((id: string) => ({
+//       id: id,
+//     }));
+// }
 
 const ArchivedPost: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
     const postData: Promise<Post> = getPost(slug);
