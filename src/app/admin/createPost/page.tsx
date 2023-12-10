@@ -1,4 +1,3 @@
-import { serialize } from 'next-mdx-remote/serialize';
 import WriteForm from './form'
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
@@ -24,11 +23,9 @@ export const getSubcategorys = async (): Promise<Subcategory[]> => {
     const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
       method: 'GET',
       cache: 'no-cache',
-      next: {
-        revalidate: 0,
-      }
     });
     const data = await res.json()
+    console.log('data', data);
     return data
   } catch (error: any) {
     throw new Error(error)
@@ -39,10 +36,10 @@ const CreatePost = async () => {
   const session = await getServerSession()
 
   const categorysData: Promise<Category[]> = getCategorys();
-  const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
+  // const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
   
   const categorys = await categorysData;
-  const subcategorys = await subcategorysData;
+  // const subcategorys = await subcategorysData;
 
   return (
 
@@ -82,7 +79,10 @@ const CreatePost = async () => {
             </Link>
           </div>
         </div>   
-        <WriteForm categorys={categorys} subcategorys={subcategorys} />
+        <WriteForm 
+          categorys={categorys} 
+          // subcategorys={subcategorys} 
+        />
     </div>
   )
 }

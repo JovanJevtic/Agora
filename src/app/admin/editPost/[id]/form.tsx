@@ -19,16 +19,25 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UploadButtonComponent from "@/app/components/ImageUploader";
 import Image from "next/image";
+import { getSubcategorys } from "../../createPost/page";
 
 type Props = {
     categorys: Category[];
-    subcategorys: Subcategory[];
+    // subcategorys: Subcategory[];
     post: Post;
 }
 
-const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategorys, post }) => {
+const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => {
     const { data: userSession, status } = useSession()
     const router = useRouter();
+    
+    const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
+
+    const getAllSubcategorys = async () => {
+        const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
+        const subcategorys = await subcategorysData;
+        setSubcategorys(subcategorys)
+    }
 
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),
@@ -65,7 +74,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
     const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
 
     const filterSubcategorys = (categoryId: string) => {
-        const filtered = subcategorys.filter((curr) => { return curr.categoryId === categoryId })
+        const filtered = subcategorys?.filter((curr) => { return curr.categoryId === categoryId })
         setFilteredSubcategorys(filtered)
     }
 
@@ -94,6 +103,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
         if (status === "unauthenticated") {  
             router.push('/login')   
         }
+        getAllSubcategorys()
     }, [])
 
     return (

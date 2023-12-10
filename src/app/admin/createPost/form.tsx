@@ -21,15 +21,26 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UploadButtonComponent from "@/app/components/ImageUploader";
 import Image from "next/image";
+import { getSubcategorys } from "./page";
 
 type Props = {
     categorys: Category[];
-    subcategorys: Subcategory[];
 }
 
-const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategorys }) => {
+const CreatePostForm: React.FunctionComponent<Props> = ({ categorys }) => {
     const { data: userSession, status } = useSession()
     const router = useRouter();
+
+    const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
+
+    const getAllSubcategorys = async () => {
+        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
+            method: "GET"
+        });
+        const resData = await res.json();
+        console.log(resData, 'sdasdda2333');
+        setSubcategorys(resData)
+    }
 
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),
@@ -67,7 +78,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
     const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
 
     const filterSubcategorys = (categoryId: string) => {
-        const filtered = subcategorys.filter((curr) => { return curr.categoryId === categoryId })
+        const filtered = subcategorys?.filter((curr) => { return curr.categoryId === categoryId })
         setFilteredSubcategorys(filtered)
     }
 
@@ -92,6 +103,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, subcategory
         if (status === "unauthenticated") {  
             router.push('/login')   
         }
+        console.log('dasdasdsa');
+        getAllSubcategorys()
     }, [])
 
     useEffect(() => {

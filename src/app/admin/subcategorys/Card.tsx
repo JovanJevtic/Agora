@@ -8,9 +8,6 @@ const getSubcategoryByCategory = async (categoryId: string): Promise<Subcategory
         const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getByCategory?categoryId=${categoryId}`, {
             method: 'GET',
             cache: 'no-cache',
-            next: {
-                tags: ['getSubcategorysByCategory']
-            }
         });
         const data = res.json();
         return data
