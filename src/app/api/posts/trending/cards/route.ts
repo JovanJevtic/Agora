@@ -17,7 +17,8 @@ export const GET = async (request: NextRequest) => {
                     categoryId: categoryId,
                     NOT: {
                         id: postId
-                    }
+                    },
+                    archived: false
                 }, 
                 orderBy: { createdAt: 'desc'  }, 
                 take: 5
@@ -30,7 +31,8 @@ export const GET = async (request: NextRequest) => {
                     subcategoryId: subcategoryId,
                     NOT: {
                         id: postId
-                    }
+                    },
+                    archived: false
                 }, 
                 orderBy: { createdAt: 'desc'  
             }, take: 5 });
@@ -41,7 +43,8 @@ export const GET = async (request: NextRequest) => {
                 where: { 
                     NOT: {
                         id: postId
-                    }
+                    },
+                    archived: false
                 }, 
                 orderBy: { createdAt: 'desc'  
             }, take: 5 });

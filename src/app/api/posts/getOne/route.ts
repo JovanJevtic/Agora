@@ -11,7 +11,8 @@ export const GET = async (request: NextRequest) => {
 
         const post = await prisma.post.findUnique({ 
             where: { 
-                id: slug
+                id: slug,
+                // archived: false
             } 
         });
         if (!post) return NextResponse.json({ status: 500 });

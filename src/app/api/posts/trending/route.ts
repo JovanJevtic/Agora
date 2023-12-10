@@ -5,7 +5,8 @@ export const GET = async (request: NextRequest) => {
   try {
     const postPrimary = await prisma.post.findFirst({
       where: {
-        positionPrimary: true
+        positionPrimary: true,
+        archived: false
       },
       take: 1,
       orderBy: { createdAt: "desc" },
@@ -16,7 +17,8 @@ export const GET = async (request: NextRequest) => {
         positionSecondary: true,
         NOT: {
           id: postPrimary?.id || ''
-        }
+        },
+        archived: false
       },
       take: 4,
       orderBy: { createdAt: "desc" },

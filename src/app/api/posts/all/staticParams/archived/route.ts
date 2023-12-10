@@ -5,7 +5,7 @@ export const GET = async (request: NextRequest) => {
     try {
         const posts = await prisma.post.findMany({
             where: {
-                archived: false
+                archived: true
             }
         });
         return NextResponse.json(posts.map(post => post.id), { status: 200 });

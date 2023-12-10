@@ -16,7 +16,7 @@ type Props = {
 export const getPost = async (id: string): Promise<Post> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
+      `http://localhost:3000/api/posts/getOne?id=${id}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -104,6 +104,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
   const postData: Promise<Post> = getPost(id);
   const post = await postData;
+
+  if (post.archived) {
+    redirect('/')
+  }
 
   const categoryData = getCategory(post.categoryId);
   const subcategoryData = getSubcategory(post.subcategoryId as string);

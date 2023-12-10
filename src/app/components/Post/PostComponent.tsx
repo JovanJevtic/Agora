@@ -153,7 +153,7 @@ const Post: React.FunctionComponent<Props> = async ({
           </div>
 
           {
-            session?.user.role === "admin" && <Btns postId={post.id} />
+            session?.user.role === "admin" && <Btns archived={post.archived} postId={post.id} />
           }
 
           <div className="relative h-auto w-[100%]">
