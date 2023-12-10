@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 
+export const dynamic = 'force-dynamic'
 export const GET = async (request: NextRequest) => {
+  const dynamic = 'force-dynamic'
   try {
     const postPrimary = await prisma.post.findFirst({
       where: {

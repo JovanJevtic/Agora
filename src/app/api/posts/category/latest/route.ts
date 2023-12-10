@@ -16,7 +16,7 @@ export const GET = async (request: NextRequest) => {
         });
         if (!category) return NextResponse.json({ status: 500 });
 
-        const posts = await prisma.post.findMany({ where: { categoryId: category?.id }, orderBy: { createdAt: 'desc'  }, take: 3 })
+        const posts = await prisma.post.findMany({ where: { categoryId: category?.id, archived: false }, orderBy: { createdAt: 'desc'  }, take: 3 })
         return NextResponse.json({ posts: posts });
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
