@@ -16,7 +16,7 @@ type Props = {
 export const getPost = async (id: string): Promise<Post> => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/posts/getOne?id=${id}`,
+      `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
       {
         method: "GET",
         cache: "no-cache",

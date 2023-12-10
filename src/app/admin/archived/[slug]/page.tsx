@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateStaticParams() {
     const ids = await fetch(
-      "http://localhost:3000/api/posts/all/staticParams/archived"
+      "https://www.agoraportal.net/api/posts/all/staticParams/archived"
     ).then((res) => res.json());
   
     return ids.map((id: string) => ({
