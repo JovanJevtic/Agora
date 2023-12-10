@@ -13,6 +13,7 @@ import { TSSubcategoryCreation, subcategoryCreationFormSchema } from "@/app/libs
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/app/components/ui/form";
 import { useRouter } from "next/navigation";
+import CardItem from "./CardItem";
 
 type Props = {
     subcategorys: Subcategory[];
@@ -21,7 +22,6 @@ type Props = {
 const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category }) => {
     const { refresh }  = useRouter();
     const [isOpen, setIsOpen] = useState(false);
-    // const [isDeleting, setIsDeleting] = useState(false);
 
     const form = useForm<TSSubcategoryCreation>({
         resolver: zodResolver(subcategoryCreationFormSchema),
@@ -48,27 +48,10 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
                 body: JSON.stringify(data)
             })
             const resData = await res.json();
-            console.log(resData);
+            reset()
             refresh()
         } catch (error: any) {
             throw new Error(error);
-        }
-    }
-
-    const deleteSubcategory = async (subcategoryId: string) => {
-        try {
-            // setIsDeleting(true)
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createSubcategory`, {
-                method: 'DELETE',
-                body: JSON.stringify({subcategoryId})
-            });
-            const resData = await res.json();
-            // setIsDeleting(false)
-            refresh()
-        } catch (error: any) {
-            // setIsDeleting(false)
-            // refresh()
-            throw new Error(error)
         }
     }
 
@@ -116,15 +99,10 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
             <Suspense fallback={<SubcategoryFallback />}>
                 {
                     subcategorys.map((subcategory) => (
-                        <div key={subcategory.id} className="flex items-center border-b-[1px] border-solid border-secondary cursor-pointer hover:bg-secondary transition">
-                            <p className="text-sm flex-[1] p-4">{subcategory.name}</p>
-                            <Button className="min-w-min mr-3" type="button" variant={"destructive"} onClick={() => {deleteSubcategory(subcategory.id)}}>
-                                Ukloni
-                                {
-                                    // isDeleting && <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                                }
-                            </Button>
-                        </div>
+                        <CardItem 
+                            subcategory={subcategory}
+                            key={subcategory.id}
+                        />
                     ))
                 }
             </Suspense>

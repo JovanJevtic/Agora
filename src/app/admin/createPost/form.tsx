@@ -39,7 +39,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys }) => {
             cache: 'no-store'
         });
         const resData = await res.json();
-        console.log(resData, 'sdasdda2333');
         setSubcategorys(resData)
     }
 
@@ -104,7 +103,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys }) => {
         if (status === "unauthenticated") {  
             router.push('/login')   
         }
-        console.log('dasdasdsa');
         getAllSubcategorys()
     }, [])
 

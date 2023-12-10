@@ -39,7 +39,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
             cache: 'no-store'
         });
         const resData = await res.json();
-        console.log(resData, 'sdasdda2333');
         setSubcategorys(resData)
     }
 

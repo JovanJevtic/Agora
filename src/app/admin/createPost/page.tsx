@@ -27,7 +27,6 @@ export const getSubcategorys = async (): Promise<Subcategory[]> => {
       }
     });
     const data = await res.json()
-    console.log('data', data);
     return data
   } catch (error: any) {
     throw new Error(error)
