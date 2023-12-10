@@ -91,6 +91,7 @@ model Post {
   positionSecondary Boolean?       @default(false)
 
   fotoIzvor       String          @default("")
+  archived        Boolean         @default(false)
 }
 
 model Category {

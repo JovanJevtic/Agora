@@ -29,7 +29,7 @@ type Props = {
 
 const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => {
     const { data: userSession, status } = useSession()
-    const router = useRouter();
+    const { push, refresh } = useRouter();
 
     const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
 
@@ -92,7 +92,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
                 body: JSON.stringify(object)
             });
             const resData = await res.json();
-            router.push(`/post/${resData.post.id}`)
+            push(`/post/${resData.post.id}`)
+            refresh() ;
         } catch (error: any) {
             throw new Error(error)
         }
@@ -104,7 +105,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
 
     useEffect(() => {
         if (status === "unauthenticated") {  
-            router.push('/login')   
+            push('/login')   
         }
         getAllSubcategorys()
     }, [])
