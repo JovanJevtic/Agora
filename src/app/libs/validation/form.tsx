@@ -22,7 +22,7 @@ export const postCreationFormSchema = z.object({
   categoryId: z.string().min(1, "Neophodno je specifikovati kategoriju"),
   fotoIzvor: z.string(),
   image: z.string().min(1, "Neophodno je unjeti sliku"),
-  slug: z.string().min(1, "Neophodno polje"),
+  // slug: z.string().min(1, "Neophodno polje"),
   subcategoryId: z.string(),
   positionPrimary: z.boolean(),
   positionSecondary: z.boolean(),

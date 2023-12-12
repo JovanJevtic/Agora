@@ -48,11 +48,11 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
                         <Link 
                             key={subcategoryCard.id} 
                             style={{
-                                background: subcategoryCard.name === subcategory.name ? `${category.hexCol}`: '', 
+                                background: subcategoryCard.name === subcategory?.name ? `${category.hexCol}`: '', 
                             }} 
                             className={
                                 `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
-                                ${subcategoryCard.name === subcategory.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
+                                ${subcategoryCard.name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
                             `} 
                             href={``}
                         >
