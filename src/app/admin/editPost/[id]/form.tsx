@@ -212,7 +212,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
                         )}
                     />
                     
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="slug"
                         render={({ field }) => (
@@ -224,7 +224,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
                                 <FormMessage style={{color: 'red'}} />
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
                     <FormField
                         control={form.control}
