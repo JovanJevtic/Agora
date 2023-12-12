@@ -51,7 +51,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
             image: post.image,
             positionPrimary: post.positionPrimary as boolean,
             positionSecondary: post.positionSecondary as boolean,
-            slug: post.slug,
+            // slug: post.slug,
             subcategoryId: post.subcategoryId as string,
             subtitle: post.subtitle,
             title: post.title

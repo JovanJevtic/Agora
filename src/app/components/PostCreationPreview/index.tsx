@@ -5,7 +5,7 @@ import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
 import Markdown from '../Markdown/Markdown'
 import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type Props = {
     category: Category;
@@ -22,7 +22,7 @@ type Props = {
 }
 const PostCreationPreview: React.FunctionComponent<Props> = ({ fotoIzvor, category, content, createdAt, image, subcategorys, subcategory, categoryHex, author, subtitle, title }) => {
 
-    const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>()
+    // const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>()
 
     const getMdx = async () => {
         // const mdxSource = await serialize(content, { mdxOptions: { development: false } })
