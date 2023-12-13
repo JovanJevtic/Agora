@@ -69,6 +69,7 @@ const components: MDXComponents = {
     strong: ({ children }) => <strong className='font-bold leading-loose'>{children}</strong>,
     Prostor,
     SiviText,
+    li: ({ children }) => <p className='text-sm text-black dark:text-white'>{children}</p>
 }  
 
 const RemoteMdxPage = ({ source }: MDXContentProps) => {

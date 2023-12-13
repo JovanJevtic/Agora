@@ -21,12 +21,10 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UploadButtonComponent from "@/app/components/ImageUploader";
 import Image from "next/image";
-import { getSubcategorys } from "./page";
 import Link from "next/link";
 import { z } from 'zod'
-import PostPageDetails from "@/app/components/PostPageDetails/PostPageDetails";
-import PostComponent from "@/app/components/Post/PostComponent";
 import PostCreationPreview from "@/app/components/PostCreationPreview";
+import useFormPersist from 'react-hook-form-persist'
 
 type Props = {
     categorys: Category[];
@@ -132,10 +130,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         // mode: 'onTouched'
     });
 
-    const [response, setResponse] = useState<string | null>(null);
-    const [resError, setResError] = useState<string | null>(null);
-    const [mdPreview, setMdPreview] = useState<MDXRemoteSerializeResult>()
-
     const {
         register,
         handleSubmit,
@@ -144,8 +138,15 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         getValues,
         setError,
         watch,
-        trigger
+        trigger,
+        setValue
     } = form
+
+    useFormPersist('form', { watch, setValue });
+
+    const [response, setResponse] = useState<string | null>(null);
+    const [resError, setResError] = useState<string | null>(null);
+    const [mdPreview, setMdPreview] = useState<MDXRemoteSerializeResult>()
 
     const postData = getValues()
 
