@@ -45,7 +45,7 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ fotoIzvor, catego
                 <div className="flex-[2] container">
                     <ul className="flex w-full h-full items-center">
                         {
-                        subcategorys.map(subcategoryCard => (
+                        subcategorys?.map(subcategoryCard => (
                             <Link 
                                 key={subcategoryCard.id} 
                                 style={{

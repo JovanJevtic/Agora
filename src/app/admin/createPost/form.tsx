@@ -5,7 +5,7 @@ import { Input } from "@/app/components/ui/input";
 import { TSPostWritingSchema, postCreationFormSchema } from "@/app/libs/validation/form";
 import { Form } from "@/app/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ControllerRenderProps, FieldValues, useForm } from "react-hook-form";
 import { Textarea } from "@/app/components/ui/textarea";
 import Markdown from '@/app/components/Markdown/Markdown'
@@ -16,7 +16,7 @@ import { Category, Post, Subcategory, User } from "@prisma/client";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { Switch } from "@/app/components/ui/switch";
 import axios from "axios";
-import { Loader2, User as UserIcon } from "lucide-react";
+import { Copy, Loader2, User as UserIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import UploadButtonComponent from "@/app/components/ImageUploader";
@@ -24,16 +24,48 @@ import Image from "next/image";
 import Link from "next/link";
 import { z } from 'zod'
 import PostCreationPreview from "@/app/components/PostCreationPreview";
-import useFormPersist from 'react-hook-form-persist'
+import { usePersistForm } from "@/app/libs/usePersistForm";
+import useLocalStorage from "@/app/libs/useLocalStorage";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
+import { Label } from "@radix-ui/react-label";
 
 type Props = {
     categorys: Category[];
     user: User;
 }
 
+const FORM_DATA_KEY = "app_form_local_data";
+
 const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => {
-    const [formShown, setFormShown] = useState(false);
-    const [currStep, setCurrStep] = useState(0);
+    const [mounted, setMounted] = useState(false); // used for detecting renders
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const initialValues = {
+        body: "**Pisi ovdje!!!**",
+        categoryId: "",
+        fotoIzvor: "",
+        image: "",
+        positionPrimary: false,
+        positionSecondary: false,
+        // slug: '',
+        subcategoryId: '',
+        subtitle: '',
+        title: ''
+    }
+
+    const [formShownLocalStorage, setformShownLocalStorage] = useLocalStorage({ key: "formOpened", initialValue: false })
+    const [formShown, setFormShown] = useState(formShownLocalStorage);
+
+    // const [formDataLocalStorage, setFormDataLocalStorage] = useLocalStorage({ key: "formData", initialValue: initialValues })
+    // const [formData, setFormData] = useState(formDataLocalStorage);
+
+    const [currStepLocalStorage, setCurrStepLocalStorage] = useLocalStorage({ key: "currStep", initialValue: 0 })
+    const [currStep, setCurrStep] = useState<number>(currStepLocalStorage);
+
+    const [dialogOpen, setDialogOpen] = useState(false)
 
     const sections = [
         {
@@ -113,20 +145,23 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         setSubcategorys(resData)
     }
 
+    const getSavedData = useCallback(() => {
+        let data = typeof window !== "undefined" ? localStorage.getItem(FORM_DATA_KEY) : null;
+        if (data) {
+         // Parse it to a javaScript object
+            try {
+                const resData = JSON.parse(data);
+                return resData;
+            } catch (err) {
+
+          }
+        }
+        return initialValues;
+    }, [initialValues]);
+
     const form = useForm<TSPostWritingSchema>({
         resolver: zodResolver(postCreationFormSchema),
-        defaultValues: {
-            body: "**Pisi ovdje!!!**",
-            categoryId: "",
-            fotoIzvor: "",
-            image: "",
-            positionPrimary: false,
-            positionSecondary: false,
-            // slug: '',
-            subcategoryId: '',
-            subtitle: '',
-            title: ''
-        },
+        defaultValues: getSavedData() || {},
         // mode: 'onTouched'
     });
 
@@ -139,10 +174,12 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         setError,
         watch,
         trigger,
-        setValue
+        setValue,
+        control,
+        resetField
     } = form
 
-    useFormPersist('form', { watch, setValue });
+    usePersistForm({ value: getValues(), localStorageKey: FORM_DATA_KEY });
 
     const [response, setResponse] = useState<string | null>(null);
     const [resError, setResError] = useState<string | null>(null);
@@ -177,6 +214,11 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         }
     }
 
+    const onDiscard = () => {
+        setFormShown(false); 
+        reset(initialValues)
+    }
+
     useEffect(() => {
         if (status === "unauthenticated") {  
             router.push('/login')   
@@ -188,13 +230,30 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         filterSubcategorys(categoryId)
     }, [categoryId])
 
+    useEffect(() => {
+        setformShownLocalStorage(formShown)
+    }, [formShown])
+
+    useEffect(() => {
+        setCurrStepLocalStorage(currStep)
+    }, [currStep])
+
+    // useEffect(() => {
+    //     console.log('aaa');
+    //     setFormDataLocalStorage(watch())
+    // }, [form])
+
+    if (!mounted) {
+        return <> </>
+    }
+
     if (!formShown) {
         return(
             <div>
                 <h1 className="font-bold mt-5 mb-5 text-2xl">Započni sa kreiranjem novog članka!</h1>
-                <div className=' w-min mb-5'>
+                <div className='w-min mb-5'>
                     <div>
-                        <Link href={`/profile`} className='flex flex-col bg-card py-4 px-3 lg:px-7 rounded-md'>
+                        <Link href={`/profile`} className='flex flex-col bg-card py-4 px-3 lg:px-7 rounded-md w-full md:max-w-md'>
                             <div className='flex justify-start items-center'>
                                 <p>Autor: </p>
                                 <div>
@@ -212,12 +271,11 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
 
                             <p className='text-gray-500 text-sm mt-0'>{user.email}</p>
                         </Link>
-                        <Button className="font-bold h-[45px]" onClick={() => setFormShown(true)} variant={"default"}>Započni sa pisanjem novog članka!</Button>
                     </div>
                 </div>   
+                <Button className="font-bold h-[45px] w-full md:max-w-md" onClick={() => setFormShown(true)} variant={"default"}>Započni sa pisanjem novog članka!</Button>
             </div>
         )
-
     }
 
     return (
@@ -515,7 +573,36 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                     <div className="mt-5 flex">
                         <div className="flex-1 flex justify-start">
                             {
-                                currStep === 0 && <Button type="button" className="px-10" variant={"destructive"} onClick={() => {setFormShown(false); reset()}}>Odustani</Button>
+                                currStep === 0 && 
+                                // <Button type="button" className="px-10" variant={"destructive"} onClick={() => {onDiscard()}}>Odustani</Button>
+                                <Dialog >
+                                    <DialogTrigger asChild>
+                                        <Button variant="destructive">Otkaži</Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-md border-secondary">
+                                        <DialogHeader>
+                                            <DialogTitle>Otkaži unos</DialogTitle>
+                                            <DialogDescription>
+                                                Ako otkažeš predhodno uneseni sadržaj će biti obirsan.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <DialogFooter className="sm:justify-start">
+                                            <DialogClose asChild>
+                                                <div>
+                                                    <Button type="button" className="" variant={"destructive"} onClick={() => {onDiscard()}}>Otkaži</Button>
+                                                    {/* <Button type="button" variant="secondary" onClick={() => {setDialogOpen(false)}}>
+                                                        Zatvori
+                                                    </Button> */}
+                                                    <DialogTrigger asChild>
+                                                        <Button type="button" className="ml-3" variant="outline" onClick={() => {setDialogOpen(false)}}>
+                                                            Zatvori
+                                                        </Button>
+                                                    </DialogTrigger>
+                                                </div>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                             }
                             {
                                 currStep > 0 && <Button className="px-10" type="button" variant={"outline"} onClick={() => {prev()}}>Natrag</Button>
