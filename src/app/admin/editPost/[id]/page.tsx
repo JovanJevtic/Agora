@@ -1,6 +1,6 @@
 import { Category, Post, Subcategory } from "@prisma/client"
 import EditForm from './form'
-import { getPost, getSubcategory } from "@/app/post/[id]/page";
+import { getPost, getSubcategory } from "@/app/post/[slug]/page";
 import { getCategorys } from "../../createPost/page";
 
 type Props = {

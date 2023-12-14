@@ -3,29 +3,34 @@ import PostPageDetails, {
   PostPageDetailsLoading,
 } from "@/app/components/PostPageDetails/PostPageDetails";
 import { Category, Post, Subcategory } from "@prisma/client";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: {
-    id: string;
+    slug: string;
   };
 };
 
-export const getPost = async (id: string): Promise<Post> => {
+export const getPost = async (slug: string): Promise<Post> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
+      // `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
+      `http://localhost:3000/api/posts/getOne?slug=${slug}`,
       {
         method: "GET",
         cache: "no-cache",
       }
     );
     const data = await res.json();
+    if (data.status === 500) {
+      notFound()
+    }
     return data;
   } catch (error: any) {
-    redirect("/");
+    console.log('kec');
+    notFound()
     throw new Error(error);
   }
 };
@@ -63,22 +68,22 @@ export const getSubcategory = async (subcategoryId: string): Promise<Subcategory
 };
 
 export async function generateStaticParams() {
-  const ids = await fetch(
-    "https://www.agoraportal.net/api/posts/all/staticParams"
+  const slugs = await fetch(
+    // "https://www.agoraportal.net/api/posts/all/staticParams"
+    "http://localhost:3000/api/posts/all/staticParams"
   ).then((res) => res.json());
 
-  return ids.map((id: string) => ({
-    id: id,
+  return slugs.map((slug: string) => ({
+    slug: slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // read route params
-  const id = params.id;
-
-  // fetch data
+  const slug = params.slug;
+  
   const post: Post = await fetch(
-    `https://www.agoraportal.net/api/posts/getOne?id=${id}`
+    // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
+    `http://localhost:3000/api/posts/getOne?slug=${slug}`
   ).then((res) => res.json());
 
   return {
@@ -101,12 +106,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const Page: React.FunctionComponent<Props> = async ({ params: { id } }) => {
-  const postData: Promise<Post> = getPost(id);
+const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
+  const postData: Promise<Post> = getPost(slug);
   const post = await postData;
 
-  if (post.archived) {
-    redirect('/')
+  if (post.archived || !post) {
+    notFound()
   }
 
   const categoryData = getCategory(post.categoryId);

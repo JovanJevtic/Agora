@@ -49,7 +49,7 @@ const PostPageTrendingCard: React.FunctionComponent<Props> = async ({ title, req
         <ul>
           {
             trendingFromCategory.map((post) => (
-             <Link href={`/post/${post.id}`} key={post.id}>
+             <Link href={`/post/${post.slug}`} key={post.id}>
                <div className="pt-3 border-solid border-b-[1px] border-secondary pl-5 pr-5 pb-3 cursor-pointer transition hover:bg-secondary">
                 <p className="line-clamp-2 text-sm">{post.title}</p>
                 <p className="text-gray-500 line-clamp-2 text-sm">{post.subtitle}</p>

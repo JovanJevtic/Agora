@@ -1,5 +1,5 @@
 import PostPageDetails from "@/app/components/PostPageDetails/PostPageDetails";
-import { getCategory, getPost, getSubcategory } from "@/app/post/[id]/page";
+import { getCategory, getPost, getSubcategory } from "@/app/post/[slug]/page";
 import { Post } from "@prisma/client"
 import PostComponent from "@/app/components/Post/PostComponent";
 

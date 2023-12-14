@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest) => {
                 archived: false
             }
         });
-        return NextResponse.json(posts.map(post => post.id), { status: 200 });
+        return NextResponse.json(posts.map(post => post.slug), { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }
