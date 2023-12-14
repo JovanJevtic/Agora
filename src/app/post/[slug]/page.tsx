@@ -16,8 +16,8 @@ type Props = {
 export const getPost = async (slug: string): Promise<Post> => {
   try {
     const res = await fetch(
-      // `https://www.agoraportal.net/api/posts/getOne?id=${id}`,
-      `http://localhost:3000/api/posts/getOne?slug=${slug}`,
+      `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
+      // `http://localhost:3000/api/posts/getOne?slug=${slug}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -69,8 +69,8 @@ export const getSubcategory = async (subcategoryId: string): Promise<Subcategory
 
 export async function generateStaticParams() {
   const slugs = await fetch(
-    // "https://www.agoraportal.net/api/posts/all/staticParams"
-    "http://localhost:3000/api/posts/all/staticParams"
+    "https://www.agoraportal.net/api/posts/all/staticParams"
+    // "http://localhost:3000/api/posts/all/staticParams"
   ).then((res) => res.json());
 
   return slugs.map((slug: string) => ({
@@ -82,8 +82,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   
   const post: Post = await fetch(
-    // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
-    `http://localhost:3000/api/posts/getOne?slug=${slug}`
+    `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
+    // `http://localhost:3000/api/posts/getOne?slug=${slug}`
   ).then((res) => res.json());
 
   return {
