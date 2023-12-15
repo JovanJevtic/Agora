@@ -92,7 +92,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
                 body: JSON.stringify(object)
             });
             const resData = await res.json();
-            push(`/post/${resData.post.id}`)
+            push(`/post/${resData.post.slug}`)
             refresh() ;
         } catch (error: any) {
             throw new Error(error)
