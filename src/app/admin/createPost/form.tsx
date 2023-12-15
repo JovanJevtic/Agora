@@ -482,7 +482,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                                                     <SelectContent>
                                                             {
                                                                 filteredSubcategorys?.map((subcategorys) => (
-                                                                    <SelectItem key={subcategorys.id} value={subcategorys.name}>{subcategorys.name}</SelectItem>
+                                                                    <SelectItem key={subcategorys.id} value={subcategorys.id}>{subcategorys.name}</SelectItem>
                                                                 ))
                                                             }
                                                     </SelectContent>

@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation"
 type Props = {
   postId: string;
   archived: boolean;
+  slug: string;
 }
 
-const Btns: React.FunctionComponent<Props> = ({ postId, archived }) => {
+const Btns: React.FunctionComponent<Props> = ({ postId, archived , slug}) => {
   const router  = useRouter()
 
   const deletePost = async (postId: string) => {
@@ -55,7 +56,7 @@ const Btns: React.FunctionComponent<Props> = ({ postId, archived }) => {
 
   return (
     <div className="flex mb-5">
-        <Link className="mr-3" href={`/admin/editPost/${postId}`}><Button variant={"secondary"}>Edit</Button></Link> 
+        <Link className="mr-3" href={`/admin/editPost/${slug}`}><Button variant={"secondary"}>Edit</Button></Link> 
         <Button onClick={() => {deletePost(postId)}} variant={"destructive"}>Ukloni</Button>
         <div className="ml-1">
           { 

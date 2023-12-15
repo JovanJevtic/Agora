@@ -5,7 +5,7 @@ import { getCategorys } from "../../createPost/page";
 
 type Props = {
   params: {
-    id: string;
+    slug: string;
   };
 };
 
@@ -19,8 +19,8 @@ type Props = {
 //   }));
 // }
 
-const EditPost: React.FunctionComponent<Props> = async ({ params: { id } }) => {
-  const postData: Promise<Post> = getPost(id);
+const EditPost: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
+  const postData: Promise<Post> = getPost(slug);
   const post = await postData;
 
   const categorysData: Promise<Category[]> = getCategorys();
