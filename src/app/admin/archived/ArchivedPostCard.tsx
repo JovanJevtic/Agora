@@ -6,7 +6,7 @@ type Props = {
 }
 const ArchivedPostCard: React.FunctionComponent<Props> = ({ post }) => {
   return (
-    <Link href={`/admin/archived/${post.id}`}>
+    <Link href={`/admin/archived/${post.slug}`}>
         <div className="bg-card p-4 mt-2 border-secondary border-solid border-[1px]">
             <p className="underline font-bold text-base">{post.title}</p>
         </div>
