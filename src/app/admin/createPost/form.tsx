@@ -216,6 +216,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                 if (resData?.errors?.title) {
                     setError("title", { message: resData.errors.title })
                     setCurrStep(0)
+                    window.scrollTo(0, 0);
                 }
             }
         } catch (error: any) {
