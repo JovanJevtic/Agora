@@ -32,6 +32,12 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
     const { push, refresh } = useRouter();
 
     const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
+    const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
+
+    const filterSubcategorys = (categoryId: string) => {
+        const filtered = subcategorys?.filter((curr) => { return curr.categoryId === categoryId })
+        setFilteredSubcategorys(filtered)
+    }
 
    const getAllSubcategorys = async () => {
         const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
@@ -74,12 +80,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
     } = form
 
     const { categoryId, image } = watch()
-    const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
-
-    const filterSubcategorys = (categoryId: string) => {
-        const filtered = subcategorys?.filter((curr) => { return curr.categoryId === categoryId })
-        setFilteredSubcategorys(filtered)
-    }
 
     const onSubmit = async (data: FieldValues) => {
         try {
@@ -102,6 +102,10 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
     useEffect(() => {
         filterSubcategorys(categoryId)
     }, [categoryId])
+
+    useEffect(() => {
+        filterSubcategorys(post.categoryId)
+    }, [])
 
     useEffect(() => {
         if (status === "unauthenticated") {  
@@ -279,8 +283,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
                                         </FormControl>
                                         <SelectContent>
                                                 {
-                                                    filteredSubcategorys?.map((subcategorys) => (
-                                                        <SelectItem key={subcategorys.id} value={subcategorys.id}>{subcategorys.name}</SelectItem>
+                                                    filteredSubcategorys?.map((subcategory) => (
+                                                        <SelectItem key={subcategory.id} value={subcategory.id}>{subcategory.name}</SelectItem>
                                                     ))
                                                 }
                                         </SelectContent>

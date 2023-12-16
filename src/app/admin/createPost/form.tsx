@@ -208,6 +208,9 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                 body: JSON.stringify(object)
             });
             const resData = await res.json();
+            setFormShown(false)
+            setCurrStep(0)
+            reset(initialValues)
             router.push(`/post/${resData.post.slug}`)
         } catch (error: any) {
             throw new Error(error)
