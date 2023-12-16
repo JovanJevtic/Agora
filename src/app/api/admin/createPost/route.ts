@@ -71,7 +71,6 @@ export const POST = async (request: NextRequest) => {
         })
 
         if (slugEquieped) { 
-            console.log('ekvipovan');
             return NextResponse.json({ errors: { title: "Članak sa ovim naslovom već postoji!" }}, { status: 400 })
         }
     
@@ -148,7 +147,6 @@ export const PUT = async (request: NextRequest) => {
         })
 
         if (slugEquieped) { 
-            console.log('ekvipovan');
             return NextResponse.json({ errors: { title: "Članak sa ovim naslovom već postoji!" }}, { status: 400 })
         }
 
