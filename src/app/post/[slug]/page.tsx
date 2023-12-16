@@ -29,7 +29,6 @@ export const getPost = async (slug: string): Promise<Post> => {
     }
     return data;
   } catch (error: any) {
-    console.log('kec');
     notFound()
     throw new Error(error);
   }

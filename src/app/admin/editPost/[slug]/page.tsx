@@ -1,7 +1,7 @@
 import { Category, Post, Subcategory } from "@prisma/client"
 import EditForm from './form'
 import { getPost, getSubcategory } from "@/app/post/[slug]/page";
-import { getCategorys } from "../../createPost/page";
+import { getCategorys, getSubcategorys } from "../../createPost/page";
 
 type Props = {
   params: {
@@ -26,15 +26,15 @@ const EditPost: React.FunctionComponent<Props> = async ({ params: { slug } }) =>
   const categorysData: Promise<Category[]> = getCategorys();
   const categorys = await categorysData;
 
-  // const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
-  // const subcategorys = await subcategorysData;
+  const subcategorysData: Promise<Subcategory[]> = getSubcategorys();
+  const subcategorys = await subcategorysData;
 
   return (
     <div className="container">
         <h1>Uredjivanje objave</h1>
         <EditForm 
           categorys={categorys} 
-          // subcategorys={subcategorys} 
+          subcategorys={subcategorys} 
           post={post} 
         />
     </div>

@@ -23,29 +23,19 @@ import { getSubcategorys } from "../../createPost/page";
 
 type Props = {
     categorys: Category[];
-    // subcategorys: Subcategory[];
+    subcategorys: Subcategory[];
     post: Post;
 }
 
-const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => {
+const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post, subcategorys }) => {
     const { data: userSession, status } = useSession()
     const { push, refresh } = useRouter();
 
-    const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
     const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
 
     const filterSubcategorys = (categoryId: string) => {
         const filtered = subcategorys?.filter((curr) => { return curr.categoryId === categoryId })
         setFilteredSubcategorys(filtered)
-    }
-
-   const getAllSubcategorys = async () => {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
-            method: "GET",
-            cache: 'no-store'
-        });
-        const resData = await res.json();
-        setSubcategorys(resData)
     }
 
     const form = useForm<TSPostWritingSchema>({
@@ -104,14 +94,9 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post }) => 
     }, [categoryId])
 
     useEffect(() => {
-        filterSubcategorys(post.categoryId)
-    }, [])
-
-    useEffect(() => {
         if (status === "unauthenticated") {  
             push('/login')   
         }
-        getAllSubcategorys()
     }, [])
 
     return (
