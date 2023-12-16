@@ -63,6 +63,17 @@ export const POST = async (request: NextRequest) => {
             slug,
             subcategoryId
         })
+
+        const slugEquieped = await prisma.post.findUnique({
+            where: {
+                slug: slug
+            }
+        })
+
+        if (slugEquieped) { 
+            console.log('ekvipovan');
+            return NextResponse.json({ errors: { title: "Članak sa ovim naslovom već postoji!" }}, { status: 400 })
+        }
     
         let zodErrors = {};
         if (!validateResponse.success) {
@@ -129,7 +140,18 @@ export const PUT = async (request: NextRequest) => {
             slug,
             subcategoryId
         })
-    
+
+        const slugEquieped = await prisma.post.findUnique({
+            where: {
+                slug: slug
+            }
+        })
+
+        if (slugEquieped) { 
+            console.log('ekvipovan');
+            return NextResponse.json({ errors: { title: "Članak sa ovim naslovom već postoji!" }}, { status: 400 })
+        }
+
         let zodErrors = {};
         if (!validateResponse.success) {
                 validateResponse.error.issues.forEach((issue) => {
@@ -138,7 +160,7 @@ export const PUT = async (request: NextRequest) => {
     
             return NextResponse.json({ errors: zodErrors }, { status: 400 });
         }
-    
+
         const post = await prisma.post.update({
             where: {
                 id: id

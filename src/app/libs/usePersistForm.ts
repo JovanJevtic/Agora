@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { TSPostWritingSchema } from "./validation/form";
+import { FieldError } from "react-hook-form";
 
 type Props = {
     value: TSPostWritingSchema;

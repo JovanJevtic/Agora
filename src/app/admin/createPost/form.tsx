@@ -65,8 +65,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
     const [currStepLocalStorage, setCurrStepLocalStorage] = useLocalStorage({ key: "currStep", initialValue: 0 })
     const [currStep, setCurrStep] = useState<number>(currStepLocalStorage);
 
-    const [dialogOpen, setDialogOpen] = useState(false)
-
     const sections = [
         {
             id: 0,
@@ -176,10 +174,12 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         trigger,
         setValue,
         control,
-        resetField
+        resetField,
     } = form
 
     usePersistForm({ value: getValues(), localStorageKey: FORM_DATA_KEY });
+
+    // const [formErrorsLocalStorage, setformErrorsLocalStorage] = useLocalStorage({ key: 'formErrors', initialValue: errors })
 
     const [response, setResponse] = useState<string | null>(null);
     const [resError, setResError] = useState<string | null>(null);
@@ -201,17 +201,24 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
             const object = {
                 ...data,
                 slug
-                // authorId: userSession?.user.id as string
             }
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createPost`, {
+            // const res = await fetch(`https://www.agoraportal.net/api/admin/createPost`, {
+            const res = await fetch(`http://localhost:3000/api/admin/createPost`, {
                 method: 'POST',
                 body: JSON.stringify(object)
             });
             const resData = await res.json();
-            setFormShown(false)
-            setCurrStep(0)
-            reset(initialValues)
-            router.push(`/post/${resData.post.slug}`)
+            if (!resData?.errors) {
+                setFormShown(false)
+                setCurrStep(0)
+                reset(initialValues)
+                router.push(`/post/${resData.post.slug}`)
+            } else {
+                if (resData?.errors?.title) {
+                    setError("title", { message: resData.errors.title })
+                    setCurrStep(0)
+                }
+            }
         } catch (error: any) {
             throw new Error(error)
         }
@@ -597,7 +604,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                                                         Zatvori
                                                     </Button> */}
                                                     <DialogTrigger asChild>
-                                                        <Button type="button" className="ml-3" variant="outline" onClick={() => {setDialogOpen(false)}}>
+                                                        <Button type="button" className="ml-3" variant="outline" onClick={() => {}}>
                                                             Zatvori
                                                         </Button>
                                                     </DialogTrigger>
