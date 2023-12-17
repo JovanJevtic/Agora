@@ -49,6 +49,7 @@ model User {
   sessions      Session[]
   role          String
   posts         Post[]
+  komentari     Comment[]
 }
 
 model VerificationToken {
@@ -112,3 +113,18 @@ model Subcategory {
   posts         Post[]
   colorHex      String
 } 
+
+model Comment {
+  id          String      @id @default(cuid())
+  text        String      @db.Text
+
+  authorId    String
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  isReply     Boolean   
+  
+  parrentCommentId      String?
+  parrentComment        Comment? @relation("replies", fields: [parrentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  
+  replies               Comment[]    @relation("replies")
+}
