@@ -49,7 +49,7 @@ model User {
   sessions      Session[]
   role          String
   posts         Post[]
-  // komentari     Comment[]
+  komentari     Comment[]
 }
 
 model VerificationToken {
@@ -94,7 +94,7 @@ model Post {
   fotoIzvor       String          @default("")
   archived        Boolean         @default(false)
 
-  // comments        Comment[]
+  comments        Comment[]
 }
 
 model Category {
@@ -116,20 +116,20 @@ model Subcategory {
   colorHex      String
 } 
 
-// model Comment {
-//   id          String      @id @default(cuid())
-//   text        String      @db.Text
+model Comment {
+  id          String      @id @default(cuid())
+  text        String      @db.Text
 
-//   postId      String
-//   post        Post        @relation(fields: [postId], references: [id])         
+  postId      String
+  post        Post        @relation(fields: [postId], references: [id])         
 
-//   authorId    String
-//   author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
-//   isReply     Boolean   
+  isReply     Boolean   
   
-//   parrentCommentId      String?
-//   parrentComment        Comment? @relation("replies", fields: [parrentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parrentCommentId      String?
+  parrentComment        Comment? @relation("replies", fields: [parrentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   
-//   replies               Comment[]    @relation("replies")
-// }
+  replies               Comment[]    @relation("replies")
+}
