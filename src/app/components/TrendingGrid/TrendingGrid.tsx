@@ -8,6 +8,8 @@ type Props = {
     secondary: Post[]
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ primary, secondary }) => {
+    console.log(primary, secondary);
+
   return (
     <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-0'>
         <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-0'>
