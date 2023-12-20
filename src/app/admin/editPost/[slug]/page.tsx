@@ -2,6 +2,7 @@ import { Category, Post, Subcategory } from "@prisma/client"
 import EditForm from './form'
 import { getPost, getSubcategory } from "@/app/post/[slug]/page";
 import { getCategorys, getSubcategorys } from "../../createPost/page";
+import { PostWithEverything } from "@/types";
 
 type Props = {
   params: {
@@ -20,7 +21,7 @@ type Props = {
 // }
 
 const EditPost: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
-  const postData: Promise<Post> = getPost(slug);
+  const postData: Promise<PostWithEverything> = getPost(slug);
   const post = await postData;
 
   const categorysData: Promise<Category[]> = getCategorys();

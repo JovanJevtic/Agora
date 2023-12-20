@@ -109,6 +109,8 @@ export const PUT = async (request: NextRequest) => {
             slug,
             subcategoryId,
         } = (await request.json()) as PostCreationData;
+
+        console.log('slug', slug);
     
         const url = new URL(request.url)
         const id = url.searchParams.get("id");
@@ -140,13 +142,19 @@ export const PUT = async (request: NextRequest) => {
             subcategoryId
         })
 
+        const prevPost = await prisma.post.findUnique({
+            where: {
+                id
+            }
+        })
+
         const slugEquieped = await prisma.post.findUnique({
             where: {
                 slug: slug
             }
         })
 
-        if (slugEquieped) { 
+        if (slugEquieped && prevPost?.slug !== slug) { 
             return NextResponse.json({ errors: { title: "Članak sa ovim naslovom već postoji!" }}, { status: 400 })
         }
 
@@ -170,6 +178,7 @@ export const PUT = async (request: NextRequest) => {
     
         return NextResponse.json({ post }, { status: 200 });
     } catch (error) {
+        console.log(error, 'error');
         return NextResponse.json({ error })
     }
 }

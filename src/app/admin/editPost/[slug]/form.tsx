@@ -20,14 +20,15 @@ import { useRouter } from "next/navigation";
 import UploadButtonComponent from "@/app/components/ImageUploader";
 import Image from "next/image";
 import { getSubcategorys } from "../../createPost/page";
+import { PostWithEverything } from "@/types";
 
 type Props = {
     categorys: Category[];
     subcategorys: Subcategory[];
-    post: Post;
+    post: PostWithEverything;
 }
 
-const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post, subcategorys }) => {
+const EditPostForm: React.FunctionComponent<Props> = ({ categorys, post, subcategorys }) => {
     const { data: userSession, status } = useSession()
     const { push, refresh } = useRouter();
 
@@ -73,15 +74,19 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post, subca
 
     const onSubmit = async (data: FieldValues) => {
         try {
+            const slug = data.title.toLowerCase().trim().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
             const object = {
                 ...data,
-                authorId: userSession?.user.id as string
+                authorId: userSession?.user.id as string,
+                slug
             }
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createPost?id=${post.id}`, {
+            // const res = await fetch(`https://www.agoraportal.net/api/admin/createPost?id=${post.id}`, {
+            const res = await fetch(`http://localhost:3000/api/admin/createPost?id=${post.id}`, {
                 method: 'PUT',
                 body: JSON.stringify(object)
             });
             const resData = await res.json();
+            console.log(resData, 'resData');
             push(`/post/${resData.post.slug}`)
             refresh() ;
         } catch (error: any) {
@@ -339,4 +344,4 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, post, subca
   )
 }
 
-export default CreatePostForm
+export default EditPostForm
