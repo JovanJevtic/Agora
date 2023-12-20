@@ -35,7 +35,15 @@ export const subcategoryCreationFormSchema = z.object({
   name: z.string().min(1, 'Ime subkategorije je obavezno!')
 })
 
+export const commentCreationFormSchema = z.object({
+  text: z.string().min(1, "Polje sadržaja je obavezno!"),
+  // postId: z.string().min(1),
+  // isReply: z.boolean(),
+  // parrentCommentId: z.string()
+})
+
 export type TSRegisterSchema = z.infer<typeof registerFormSchema>;
 export type TSLoginSchema = z.infer<typeof loginFormSchema>;
 export type TSPostWritingSchema = z.infer<typeof postCreationFormSchema>;
 export type TSSubcategoryCreation = z.infer<typeof subcategoryCreationFormSchema>
+export type TSCommentCreationForm = z.infer<typeof commentCreationFormSchema>

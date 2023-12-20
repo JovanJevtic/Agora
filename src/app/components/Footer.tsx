@@ -4,9 +4,14 @@ import Link from "next/link"
 import { BsTiktok } from 'react-icons/bs';
 import { FaXTwitter } from 'react-icons/fa6';
 
-const Footer = () => {
+type Props = {
+    marginDisable?: boolean;
+    bgColor?: string;
+}
+
+const Footer = ({ marginDisable, bgColor }: Props) => {
   return (
-    <div className="min-h-60 w-full bg-background mt-10 ">
+    <div className={`min-h-60 w-full ${bgColor ? `bg-[#${bgColor}]` : `bg-background`} ${marginDisable ? 'mt-0' : 'mt-0'}`}>
         <div className='container flex flex-col h-full w-full'>
             <div>
                 <h1 className="mt-5 font-bold lg:text-lg text-lg">Istraži Agoru</h1>

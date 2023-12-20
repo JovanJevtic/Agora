@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import { User } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
@@ -53,3 +53,43 @@ declare type YTVideoObjRes = {
   },
   items: YTVideoObjItem[]
 }
+
+type PostWithComments = Prisma.PostGetPayload<{
+  include: { comments: true }
+}>
+
+type PostWithCategoryAndSubcategorys = Prisma.PostGetPayload<{
+  include: { 
+    category: true,
+    subcategory: true, 
+  }
+}>
+
+type CommentWithReplies = Prisma.CommentGetPayload<{
+  include: {
+    author: true,
+    replies: {
+      include: {
+        author: true
+      }
+    }
+  }
+}>
+
+type PostWithEverything = Prisma.PostGetPayload<{
+  include: {
+    author: true,
+    category: true,
+    comments: {
+      include: {
+        author: true,
+        replies: {
+          include: {
+            author: true
+          }
+        }
+      }
+    },
+    subcategory: true
+  }
+}>

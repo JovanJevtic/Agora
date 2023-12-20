@@ -6,6 +6,8 @@ import { Category, Post, Subcategory } from "@prisma/client";
 import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
+import PostComments from "@/app/components/PostComments";
+import { PostWithComments, PostWithEverything } from "@/types";
 
 type Props = {
   params: {
@@ -13,11 +15,11 @@ type Props = {
   };
 };
 
-export const getPost = async (slug: string): Promise<Post> => {
+export const getPost = async (slug: string): Promise<PostWithEverything> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
-      // `http://localhost:3000/api/posts/getOne?slug=${slug}`,
+      // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
+      `http://localhost:3000/api/posts/getOne?slug=${slug}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -81,8 +83,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   
   const post: Post = await fetch(
-    `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
-    // `http://localhost:3000/api/posts/getOne?slug=${slug}`
+    // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
+    `http://localhost:3000/api/posts/getOne?slug=${slug}`
   ).then((res) => res.json());
 
   return {
@@ -106,7 +108,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
-  const postData: Promise<Post> = getPost(slug);
+  const postData = getPost(slug);
   const post = await postData;
 
   if (post.archived || !post) {
@@ -132,6 +134,11 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
       {/* </Suspense> */}
       <div className="container">
         <PostComponent categoryHex={category.hexCol as string} categoryName={category.name} subcategoryName={subcategory.name} post={post} />
+      </div>
+      <div className="w-full bg-card bottom-0 mt-5 border-b-[1px] border-solid border-secondary pt-5">
+        <div className="">
+          <PostComments postId={post.id} comments={post.comments} />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Category, Subcategory } from "@prisma/client"
+import { Category, Prisma, Subcategory } from "@prisma/client"
 import { Skeleton } from "../ui/skeleton"
 import Link from "next/link";
 

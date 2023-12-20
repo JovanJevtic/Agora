@@ -15,7 +15,6 @@ const getTrendingPosts = async (): Promise<{ primary: Post, secondary: Post[] }>
       cache: "no-cache",
     });
     const data = await res.json();
-    console.log('data', data);
     return data;
   } catch (error) {
     throw new Error("Error fetching...")

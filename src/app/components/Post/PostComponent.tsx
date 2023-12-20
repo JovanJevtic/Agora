@@ -14,9 +14,11 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/app/libs/authOptions";
 import Btns from "./Btns";
 import PostPageTrendingCard from "../PostPageTrendingCard";
+import PostComments from "../PostComments";
+import { PostWithComments, PostWithEverything } from "@/types";
 
 type Props = {
-  post: Post;
+  post: PostWithEverything;
   categoryName: string;
   subcategoryName: string;
   categoryHex: string;

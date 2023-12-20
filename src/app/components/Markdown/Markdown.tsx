@@ -63,7 +63,7 @@ const components: MDXComponents = {
     p: ({ children }) => <p className='text-sm md:text-base leading-relaxed'>{children}</p>,
     blockquote: ({ children }) => <div className='flex items-center md:pl-10 text-gray-500 mt-2 mb-2'>
         <div className='h-full border-solid border-l-[1px] border-primary pl-5 md:pl-5'>
-            <div className='flex-[1] italic leading-loose'>{children}</div>
+            <div className='flex-[1]'><p className='italic leading-loose'>{children}</p></div>
         </div>
     </div>,
     strong: ({ children }) => <strong className='font-bold leading-loose'>{children}</strong>,

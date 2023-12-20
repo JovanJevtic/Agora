@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
-import { Prisma } from "@prisma/client";
 
 export const GET = async (request: NextRequest) => {
     try {
@@ -15,7 +14,14 @@ export const GET = async (request: NextRequest) => {
                 where: { 
                     id: id,
                     // archived: false
-                } 
+                },
+                include: {
+                    comments: {
+                        orderBy: {
+                            createdAt: "desc"
+                        }
+                    }
+                }
             });
             if (!post) return NextResponse.json({ status: 500 });
     
@@ -27,7 +33,22 @@ export const GET = async (request: NextRequest) => {
                 where: { 
                     slug: slug,
                     // archived: false
-                } 
+                },
+                include: {
+                    comments: {
+                        where: {
+                            isReply: false
+                        },
+                        include: {
+                            author: true,
+                            replies: {
+                                include: {
+                                    author: true
+                                }
+                            }
+                        }
+                    }
+                }
             });
             if (!post) return NextResponse.json({ status: 500 });
     
