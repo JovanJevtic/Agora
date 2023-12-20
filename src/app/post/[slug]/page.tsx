@@ -18,8 +18,8 @@ type Props = {
 export const getPost = async (slug: string): Promise<PostWithEverything> => {
   try {
     const res = await fetch(
-      // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
-      `http://localhost:3000/api/posts/getOne?slug=${slug}`,
+      `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
+      // `http://localhost:3000/api/posts/getOne?slug=${slug}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -83,8 +83,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   
   const post: Post = await fetch(
-    // `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
-    `http://localhost:3000/api/posts/getOne?slug=${slug}`
+    `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
+    // `http://localhost:3000/api/posts/getOne?slug=${slug}`
   ).then((res) => res.json());
 
   return {

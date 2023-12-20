@@ -25,7 +25,7 @@ const PostComment = ({ comment, postId }: Props) => {
 
     const onDelete = async (commentId: string) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/admin/comments`, {
+            const res = await fetch(`https://www.agoraportal.net/api/admin/comments`, {
                 method: 'DELETE',
                 body: JSON.stringify({ commentId })
             })
