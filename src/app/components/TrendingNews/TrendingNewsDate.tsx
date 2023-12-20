@@ -1,7 +1,7 @@
 'use client'
 
 import Moment from "react-moment";
-import 'moment/locale/sr'
+import 'moment/locale/bs'
 
 type Props = {
   date: Date;
@@ -10,7 +10,7 @@ type Props = {
 
 const TrendingNewsDate: React.FunctionComponent<Props> = ({date, full}) => {
   return (
-    <Moment locale="sr" local format={`${full ? "dddd hh:mm DD/MM/YYYY": "DD/MM/YYYY"}`} date={date} />
+    <Moment locale="bs" local format={`${full ? "dddd hh:mm DD/MM/YYYY": "DD/MM/YYYY"}`} date={date} />
   )
 }
 
