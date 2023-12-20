@@ -2,6 +2,7 @@ import PostPageDetails from "@/app/components/PostPageDetails/PostPageDetails";
 import { getCategory, getPost, getSubcategory } from "@/app/post/[slug]/page";
 import { Post } from "@prisma/client"
 import PostComponent from "@/app/components/Post/PostComponent";
+import { PostWithComments, PostWithEverything } from "@/types";
 
 type Props = {
     params: {
@@ -20,7 +21,7 @@ type Props = {
 // }
 
 const ArchivedPost: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
-    const postData: Promise<Post> = getPost(slug);
+    const postData: Promise<PostWithEverything> = getPost(slug);
   const post = await postData;
 
   const categoryData = getCategory(post.categoryId);
