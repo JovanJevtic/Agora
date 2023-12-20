@@ -36,11 +36,11 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
   return (
     <div className={`h-28 mb-10`}>
         <div className="dark:bg-secondary bg-white flex flex-col h-full">
-            <div style={{ background: `${category.hexCol}` }} className="flex-[4] flex items-center justify-start border-[#333] border-b-[0px] border-solid">
+            <Link href={`/category/${category.name}`} style={{ background: `${category.hexCol}` }} className="flex-[4] flex items-center justify-start border-[#333] border-b-[0px] border-solid">
                 <div className="container">
                     <h1 className="uppercase text-3xl font-bold text-white">{category.name}</h1>
                 </div>    
-            </div>
+            </Link>
             <div className="flex-[2] container">
                 <ul className="flex w-full h-full items-center">
                     {
