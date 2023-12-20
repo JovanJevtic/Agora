@@ -40,7 +40,7 @@ const PostComment = ({ comment, postId }: Props) => {
     }
 
   return (
-    <div key={comment.id} className="border-t-[1px] border-solid border-secondary pt-5 pb-3 bg-black">
+    <div key={comment.id} className="border-t-[1px] border-solid dark:border-secondary pt-5 pb-3 bg-secondary dark:bg-black">
         <div className="container">
             <div className="w-full flex h-full">
                 <div className="">
@@ -54,7 +54,7 @@ const PostComment = ({ comment, postId }: Props) => {
                 </div>
                 <div className="flex-[1]">
                     <div className="flex items-center">
-                        <p className="text-sm ml-3 font-bold">{comment.author.name}</p>
+                        <p className="text-sm ml-3 font-">{comment.author.name}</p>
                         <Date createdAt={comment.createdAt} updatedAt={comment.updatedAt} />
                     </div>
                     
@@ -110,7 +110,7 @@ const PostComment = ({ comment, postId }: Props) => {
                                         </div>
                                         <div className="flex-[1]">
                                             <div className="flex items-center">
-                                                <p className="text-sm ml-3 font-bold">{reply.author.name}</p>
+                                                <p className="text-sm ml-3 font-">{reply.author.name}</p>
                                                 <Date createdAt={reply.createdAt} updatedAt={reply.updatedAt} />
                                                 {/* {
                                                     session?.user.role === "admin" && (
