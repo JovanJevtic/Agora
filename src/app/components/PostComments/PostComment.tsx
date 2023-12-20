@@ -122,7 +122,7 @@ const PostComment = ({ comment, postId }: Props) => {
                                             </div>
                                             
                                             <div className="mt-1 ml-3">
-                                                <p className="text-sm">{reply.text}</p>
+                                                <p className="text-sm whitespace-normal max-w-xs md:max-w-lg lg:max-w-4xl" style={{ wordWrap: 'break-word' }}>{reply.text}</p>
                                             </div>
                                         </div>
                                     </div>
