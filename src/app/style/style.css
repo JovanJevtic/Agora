@@ -20,3 +20,15 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .no-scrollbar {
+      scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    display: none;
+  }

@@ -47,7 +47,7 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
                 </div>    
             </Link>
             <div className="flex-[2] container px-[2rem]">
-                <ul className="flex w-full h-full justify-start items-center overflow-x-scroll no-scrollbar">
+                <ul className="flex w-full h-full justify-start items-center overflow-x-scroll lg:overflow-x-hidden no-scrollbar">
                     <Link 
                         key={first[0].id} 
                         style={{
