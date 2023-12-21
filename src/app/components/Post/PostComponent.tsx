@@ -126,6 +126,9 @@ const Post: React.FunctionComponent<Props> = async ({
             <div className="flex items-center mr-10 ">
               <p className="text-gray-500 text-sm mr-2">Autor:</p>
               <p className="text-xs md:text-sm mr-1 text-gray-950 dark:text-gray-50">{author.name}</p>
+              {
+                session?.user.role === "admin" && <p className="text-xs md:text-sm mr-1 text-gray-500 dark:text-gray-500">{author.email}</p>
+              }
               {author.image ? (
                 <Image
                   className="mr-0 ml-1"
