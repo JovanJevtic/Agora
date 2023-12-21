@@ -43,6 +43,7 @@ const ArchivedPost: React.FunctionComponent<Props> = async ({ params: { slug } }
         categoryId={post.categoryId}
         category={category}
         subcategory={subcategory}
+        postId={post.id}
         // categoryPromise={categoryData}
         // subcategoryPromise={subcategoryData}
       />
