@@ -69,7 +69,14 @@ const components: MDXComponents = {
     strong: ({ children }) => <strong className='font-bold leading-loose'>{children}</strong>,
     Prostor,
     SiviText,
-    li: ({ children }) => <ol className='text-sm text-black dark:text-white'>{children}</ol>
+    li: ({ children }) => <li className='flex items-start'>
+        <div className='min-w-[30px] w-[10vw] h-full flex items-start'>
+            {/* <div className="min-h-[10px] w-[1px] h-full bg-primary"></div> */}
+        </div>
+        <div className="flex-[1] text-base text-black dark:text-white flex items-end">
+            {children}
+        </div>
+    </li>
 }  
 
 const RemoteMdxPage = ({ source }: MDXContentProps) => {

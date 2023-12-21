@@ -122,7 +122,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
   const subcategory = await subcategoryData;
 
   return (
-    <div className="min-h-[90vh] w-full bg-slate-50 dark:bg-black">
+    <div className="min-h-[90vh] w-full bg-slate-50 dark:bg-[#040404]">
       {/* <Suspense fallback={<PostPageDetailsLoading />}> */}
       <PostPageDetails
         categoryId={post.categoryId}
