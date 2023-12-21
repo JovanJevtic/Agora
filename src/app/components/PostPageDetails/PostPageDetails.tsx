@@ -8,6 +8,7 @@ type Props = {
     category: Category;
     subcategory: Subcategory;
     categoryId: string;
+    postId: string;
 }
 
 const getAllSubcategorys = async (categoryId: string) => {
@@ -22,7 +23,8 @@ const getAllSubcategorys = async (categoryId: string) => {
 const PostPageDetails: React.FunctionComponent<Props> = async ({
     categoryId,
     category, 
-    subcategory 
+    subcategory,
+    postId
     // categoryPromise, subcategoryPromise,  
 }) => {
     // const category = await categoryPromise;
@@ -30,6 +32,9 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
 
     const subcategorysData: Promise<Subcategory[]> = getAllSubcategorys(categoryId)
     const subcategorys = await subcategorysData;
+
+    const first = subcategorys.filter((bla) => bla.id === subcategory.id);
+    const other = subcategorys.filter((bla) => bla.id !== subcategory.id)
 
     const categoryHex = category.hexCol;
 
@@ -41,10 +46,28 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
                     <h1 className="uppercase text-3xl font-bold text-white">{category.name}</h1>
                 </div>    
             </Link>
-            <div className="flex-[2] container">
-                <ul className="flex w-full h-full items-center">
+            <div className="flex-[2] container px-[2rem]">
+                <ul className="flex w-full h-full justify-start items-center overflow-x-scroll no-scrollbar">
+                    <Link 
+                        key={first[0].id} 
+                        style={{
+                            background: first[0].name === subcategory?.name ? `${category.hexCol}`: '', 
+                        }} 
+                        className={
+                            `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
+                            min-w-fit
+                            px-1
+                            ${first[0].name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
+                        `} 
+                        href={``}
+                    >
+                        <li className={`h-full flex items-center pl-5 pr-5`}>
+                            <p className="text-xs md:text-sm">{first[0].name}</p>
+                        </li>
+                    </Link>
+                    
                     {
-                       subcategorys.map(subcategoryCard => (
+                       other.map(subcategoryCard => (
                         <Link 
                             key={subcategoryCard.id} 
                             style={{
@@ -52,15 +75,16 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
                             }} 
                             className={
                                 `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
+                                min-w-fit
+                                px-1
                                 ${subcategoryCard.name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
                             `} 
                             href={``}
                         >
                             <li className={`h-full flex items-center pl-5 pr-5`}>
-                                <p className="text-sm">{subcategoryCard.name}</p>
+                                <p className="text-xs md:text-sm">{subcategoryCard.name}</p>
                             </li>
-                        </Link>
-                                
+                        </Link>       
                        ))
                     }
                 </ul>
