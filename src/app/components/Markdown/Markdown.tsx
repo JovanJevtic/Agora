@@ -60,7 +60,7 @@ const components: MDXComponents = {
     h1: ({ children }) => <h1 className='text-lg md:text-xl font-bold leading-relaxed'>{children}</h1>,
     h2: ({ children }) => <h2 className='text-sm md:text-lg font-bold leading-relaxed'>{children}</h2>,
     h3: ({ children }) => <h3 className='text-xs md:text-base font-bold leading-relaxed'>{children}</h3>,
-    p: ({ children }) => <p className='text-base leading-relaxed'>{children}</p>,
+    p: ({ children }) => <p className='text-base leading-loose'>{children}</p>,
     blockquote: ({ children }) => <div className='flex items-center md:pl-10 text-gray-500 mt-2 mb-2'>
         <div className='h-full border-solid border-l-[1px] border-primary pl-5 md:pl-5'>
             <div className='flex-[1]'><p className='italic leading-loose'>{children}</p></div>
