@@ -48,23 +48,27 @@ const PostPageDetails: React.FunctionComponent<Props> = async ({
             </Link>
             <div className="flex-[2] container px-[2rem]">
                 <ul className="flex w-full h-full justify-start items-center overflow-x-scroll lg:overflow-x-hidden no-scrollbar">
-                    <Link 
-                        key={first[0].id} 
-                        style={{
-                            background: first[0].name === subcategory?.name ? `${category.hexCol}`: '', 
-                        }} 
-                        className={
-                            `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
-                            min-w-fit
-                            px-1
-                            ${first[0].name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
-                        `} 
-                        href={``}
-                    >
-                        <li className={`h-full flex items-center pl-5 pr-5`}>
-                            <p className="text-xs md:text-sm">{first[0].name}</p>
-                        </li>
-                    </Link>
+                    {
+                        first[0] && (
+                            <Link 
+                                key={first[0]?.id} 
+                                style={{
+                                    background: first[0]?.name === subcategory?.name ? `${category.hexCol}`: '', 
+                                }} 
+                                className={
+                                    `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
+                                    min-w-fit
+                                    px-1
+                                    ${first[0]?.name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
+                                `} 
+                                href={``}
+                            >
+                                <li className={`h-full flex items-center pl-5 pr-5`}>
+                                    <p className="text-xs md:text-sm">{first[0]?.name}</p>
+                                </li>
+                            </Link>
+                        )
+                    }
                     
                     {
                        other.map(subcategoryCard => (
