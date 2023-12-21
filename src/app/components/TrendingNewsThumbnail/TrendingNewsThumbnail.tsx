@@ -80,7 +80,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                                 {
                                     category ? 
                                     <div className="flex mb-0 items-center mt-0">
-                                        <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                        <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#4e85c7]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
                                         <p className="text-sm max-[700px]:text-xs text-gray-400 " 
                                         >{category.name}</p>
                                     </div>
@@ -105,7 +105,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                                 {
                                     category ? 
                                     <div className="flex mb-0 items-center mt-0">
-                                        <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                        <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#295b96]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
                                         <p className="text-sm max-[700px]:text-xs" 
                                         >{category.name}</p>
                                     </div>
@@ -150,7 +150,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         {
                             category ? 
                             <div className="flex mb-0 items-center mt-0">
-                                <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Drustvo" ? "bg-blue-500" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#4e85c7]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
                                 <p className="text-sm max-[700px]:text-xs text-gray-400 " 
                                 >{category.name}</p>
                             </div>

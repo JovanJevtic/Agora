@@ -69,7 +69,7 @@ export default async function Home() {
         <TrendingFromCategory category="Politika" />
         <TrendingFromCategory category="Kultura" />
         <TrendingFromCategory category="Sport" />
-        <TrendingFromCategory category="Drustvo" />
+        <TrendingFromCategory category="Društvo" />
       </div>
     </div>
   );
