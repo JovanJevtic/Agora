@@ -16,6 +16,7 @@ export type PostCreationData = {
     positionSecondary: boolean;
     fotoIzvor: string;
     authorId: string;
+    izvor: string;
 }
 
 export const POST = async (request: NextRequest) => {
@@ -31,6 +32,7 @@ export const POST = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
+            izvor
             // authorId
         } = (await request.json()) as PostCreationData;
     
@@ -47,6 +49,7 @@ export const POST = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
+            izvor,
             // authorId
             authorId: session?.user.id as string
         }
@@ -61,7 +64,8 @@ export const POST = async (request: NextRequest) => {
             positionPrimary,
             positionSecondary,
             slug,
-            subcategoryId
+            subcategoryId,
+            izvor
         })
 
         const slugEquieped = await prisma.post.findUnique({
@@ -108,6 +112,7 @@ export const PUT = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
+            izvor
         } = (await request.json()) as PostCreationData;
 
         console.log('slug', slug);
@@ -127,6 +132,7 @@ export const PUT = async (request: NextRequest) => {
             positionSecondary,
             slug,
             subcategoryId,
+            izvor
         }
     
         const validateResponse = postCreationFormSchema.safeParse({ 
@@ -139,7 +145,8 @@ export const PUT = async (request: NextRequest) => {
             positionPrimary,
             positionSecondary,
             slug,
-            subcategoryId
+            subcategoryId,
+            izvor
         })
 
         const prevPost = await prisma.post.findUnique({
