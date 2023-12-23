@@ -56,7 +56,7 @@ export default async function Home() {
     <div className="flex min-h-screen flex-col ">
       <div className="h-10 w-ful flex items-center mt-0 dark:bg-card bg-card">
         {/* <h1 className="font-bold min-[540px]:text-xl max-[540px]:text-sm flex-[5] max-[360px]:text-xs">Dobrodošli na Agora portal</h1> */}
-        <div className="flex-[3] flex justify-start items-center h-full container">
+        <div className="flex-[3] flex justify-center items-center h-full container">
           <CurrentDate />
         </div>
       </div>
