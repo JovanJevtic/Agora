@@ -3,10 +3,10 @@ import TrendingNewsDate from "../TrendingNews/TrendingNewsDate";
 import { Category, Post, User } from "@prisma/client";
 import { User2 } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
-import Markdown from '../Markdown/Markdown'
-import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";;
+import Markdown from "../Markdown/Markdown";
+import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
 import { GetStaticProps } from "next";
-import { serialize } from 'next-mdx-remote/serialize'
+import { serialize } from "next-mdx-remote/serialize";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -16,6 +16,7 @@ import Btns from "./Btns";
 import PostPageTrendingCard from "../PostPageTrendingCard";
 import PostComments from "../PostComments";
 import { PostWithComments, PostWithEverything } from "@/types";
+import PostSource from "../PostSource";
 
 type Props = {
   post: PostWithEverything;
@@ -36,11 +37,14 @@ const getAuthor = async (authorId: string): Promise<User> => {
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
 };
 
-const getTrendingFromCategory = async (categoryId: string, postId: string): Promise<Post[]> => {
+const getTrendingFromCategory = async (
+  categoryId: string,
+  postId: string
+): Promise<Post[]> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/trending/cards?type=category&categoryId=${categoryId}&postId=${postId}`,
@@ -52,15 +56,18 @@ const getTrendingFromCategory = async (categoryId: string, postId: string): Prom
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-const getTrendingFromSubCategory = async (subcategoryId: string, postId: string): Promise<Post[]> => {
+const getTrendingFromSubCategory = async (
+  subcategoryId: string,
+  postId: string
+): Promise<Post[]> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/trending/cards?type=subcategory&subcategoryId=${subcategoryId}&postId=${postId}`,
-      { 
+      {
         method: "GET",
         cache: "no-cache",
       }
@@ -68,15 +75,15 @@ const getTrendingFromSubCategory = async (subcategoryId: string, postId: string)
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-const getTrendingFromAll= async (postId: string): Promise<Post[]> => {
+const getTrendingFromAll = async (postId: string): Promise<Post[]> => {
   try {
     const res = await fetch(
       `https://www.agoraportal.net/api/posts/trending/cards?type=all&postId=${postId}`,
-      { 
+      {
         method: "GET",
         cache: "no-cache",
       }
@@ -84,31 +91,37 @@ const getTrendingFromAll= async (postId: string): Promise<Post[]> => {
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 // export const getStaticProps: GetStaticProps<{
-  // mdxSource: MDXRemoteSerializeResult
+// mdxSource: MDXRemoteSerializeResult
 // }> = async () => {
-  // const mdxSource = await serialize()
-  // return { props: { mdxSource } }
+// const mdxSource = await serialize()
+// return { props: { mdxSource } }
 // }
 
-const Post: React.FunctionComponent<Props> = async ({ 
+const Post: React.FunctionComponent<Props> = async ({
   post,
   categoryName,
   subcategoryName,
-  categoryHex
+  categoryHex,
 }) => {
   const authorData: Promise<User> = getAuthor(post.authorId);
   const author = await authorData;
 
-  const trendingFromCategoryData: Promise<Post[]> = getTrendingFromCategory(post.categoryId, post.id);
-  const trendingFromSubcategoryData: Promise<Post[]> = getTrendingFromSubCategory(post.subcategoryId as string, post.id);
+  const trendingFromCategoryData: Promise<Post[]> = getTrendingFromCategory(
+    post.categoryId,
+    post.id
+  );
+  const trendingFromSubcategoryData: Promise<Post[]> =
+    getTrendingFromSubCategory(post.subcategoryId as string, post.id);
   const trendingFromAllData: Promise<Post[]> = getTrendingFromAll(post.id);
 
-  const mdxSource = await serialize(post.body, { mdxOptions: { development: process.env.NODE_ENV === "development" } })
+  const mdxSource = await serialize(post.body, {
+    mdxOptions: { development: process.env.NODE_ENV === "development" },
+  });
   const session = await getServerSession(authOptions);
 
   return (
@@ -123,32 +136,18 @@ const Post: React.FunctionComponent<Props> = async ({
           </p>
 
           <div className="flex w-full mt-8 md:mt-10 flex-col mb-3">
+
             <div className="flex items-center mr-10 ">
-              <p className="text-gray-500 text-sm mr-2">Autor:</p>
-              <p className="text-xs md:text-sm mr-1 text-gray-950 dark:text-gray-50">{author.name}</p>
-              {author.image ? (
-                <Image
-                  className="mr-0 ml-1"
-                  style={{ borderRadius: "50%", width: '25px', height: '25px' }}
-                  src={author.image}
-                  height={0}
-                  width={0}
-                  alt="profile"
-                />
-              ) : (
-                // <FaUserCircle className='mr-0 w-[30px]' />
-                <></>
-              )}
+              <PostSource author={post.author} izvor={post.izvor} />
             </div>
-            
-            {
-                session?.user.role === "admin" && (
-                  <div className="mb-3">
-                    <p className="text-xs md:text-sm mr-1 text-gray-500 dark:text-gray-500">{author.email}</p>
-                  </div>
-                )
-            }
-            
+
+            {session?.user.role === "admin" && (
+              <div className="mb-3">
+                <p className="text-xs md:text-sm mr-1 text-gray-500 dark:text-gray-500">
+                  {author.email}
+                </p>
+              </div>
+            )}
 
             <div className="flex-1 flex items-start mt-1 flex-col">
               <p className="text-gray-950 dark:text-gray-50 text-xs md:text-sm font-bold capitalize">
@@ -163,9 +162,9 @@ const Post: React.FunctionComponent<Props> = async ({
             </div>
           </div>
 
-          {
-            session?.user.role === "admin" && <Btns slug={post.slug} archived={post.archived} postId={post.id} />
-          }
+          {session?.user.role === "admin" && (
+            <Btns slug={post.slug} archived={post.archived} postId={post.id} />
+          )}
 
           <div className="relative h-auto w-[100%]">
             <Image
@@ -179,41 +178,49 @@ const Post: React.FunctionComponent<Props> = async ({
           </div>
 
           <div className="mt-1">
-            <p className="text-gray-400 text-xs md:text-sm">FOTO: {post.fotoIzvor}</p>
+            <p className="text-gray-400 text-xs md:text-sm">
+              FOTO: {post.fotoIzvor}
+            </p>
           </div>
 
-          <div className="mt-5 prose w-full max-w-full 
+          <div
+            className="mt-5 prose w-full max-w-full 
            prose-headings:text-black prose-p:text-black prose-strong:text-black prose-blockquote:text-gray-500
            prose-headings:dark:text-white prose-p:dark:text-white prose-strong:dark:text-white prose-blockquote:dark:text-gray-500
-           ">
+           "
+          >
             <Markdown source={mdxSource} />
           </div>
         </article>
       </div>
 
       <div className="lg:flex-[5]">
-          <div className="h-full w-full pt-10 lg:pl-5 lg:pt-0">
-            <div className="h-full w-full">
-              <PostPageTrendingCard categoryHex={categoryHex} requestPromise={trendingFromCategoryData} title={categoryName} />
-              {
-                post.subcategoryId && <div className="mt-10">
-                <PostPageTrendingCard 
-                  subcategory={false} 
-                  text="Povezano" 
-                  categoryHex={categoryHex} 
-                  requestPromise={trendingFromSubcategoryData} 
-                />
-              </div>
-              }
+        <div className="h-full w-full pt-10 lg:pl-5 lg:pt-0">
+          <div className="h-full w-full">
+            <PostPageTrendingCard
+              categoryHex={categoryHex}
+              requestPromise={trendingFromCategoryData}
+              title={categoryName}
+            />
+            {post.subcategoryId && (
               <div className="mt-10">
-                <PostPageTrendingCard 
+                <PostPageTrendingCard
                   subcategory={false}
-                  text="Najnovije"
-                  requestPromise={trendingFromAllData}
+                  text="Povezano"
+                  categoryHex={categoryHex}
+                  requestPromise={trendingFromSubcategoryData}
                 />
               </div>
+            )}
+            <div className="mt-10">
+              <PostPageTrendingCard
+                subcategory={false}
+                text="Najnovije"
+                requestPromise={trendingFromAllData}
+              />
             </div>
           </div>
+        </div>
       </div>
     </div>
   );

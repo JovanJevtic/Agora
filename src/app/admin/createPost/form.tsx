@@ -53,7 +53,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
         // slug: '',
         subcategoryId: '',
         subtitle: '',
-        title: ''
+        title: '',
+        izvor: ''
     }
 
     const [formShownLocalStorage, setformShownLocalStorage] = useLocalStorage({ key: "formOpened", initialValue: false })
@@ -187,7 +188,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
 
     const postData = getValues()
 
-    const { categoryId, image, subcategoryId, body, fotoIzvor, title, subtitle } = watch()
+    const { categoryId, image, subcategoryId, body, fotoIzvor, title, subtitle, izvor } = watch()
     const [filteredSubcategorys, setFilteredSubcategorys] = useState<Subcategory[]>()
 
     const filterSubcategorys = (categoryId: string) => {
@@ -289,7 +290,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full pb-5">
             <nav className="w-full mt-0"> 
                 <ul className="list-none sticky top-0 flex w-full justify-between border-solid border-t-[1px] border-t-secondary">
                     {
@@ -324,18 +325,32 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                                     )}
                                 />
 
-                                <FormField
+                                <FormField 
                                     control={form.control}
                                     name="subtitle"
                                     render={({ field }) => (
-                                        <FormItem className="mt-5">
+                                        <FormItem>
                                             <FormLabel>Podnaslov</FormLabel>
                                             <FormControl className="h-12">
-                                                <Textarea className="resize-none" placeholder="Definiši naslov članka" {...field} />
+                                                <Textarea className="resize-none" placeholder="Definiši podnaslov članka" {...field} />
                                             </FormControl>
                                             <FormDescription className="text-sm text-gray-500">
                                                 *Podnaslov moze biti i prazan u najgorem slucaju.
                                             </FormDescription>
+                                            <FormMessage style={{color: 'red'}} />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="izvor"
+                                    render={({ field }) => (
+                                        <FormItem className="mt-5">
+                                            <FormLabel>Izvor</FormLabel>
+                                            <FormControl className="h-12"> 
+                                                <Input className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1" placeholder="Navedi izvor članka" {...field} />
+                                            </FormControl>
                                             <FormMessage style={{color: 'red'}} />
                                         </FormItem>
                                     )}
@@ -568,6 +583,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                                     subcategorys={filteredSubcategorys as Subcategory[]}
                                     subtitle={subtitle}
                                     title={title}
+                                    izvor={izvor}
                                 />  
 
                                 <Button className="mt-5 w-full font-bold" disabled={isSubmitting || isLoading } type="submit" variant={"default"}>

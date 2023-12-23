@@ -26,6 +26,7 @@ export const postCreationFormSchema = z.object({
   subcategoryId: z.string(),
   positionPrimary: z.boolean(),
   positionSecondary: z.boolean(),
+  izvor: z.string()
   // authorId: z.string().min(1, "Greska sa autorom...pokusaj ponovo kasnije..")
 })
 

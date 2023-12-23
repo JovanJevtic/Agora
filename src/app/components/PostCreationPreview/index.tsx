@@ -6,6 +6,7 @@ import Markdown from '../Markdown/Markdown'
 import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import PostSource from "../PostSource";
 
 type Props = {
     category: Category;
@@ -19,8 +20,9 @@ type Props = {
     createdAt: Date;
     image: string;
     fotoIzvor: string;
+    izvor: string | null;
 }
-const PostCreationPreview: React.FunctionComponent<Props> = ({ fotoIzvor, category, content, createdAt, image, subcategorys, subcategory, categoryHex, author, subtitle, title }) => {
+const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor, category, content, createdAt, image, subcategorys, subcategory, categoryHex, author, subtitle, title }) => {
 
     // const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>()
 
@@ -78,21 +80,7 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ fotoIzvor, catego
 
                 <div className="flex w-full mt-8 md:mt-10 flex-col mb-3">
                     <div className="flex items-center mr-10 ">
-                    <p className="text-gray-500 text-sm mr-2">Autor:</p>
-                    <p className="text-xs md:text-sm mr-1 text-gray-950 dark:text-gray-50">{author.name}</p>
-                    {author.image ? (
-                        <Image
-                        className="mr-0 ml-1"
-                        style={{ borderRadius: "50%", width: '25px', height: '25px' }}
-                        src={author.image}
-                        height={0}
-                        width={0}
-                        alt="profile"
-                        />
-                    ) : (
-                        // <FaUserCircle className='mr-0 w-[30px]' />
-                        <></>
-                    )}
+                    <PostSource author={author} izvor={izvor} />
                     </div>
 
                     <div className="flex-1 flex items-start mt-1 flex-col">

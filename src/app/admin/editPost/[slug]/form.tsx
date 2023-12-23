@@ -141,6 +141,20 @@ const EditPostForm: React.FunctionComponent<Props> = ({ categorys, post, subcate
 
                     <FormField
                         control={form.control}
+                        name="izvor"
+                        render={({ field }) => (
+                            <FormItem className="mt-5">
+                                <FormLabel>Izvor</FormLabel>
+                                <FormControl className="h-12"> 
+                                    <Input className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1" placeholder="Navedi izvor članka" {...field} />
+                                </FormControl>
+                                <FormMessage style={{color: 'red'}} />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
                         name="body"
                         render={({ field }) => (
                             <FormItem className="mt-5 mb-5" defaultValue={"bla"}>

@@ -94,6 +94,8 @@ model Post {
   fotoIzvor       String          @default("")
   archived        Boolean         @default(false)
 
+  izvor           String?
+
   comments        Comment[]
 }
 
