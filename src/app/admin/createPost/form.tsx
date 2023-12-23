@@ -352,6 +352,9 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                                             <FormControl className="h-12"> 
                                                 <Input className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1" placeholder="Navedi izvor članka" {...field} />
                                             </FormControl>
+                                            <FormDescription className="text-sm text-gray-500">
+                                                *Ako navedete izvor umjesto autora biće prikazan izvor. Ako nema izvora bice prikazan autor
+                                            </FormDescription>
                                             <FormMessage style={{color: 'red'}} />
                                         </FormItem>
                                     )}
