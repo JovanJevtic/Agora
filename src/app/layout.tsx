@@ -8,6 +8,7 @@ import { getServerSession } from 'next-auth'
 import { ThemeProvider } from "@/app/components/theme-provider"
 import Footer from './components/Footer'
 import Script from 'next/script'
+import Favicon from '/public/favicon.ico';
 
 const inter = Poppins({ subsets: ['latin'], weight: '400' })
 export const fraunces = Hanuman({ subsets: ["latin"], weight: "400"  })
@@ -15,6 +16,7 @@ export const fraunces = Hanuman({ subsets: ["latin"], weight: "400"  })
 export const metadata: Metadata = {
   title: 'Agora',
   description: 'Agora portal',
+  icons: [{ rel: 'icon', url: Favicon.src }],
 }
 
 export default async function RootLayout({
