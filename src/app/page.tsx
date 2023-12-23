@@ -60,7 +60,11 @@ export default async function Home() {
           <CurrentDate />
         </div>
       </div>
-      <TrendingNews primary={trendingPosts.primary} secondary={trendingPosts.secondary} />
+      
+      <div className="mt-0 md:mt-3">
+        <TrendingNews primary={trendingPosts.primary} secondary={trendingPosts.secondary} />
+      </div>
+      
       <div className="">
         <TrendingFromCategory category="Novosti" />
 

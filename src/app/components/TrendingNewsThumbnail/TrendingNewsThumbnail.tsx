@@ -146,19 +146,23 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                         text-white
                     `}>{post.title}</h1>
                     { big && <p className='text-xs lg:text-sm mb-2 text-gray-400 dark:text-gray-400 line-clamp-2'>{post.subtitle}</p> }
-                    <div className={`flex items-center mt-0.5`}>
-                        {
-                            category ? 
-                            <div className="flex mb-0 items-center mt-0">
-                                <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#4e85c7]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
-                                <p className="text-sm max-[700px]:text-xs text-gray-400 " 
-                                >{category.name}</p>
-                            </div>
-                            : loadingSub ?
-                            <Skeleton className="h-4 w-12" /> : <></>
-                        }
+                    <div className={`flex items-center mt-1 ${big ? 'mb-5' : 'mb-3'} `}>
+                        <div className={`flex flex-[1] items-center mt-0.5`}>
+                            {
+                                category ? 
+                                <div className="flex mb-0 items-center mt-0">
+                                    <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#4e85c7]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                    <p className="text-sm max-[700px]:text-xs text-gray-400 " 
+                                    >{category.name}</p>
+                                </div>
+                                : loadingSub ?
+                                <Skeleton className="h-4 w-12" /> : <></>
+                            }
+                        </div>
+                        <p className={`md:text-xs text-gray-400 text-xs 
+                            ${big ? '' : ''}
+                        `}><TrendingNewsDate date={post.createdAt} /></p>
                     </div>
-                    <p className={`md:text-xs text-gray-400 text-xs ${big ? 'mb-7' : 'mb-2'}`}><TrendingNewsDate date={post.createdAt} /></p>
                 </div>
             </div>
         </div>

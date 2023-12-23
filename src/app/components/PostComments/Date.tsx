@@ -15,6 +15,7 @@ const Date = ({ createdAt, updatedAt }: Props) => {
         setMounted(true)
     }, [])
 
+    
     if (!mounted) {
         return <Skeleton className="h-[20px] w-[60px] ml-3"></Skeleton>
     }
