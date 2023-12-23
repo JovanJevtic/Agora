@@ -203,7 +203,8 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                 ...data,
                 slug
             }
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createPost`, {
+            // const res = await fetch(`https://www.agoraportal.net/api/admin/createPost`, {
+            const res = await fetch(`http://localhost:3000/api/admin/createPost`, {
                 method: 'POST',
                 body: JSON.stringify(object)
             });

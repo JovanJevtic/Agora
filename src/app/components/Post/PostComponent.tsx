@@ -138,7 +138,7 @@ const Post: React.FunctionComponent<Props> = async ({
           <div className="flex w-full mt-8 md:mt-10 flex-col mb-3">
 
             <div className="flex items-center mr-10 ">
-              <PostSource author={post.author} izvor={post.izvor} />
+              <PostSource author={author} izvor={post.izvor} />
             </div>
 
             {session?.user.role === "admin" && (
