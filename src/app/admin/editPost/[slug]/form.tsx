@@ -52,7 +52,7 @@ const EditPostForm: React.FunctionComponent<Props> = ({ categorys, post, subcate
             subcategoryId: post.subcategoryId as string,
             subtitle: post.subtitle,
             title: post.title,
-            izvor: post.izvor
+            izvor: post.izvor || ''
         },
         // mode: 'onTouched'
     });
