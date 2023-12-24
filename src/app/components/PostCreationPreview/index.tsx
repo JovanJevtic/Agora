@@ -112,7 +112,7 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor,
                 ">
                     {
                         // mdxSource && <Markdown source={mdxSource} />
-                        // <MDXRemote source={content} options={{ mdxOptions: { development: process.env.NODE_ENV === "development" } }} />
+                        <MDXRemote source={content} options={{ mdxOptions: { development: process.env.NODE_ENV === "development" } }} />
                     }
                 </div>
             </article>
