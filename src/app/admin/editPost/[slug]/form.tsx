@@ -51,7 +51,8 @@ const EditPostForm: React.FunctionComponent<Props> = ({ categorys, post, subcate
             // slug: post.slug,
             subcategoryId: post.subcategoryId as string,
             subtitle: post.subtitle,
-            title: post.title
+            title: post.title,
+            izvor: post.izvor
         },
         // mode: 'onTouched'
     });
