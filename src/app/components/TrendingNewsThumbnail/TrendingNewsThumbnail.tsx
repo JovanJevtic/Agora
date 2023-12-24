@@ -66,7 +66,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 </div>
                 <div className='absolute h-full container bg-transparent'>
                     <div className='h-full w-full md:pl-5 md:pr-5 flex flex-col justify-end'>
-                        <h1 className={`mb-0 ml-0 line-clamp-2
+                        <h1 className={`mb-0 ml-0 line-clamp-3
                             text-3xl
                             font-bold
                             md:text-2xl
