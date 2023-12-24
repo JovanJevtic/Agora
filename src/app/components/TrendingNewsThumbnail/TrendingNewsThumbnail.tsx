@@ -67,13 +67,13 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                 <div className='absolute h-full container bg-transparent'>
                     <div className='h-full w-full md:pl-5 md:pr-5 flex flex-col justify-end'>
                         <h1 className={`mb-0 ml-0 line-clamp-2
-                            text-2xl
+                            text-3xl
                             font-bold
                             md:text-2xl
                             lg:text-3xl
                         text-white
                         `}>{post.title}</h1>
-                        { big && <p className='text-xs w-[70%] lg:text-sm mb-2 mt-0.5 text-gray-400  line-clamp-2'>{post.subtitle}</p> }
+                        { big && <p className='text-xs w-[70%] lg:text-sm mb-3 mt-0.5 text-gray-400  line-clamp-2'>{post.subtitle}</p> }
                         
                         <div className='flex w-full items-center mb-5 mt-2'>
                             <div className="flex items-center mt-0.5 flex-1">
@@ -105,7 +105,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
                                 {
                                     category ? 
                                     <div className="flex mb-0 items-center mt-0">
-                                        <div className={`h-4 mr-1 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#295b96]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
+                                        <div className={`h-4 mr-2 w-[1px] ${ category.name === "Novosti" ? "bg-yellow-500" : category.name === "Sport" ? "bg-green-500" : category.name === "Kultura" ? "bg-purple-700" : category.name === "Društvo" ? "bg-[#295b96]" : category.name === "Politika" ? "bg-red-500" :  "bg-white" }`}></div>
                                         <p className="text-sm max-[700px]:text-xs" 
                                         >{category.name}</p>
                                     </div>
