@@ -25,8 +25,8 @@ type Props = {
 }
 const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor, category, content, createdAt, image, subcategorys, subcategory, categoryHex, author, subtitle, title }) => {
 
-    const [subcategorysLocalStorage, setSubcategorysLocalStorage] = useLocalStorage({ key: "subcategorys", initialValue: false })
-    const [subcategoryLocalStorage, setSubcategoryLocalStorage] = useLocalStorage({ key: "subcategory", initialValue: false })
+    const [subcategorysLocalStorage, setSubcategorysLocalStorage] = useLocalStorage({ key: "subcategorys", initialValue: subcategorys })
+    const [subcategoryLocalStorage, setSubcategoryLocalStorage] = useLocalStorage({ key: "subcategory", initialValue: subcategory })
 
     useEffect(() => {
         if (subcategory) setSubcategoryLocalStorage(subcategory)
@@ -35,7 +35,7 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor,
     useEffect(() => {
        if (subcategorys) setSubcategorysLocalStorage(subcategorys)
     }, [subcategorys]) 
-
+ 
   return (
     <div>
         <div className={`h-28 mb-10`}>
