@@ -61,7 +61,13 @@ export default async function Home() {
         </div>
       </div>
       
-      <div className="mt-0 md:mt-3">
+      {/* <div className="bg-card border-solid border-t-[1px] border-secondary"> */}
+        {/* <div className="container py-2"> */}
+          {/* <h1>Iz svijeta i regiona</h1> */}
+        {/* </div> */}
+      {/* </div> */}
+
+      <div className="mt-0 md:mt-0">
         <TrendingNews primary={trendingPosts.primary} secondary={trendingPosts.secondary} />
       </div>
       

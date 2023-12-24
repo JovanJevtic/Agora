@@ -9,7 +9,7 @@ type Props = {
 }
 const TrendingGrid: React.FunctionComponent<Props> = ({ primary, secondary }) => {
   return (
-    <div className='flex w-full md:container mt-0 mb-10 h-[600px] md:h-[420px] bg-card md:bg-transparent md:mt-0'>
+    <div className='flex flex-col w-full md:container mt-0 mb-10 h-[600px] md:h-[500px] bg-card md:bg-transparent md:mt-0'>
         <div className="w-full h-full p-0 md:p-1 bg-card rounded-sm">
             <div className='grid h-full w-full grid-cols-2 grid-rows-[16] md:grid-cols-4 md:grid-rows-2 md:gap-1'>
             
