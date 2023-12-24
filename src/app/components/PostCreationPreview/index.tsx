@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import PostSource from "../PostSource";
+import useLocalStorage from "@/app/libs/useLocalStorage";
 
 type Props = {
     category: Category;
@@ -24,16 +25,16 @@ type Props = {
 }
 const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor, category, content, createdAt, image, subcategorys, subcategory, categoryHex, author, subtitle, title }) => {
 
-    // const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult>()
-
-    const getMdx = async () => {
-        // const mdxSource = await serialize(content, { mdxOptions: { development: false } })
-        // setMdxSource(mdxSource)
-    }
+    const [subcategorysLocalStorage, setSubcategorysLocalStorage] = useLocalStorage({ key: "subcategorys", initialValue: false })
+    const [subcategoryLocalStorage, setSubcategoryLocalStorage] = useLocalStorage({ key: "subcategory", initialValue: false })
 
     useEffect(() => {
-        getMdx()
-    }, [])
+        if (subcategory) setSubcategoryLocalStorage(subcategory)
+    }, [subcategory]) 
+
+    useEffect(() => {
+       if (subcategorys) setSubcategorysLocalStorage(subcategorys)
+    }, [subcategorys]) 
 
   return (
     <div>
@@ -47,15 +48,15 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor,
                 <div className="flex-[2] container">
                     <ul className="flex w-full h-full items-center">
                         {
-                        subcategorys?.map(subcategoryCard => (
+                        subcategorysLocalStorage?.map((subcategoryCard: Subcategory) => (
                             <Link 
                                 key={subcategoryCard.id} 
                                 style={{
-                                    background: subcategoryCard.name === subcategory?.name ? `${category.hexCol}`: '', 
+                                    background: subcategoryCard.name === subcategoryLocalStorage?.name ? `${category.hexCol}`: '', 
                                 }} 
                                 className={
                                     `h-full transition mr-0 hover:bg-[${categoryHex}] hover:dark:bg-[${categoryHex}]
-                                    ${subcategoryCard.name === subcategory?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
+                                    ${subcategoryCard.name === subcategoryLocalStorage?.name ? `border-none font-bold text-white` : 'bg-slate-50 dark:bg-black'}
                                 `} 
                                 href={``}
                             >
@@ -111,7 +112,7 @@ const PostCreationPreview: React.FunctionComponent<Props> = ({ izvor, fotoIzvor,
                 ">
                     {
                         // mdxSource && <Markdown source={mdxSource} />
-                        <MDXRemote source={content} options={{ mdxOptions: { development: process.env.NODE_ENV === "development" } }} />
+                        // <MDXRemote source={content} options={{ mdxOptions: { development: process.env.NODE_ENV === "development" } }} />
                     }
                 </div>
             </article>
