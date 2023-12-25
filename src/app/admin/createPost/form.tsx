@@ -41,9 +41,6 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
 
     useEffect(() => {
         setMounted(true);
-        if(currStep > 0) {
-            localStorage.clear()
-        }
     }, []);
 
     const initialValues = {
