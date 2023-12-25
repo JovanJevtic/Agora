@@ -55,14 +55,18 @@ const components: MDXComponents = {
     Prostor,
     SiviText,
     Video,
-    li: ({ children }) => <li className='flex items-start'>
-        <div className='min-w-[30px] w-[10vw] h-full flex items-start'>
-            {/* <div className="min-h-[10px] w-[1px] h-full bg-primary"></div> */}
+    li: ({ children }) => <li className='flex items-star min-h-fit'>
+        {/* <div className='min-w-[30px] w-[10vw] h-full flex items-start'>
+            <div className="min-h-[10px] w-[1px] h-full bg-primary"></div>
         </div>
         <div className="flex-[1] text-base text-black dark:text-white flex items-end">
             {children}
-        </div>
-    </li>
+        </div> */}
+        <p className='flex-[1] italic mt-2 mb-0'>
+            <span className='text-primary'>* </span>
+            {children}
+        </p>
+    </li>,
 }  
 
 const RemoteMdxPage = ({ source }: MDXContentProps) => {
