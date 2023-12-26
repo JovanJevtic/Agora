@@ -1,8 +1,10 @@
-import InProgress from '../components/InProgress/InProgress'
+import SearchForm from "./SearchForm"
 
 const Search = () => {
   return (
-    <InProgress />
+    <div className="container">
+      <SearchForm />
+    </div>
   )
 }
 

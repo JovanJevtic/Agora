@@ -43,8 +43,13 @@ export const commentCreationFormSchema = z.object({
   // parrentCommentId: z.string()
 })
 
+export const searchPostsFormSchema = z.object({
+  text: z.string()
+})
+
 export type TSRegisterSchema = z.infer<typeof registerFormSchema>;
 export type TSLoginSchema = z.infer<typeof loginFormSchema>;
 export type TSPostWritingSchema = z.infer<typeof postCreationFormSchema>;
 export type TSSubcategoryCreation = z.infer<typeof subcategoryCreationFormSchema>
 export type TSCommentCreationForm = z.infer<typeof commentCreationFormSchema>
+export type TSPostSearchForm = z.infer<typeof searchPostsFormSchema>

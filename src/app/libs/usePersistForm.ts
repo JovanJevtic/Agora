@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { TSPostWritingSchema } from "./validation/form";
+import { TSPostSearchForm, TSPostWritingSchema } from "./validation/form";
 import { FieldError } from "react-hook-form";
 
 type Props = {
-    value: TSPostWritingSchema;
+    value: TSPostWritingSchema | TSPostSearchForm;
     localStorageKey: string;
 }
 
