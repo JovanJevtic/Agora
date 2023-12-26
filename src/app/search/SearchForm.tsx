@@ -119,8 +119,8 @@ const SearchForm = ({  }) => {
                     <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {
                             resPosts.map((post) => (
-                                <div className="w-full h-full">
-                                    <ThumbnailCategory key={post.id} post={post} />
+                                <div className="w-full h-full" key={post.id}> 
+                                    <ThumbnailCategory post={post} />
                                 </div>
                             ))
                         }
