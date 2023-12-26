@@ -67,6 +67,7 @@ const components: MDXComponents = {
             {children}
         </p>
     </li>,
+   img: ({ src }) => <img src={src} className='w-full' />
 }  
 
 const RemoteMdxPage = ({ source }: MDXContentProps) => {
