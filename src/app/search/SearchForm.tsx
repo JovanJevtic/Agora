@@ -67,9 +67,8 @@ const SearchForm = ({  }) => {
 
     const getPosts = async () => {
         try {
-            // const res = await fetch(`https://www.agoraportal.net/api/posts/search?text=${debouncedValue}`, {
-            const res = await fetch(`http://localhost:3000/api/posts/search?text=${debouncedValue}`, {
-
+            const res = await fetch(`https://www.agoraportal.net/api/posts/search?text=${debouncedValue}`, {
+            // const res = await fetch(`http://localhost:3000/api/posts/search?text=${debouncedValue}`, {
                 method: 'GET'
             });
             const data = await res.json();
