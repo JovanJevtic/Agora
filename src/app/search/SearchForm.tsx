@@ -11,6 +11,7 @@ import { Post } from "@prisma/client";
 import ThumbnailCategory from "../components/ThumbnailCategory";
 import useLocalStorage from "../libs/useLocalStorage";
 import { usePersistForm } from "../libs/usePersistForm";
+import { Loader, Loader2 } from "lucide-react";
 
 type Props = {
 
@@ -66,7 +67,9 @@ const SearchForm = ({  }) => {
 
     const getPosts = async () => {
         try {
-            const res = await fetch(`https://www.agoraportal.net/api/posts/search?text=${debouncedValue}`, {
+            // const res = await fetch(`https://www.agoraportal.net/api/posts/search?text=${debouncedValue}`, {
+            const res = await fetch(`http://localhost:3000/api/posts/search?text=${debouncedValue}`, {
+
                 method: 'GET'
             });
             const data = await res.json();
@@ -106,7 +109,7 @@ const SearchForm = ({  }) => {
                         name="text"
                         render={({ field }) => (
                             <FormItem>
-                                <Input className="h-12 mt-5" placeholder="Pretržuj..." {...field} />
+                                <Input autoFocus className="h-12 mt-5 border-none rounded-none" placeholder="Pretržuj..." {...field} />
                             </FormItem>
                         )}
                     />
@@ -135,6 +138,10 @@ const SearchForm = ({  }) => {
                                 <p className="font-bold text-gray-400">Pretražuj i pronađi željene rezultate</p>
                             </div>
                     )
+                }
+
+                {
+                    (debouncedValue.length > 0 && resPosts?.length === 0) && <div className="w-full flex justify-center mt-10"><Loader2 className="text-primary" /></div>
                 }
             </div>
         </div>

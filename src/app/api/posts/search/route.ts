@@ -12,18 +12,22 @@ export const GET = async (request: NextRequest) => {
 
         const posts = await prisma.post.findMany({
             where: {
-                OR: [{
-                    title: {
-                        contains: text
+                OR: [
+                    {
+                        title: {
+                            contains: text
+                        },
                     },
-                    subtitle: {
-                        contains: text
+                    {
+                        subtitle: {
+                            contains: text
+                        }
                     }
-                }]
+                ]
             }, 
             orderBy: {
                 createdAt: 'desc'
-            }
+            },
         })
 
         return NextResponse.json({ posts: posts }, { status: 200 })
