@@ -10,7 +10,6 @@ import { links } from './Nav'
 import Logo from '../../../../public/logo.png'
 import { useState } from "react";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
-import { fraunces } from "@/app/layout";
 
 const NavWrapp = () => {
 
