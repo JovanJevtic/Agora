@@ -15,8 +15,6 @@ const getPosts = async (name: string) => {
     }
 }   
 
-
-
 export default async function Page({ params }: { params: { slug: string } }) {
     const category = decodeURIComponent(params.slug);
 

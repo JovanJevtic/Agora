@@ -23,7 +23,8 @@ export const GET = async (request: NextRequest) => {
                             contains: text
                         }
                     }
-                ]
+                ],
+                archived: false
             }, 
             orderBy: {
                 createdAt: 'desc'
