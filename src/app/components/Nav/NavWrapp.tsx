@@ -7,7 +7,7 @@ import Image from "next/image";
 import NavBarLink from "./NavLink";
 import NavBtn from "./NavBtn";
 import { links } from './Nav'
-import Logo from '../../../../public/LogoTip-01.png'
+import Logo from '../../../../public/logo.png'
 import { useState } from "react";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { fraunces } from "@/app/layout";
