@@ -140,7 +140,7 @@ const SearchForm = ({  }) => {
                 }
 
                 {
-                    (debouncedValue.length > 0 && resPosts?.length === 0) && <div className="w-full flex justify-center mt-10"><Loader2 className="text-primary" /></div>
+                    (debouncedValue.length > 0 && resPosts?.length === 0 && !noResponses) && <div className="w-full flex justify-center mt-10"><Loader2 className="text-primary" /></div>
                 }
             </div>
         </div>
