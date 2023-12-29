@@ -21,7 +21,7 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
             method: 'GET',
                 cache: 'no-cache'
             })
-            console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`);
+            console.log(`${process.env.BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`, 'blablabla');
             const data = await res.json();
             return data
         } catch (error: any) {
