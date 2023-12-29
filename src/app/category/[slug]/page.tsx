@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 
 const getPosts = async (name: string) => {
     try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/category?name=${name}`, {
+        const res = await fetch(`${process.env.BASE_URL}/api/posts/category?name=${name}`, {
             method: 'GET',
             cache: 'no-cache'
         })

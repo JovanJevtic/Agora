@@ -17,13 +17,15 @@ const ThumbnailCategory: React.FunctionComponent<Props> = ({ post }) => {
 
     const getSubcategoryData = async (subcategoryId: string): Promise<Subcategory> => {
         try {
-            const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`, {
-                method: 'GET',
+            const res = await fetch(`${process.env.BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`, {
+            method: 'GET',
                 cache: 'no-cache'
             })
+            console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`);
             const data = await res.json();
             return data
         } catch (error: any) {
+            console.log(error);
             throw new Error(error);
         }
     }

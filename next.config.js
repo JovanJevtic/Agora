@@ -2,6 +2,9 @@ const withMDX = require("@next/mdx")();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [

@@ -22,7 +22,7 @@ const TrendingNewsThumbnail: React.FunctionComponent<Props> = ({ post, big }) =>
     const getCategory = async () => {
         try {
             setLoadingSub(true)
-            const res = await fetch(`https://www.agoraportal.net/api/posts/category/getById?id=${post.categoryId}`, {
+            const res = await fetch(`${process.env.BASE_URL}/api/posts/category/getById?id=${post.categoryId}`, {
                 method: 'GET',
                 cache: 'no-cache'
             })

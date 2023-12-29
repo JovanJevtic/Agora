@@ -3,7 +3,7 @@ import ArchivedPostCard from "./ArchivedPostCard";
 
 const getAllArchivedPosts = async (): Promise<Post[]> => {
     try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/all/archived`, {
+        const res = await fetch(`${process.env.BASE_URL}/api/posts/all/archived`, {
             method: 'GET',
             cache: 'no-store',
         });

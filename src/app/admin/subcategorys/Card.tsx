@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 const getSubcategoryByCategory = async (categoryId: string): Promise<Subcategory[]> => {
     try {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getByCategory?categoryId=${categoryId}`, {
+        const res = await fetch(`${process.env.BASE_URL}/api/posts/subcategory/getByCategory?categoryId=${categoryId}`, {
             method: 'GET',
             cache: 'no-cache',
         });

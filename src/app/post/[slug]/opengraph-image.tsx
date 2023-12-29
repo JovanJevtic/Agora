@@ -12,7 +12,7 @@ export const size = {
 export const contentType = 'image/png'
  
 export default async function Image({ params }: { params: { id: string } }) {
-  const post: Post = await fetch(`https://www.agoraportal.net/api/posts/getOne?id=${params.id}`).then((res) =>
+  const post: Post = await fetch(`${process.env.BASE_URL}/api/posts/getOne?id=${params.id}`).then((res) =>
     res.json()
   )
  

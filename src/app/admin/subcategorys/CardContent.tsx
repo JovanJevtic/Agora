@@ -43,7 +43,7 @@ const CardContent: React.FunctionComponent<Props> = ({ subcategorys, category })
 
     const onSubmit = async (data: FieldValues) => {
         try {
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createSubcategory`, {
+            const res = await fetch(`${process.env.BASE_URL}/api/admin/createSubcategory`, {
                 method: 'POST',
                 body: JSON.stringify(data)
             })

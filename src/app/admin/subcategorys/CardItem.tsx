@@ -14,7 +14,7 @@ const CardItem: React.FunctionComponent<Props> = ({ subcategory }) => {
     const deleteSubcategory = async (subcategoryId: string) => {
         try {
             setIsDeleting(true)
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createSubcategory`, {
+            const res = await fetch(`${process.env.BASE_URL}/api/admin/createSubcategory`, {
                 method: 'DELETE',
                 body: JSON.stringify({subcategoryId})
             });

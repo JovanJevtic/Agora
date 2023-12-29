@@ -19,7 +19,7 @@ const Btns: React.FunctionComponent<Props> = ({ postId, archived , slug }) => {
   const deletePost = async (postId: string) => {
     try {
       const res = await fetch(
-        `https://www.agoraportal.net/api/admin/deletePost?id=${postId}`,
+        `${process.env.BASE_URL}/api/admin/deletePost?id=${postId}`,
         {
           method: 'DELETE'
         }
@@ -33,7 +33,7 @@ const Btns: React.FunctionComponent<Props> = ({ postId, archived , slug }) => {
 
   const archivePost = async () => {
     try {
-      const res = await fetch(`https://www.agoraportal.net/api/admin/archive`, {
+      const res = await fetch(`${process.env.BASE_URL}/api/admin/archive`, {
         method: 'PUT',
         body: JSON.stringify({ postId })
       })
@@ -46,7 +46,7 @@ const Btns: React.FunctionComponent<Props> = ({ postId, archived , slug }) => {
 
   const repostPost = async () => {
     try {
-      const res = await fetch(`https://www.agoraportal.net/api/admin/repost`, {
+      const res = await fetch(`${process.env.BASE_URL}/api/admin/repost`, {
         method: 'PUT',
         body: JSON.stringify({ postId })
       })

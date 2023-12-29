@@ -28,7 +28,7 @@ type Props = {
 const getAuthor = async (authorId: string): Promise<User> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/users/author/getById?id=${authorId}`,
+      `${process.env.BASE_URL}/api/users/author/getById?id=${authorId}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -47,7 +47,7 @@ const getTrendingFromCategory = async (
 ): Promise<Post[]> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/trending/cards?type=category&categoryId=${categoryId}&postId=${postId}`,
+      `${process.env.BASE_URL}/api/posts/trending/cards?type=category&categoryId=${categoryId}&postId=${postId}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -66,7 +66,7 @@ const getTrendingFromSubCategory = async (
 ): Promise<Post[]> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/trending/cards?type=subcategory&subcategoryId=${subcategoryId}&postId=${postId}`,
+      `${process.env.BASE_URL}/api/posts/trending/cards?type=subcategory&subcategoryId=${subcategoryId}&postId=${postId}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -82,7 +82,7 @@ const getTrendingFromSubCategory = async (
 const getTrendingFromAll = async (postId: string): Promise<Post[]> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/trending/cards?type=all&postId=${postId}`,
+      `${process.env.BASE_URL}/api/posts/trending/cards?type=all&postId=${postId}`,
       {
         method: "GET",
         cache: "no-cache",

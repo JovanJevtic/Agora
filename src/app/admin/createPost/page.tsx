@@ -6,7 +6,7 @@ import { Category, Subcategory, User } from '@prisma/client';
 
 export const getCategorys = async (): Promise<Category[]> => {
   try {
-    const res = await fetch('https://www.agoraportal.net/api/posts/category/getAll', {
+    const res = await fetch(`${process.env.BASE_URL}/api/posts/category/getAll`, {
       cache: 'no-store',
       method: 'GET'
     });
@@ -19,7 +19,7 @@ export const getCategorys = async (): Promise<Category[]> => {
 
 export const getSubcategorys = async (): Promise<Subcategory[]> => {
   try {
-    const res = await fetch('https://www.agoraportal.net/api/posts/subcategory/getAll', {
+    const res = await fetch(`${process.env.BASE_URL}/api/posts/subcategory/getAll`, {
       method: 'GET',
       next: {
         revalidate: 1

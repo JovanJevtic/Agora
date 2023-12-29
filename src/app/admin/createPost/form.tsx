@@ -136,7 +136,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
     const [subcategorys, setSubcategorys] = useState<Subcategory[]>();
 
     const getAllSubcategorys = async () => {
-        const res = await fetch(`https://www.agoraportal.net/api/posts/subcategory/getAll`, {
+        const res = await fetch(`${process.env.BASE_URL}/api/posts/subcategory/getAll`, {
             method: "GET",
             cache: 'no-store'
         });
@@ -203,7 +203,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                 ...data,
                 slug
             }
-            const res = await fetch(`https://www.agoraportal.net/api/admin/createPost`, {
+            const res = await fetch(`${process.env.BASE_URL}/api/admin/createPost`, {
             // const res = await fetch(`http://localhost:3000/api/admin/createPost`, {
                 method: 'POST',
                 body: JSON.stringify(object)

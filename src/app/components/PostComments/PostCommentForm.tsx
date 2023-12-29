@@ -67,7 +67,7 @@ const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, s
                 parrentCommentId
             }
 
-            const res = await fetch(`https://www.agoraportal.net/api/comments/comment`, {
+            const res = await fetch(`${process.env.BASE_URL}/api/comments/comment`, {
                 body: JSON.stringify(dataToSend),
                 method: 'POST'
             })

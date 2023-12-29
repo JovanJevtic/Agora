@@ -18,7 +18,7 @@ type Props = {
 export const getPost = async (slug: string): Promise<PostWithEverything> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`,
+      `${process.env.BASE_URL}/api/posts/getOne?slug=${slug}`,
       // `http://localhost:3000/api/posts/getOne?slug=${slug}`,
       {
         method: "GET",
@@ -39,7 +39,7 @@ export const getPost = async (slug: string): Promise<PostWithEverything> => {
 export const getCategory = async (categoryId: string): Promise<Category> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/category/getById?id=${categoryId}`,
+      `${process.env.BASE_URL}/api/posts/category/getById?id=${categoryId}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -55,7 +55,7 @@ export const getCategory = async (categoryId: string): Promise<Category> => {
 export const getSubcategory = async (subcategoryId: string): Promise<Subcategory> => {
   try {
     const res = await fetch(
-      `https://www.agoraportal.net/api/posts/subcategory/getById?id=${subcategoryId}`,
+      `${process.env.BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`,
       {
         method: "GET",
         cache: "no-cache",
@@ -70,7 +70,7 @@ export const getSubcategory = async (subcategoryId: string): Promise<Subcategory
 
 export async function generateStaticParams() {
   const slugs = await fetch(
-    "https://www.agoraportal.net/api/posts/all/staticParams"
+    `${process.env.BASE_URL}/api/posts/all/staticParams`
     // "http://localhost:3000/api/posts/all/staticParams"
   ).then((res) => res.json());
 
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   
   const post: Post = await fetch(
-    `https://www.agoraportal.net/api/posts/getOne?slug=${slug}`
+    `${process.env.BASE_URL}/api/posts/getOne?slug=${slug}`
     // `http://localhost:3000/api/posts/getOne?slug=${slug}`
   ).then((res) => res.json());
 
