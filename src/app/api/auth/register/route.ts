@@ -64,8 +64,8 @@ export const POST = async (request: NextRequest) => {
             service: 'gmail',
             // host: 'smtp.gmail.com',
             auth: {
-                user: 'kontaktagoraa@gmail.com', // your domain email address
-                pass: 'nsahjqkjijvdizzq' // your password
+                user: 'kontaktagoraa@gmail.com',
+                pass: 'adasdJKLJ23K4JR90U.asjdakj31327'
             },
         });
 
