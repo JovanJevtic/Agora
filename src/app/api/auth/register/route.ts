@@ -104,6 +104,7 @@ export const POST = async (request: NextRequest) => {
         // const sendResult = await transporter.sendMail(mailOptions);
         return NextResponse.json({ message: 'success' }, { status: 200 });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
     }
 }
