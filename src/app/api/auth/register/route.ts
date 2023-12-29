@@ -57,7 +57,8 @@ export const POST = async (request: NextRequest) => {
 
         if (!emailVerifyToken) return NextResponse.json({ error: 'Doslo je do greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
 
-        const url = `${process.env.BASE_URL}/account/verify-email?token=${token}`
+        // const url = `${process.env.BASE_URL}/account/verify-email?token=${token}`
+        const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
 
         const transporter = nodemailer.createTransport({ 
             service: 'gmail',
