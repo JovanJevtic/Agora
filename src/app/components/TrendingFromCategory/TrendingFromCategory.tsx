@@ -20,8 +20,10 @@ const TrendingFromCategory: React.FunctionComponent<Props> = ({ category }) => {
             })
             const data = await res.json();
 
+            console.log(`${process.env.BASE_URL}/api/posts/category/latest?name=${category}`);
+
             if (data.posts) {
-                setData(data.posts);
+                setData(data.posts);    
             } else {
                 setErr("Doslo je do greske! ")
 
