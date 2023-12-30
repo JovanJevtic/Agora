@@ -222,6 +222,7 @@ const CreatePostForm: React.FunctionComponent<Props> = ({ categorys, user }) => 
                 }
             }
         } catch (error: any) {
+            console.log(error, 'err: ');
             throw new Error(error)
         }
     }
