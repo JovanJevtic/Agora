@@ -57,24 +57,22 @@ export const POST = async (request: NextRequest) => {
 
         if (!emailVerifyToken) return NextResponse.json({ error: 'Doslo je do greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
 
-        // const url = `${process.env.BASE_URL}/account/verify-email?token=${token}`
-        const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
+        const url = `${process.env.BASE_URL}/account/verify-email?token=${token}`
+        // const url = `https://www.agoraportal.net/account/verify-email?token=${token}`
 
         const transporter = nodemailer.createTransport({ 
             service: 'gmail',
             // host: 'smtp.gmail.com',
             auth: {
                 user: 'kontaktagoraa@gmail.com',
-                pass: 'adasdJKLJ23K4JR90U.asjdakj31327'
+                pass: 'bydnmouwhptsgagx'
             },
         });
 
         await new Promise((resolve, reject) => {
-            // verify connection configuration
             transporter.verify(function (error, success) {
                 if (error) {
                     reject(error);
-                    // console.log(error);
                 } else {
                     resolve(success);
                 }
@@ -93,8 +91,6 @@ export const POST = async (request: NextRequest) => {
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
                     reject(err);
-                    // console.log(err);
-
                 } else {
                     resolve(info);
                 }
@@ -104,7 +100,6 @@ export const POST = async (request: NextRequest) => {
         // const sendResult = await transporter.sendMail(mailOptions);
         return NextResponse.json({ message: 'success' }, { status: 200 });
     } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: 'Doslo je do iznenadne greske...Molimo Vas pokusajte ponovo' }, { status: 500 });
+        return NextResponse.json({ error: 'Došlo je do iznenadne greške...Molimo Vas pokušajte ponovo!' }, { status: 500 });
     }
 }
