@@ -46,6 +46,9 @@ export const GET = async (request: NextRequest) => {
                                     author: true
                                 }
                             }
+                        },
+                        orderBy: {
+                            createdAt: 'desc'
                         }
                     }
                 }

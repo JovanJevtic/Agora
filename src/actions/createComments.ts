@@ -1,31 +1,30 @@
-import { authOptions } from "@/app/libs/authOptions";
+'use server';
 import { commentCreationFormSchema } from "@/app/libs/validation/form";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
+import { Cagliostro } from "next/font/google";
+import { authOptions } from "@/app/libs/authOptions";
+import { revalidatePath } from "next/cache";
 
-export type CommentCreationData = {
-    text: string;
-    postId: string;
-    isReply: boolean;
-    parrentCommentId: string;
-}
-
-export const POST = async (request: NextRequest) => {
+export const createComment = async (postId: string, isReply: boolean, parrentCommentId: string | null, formData: FormData) => {
     try {
-        const {
-            text,
-            isReply,
-            parrentCommentId,
-            postId
-        } = (await request.json()) as CommentCreationData
+        const text = formData.get("text");
+
+        if (!text) {
+            return {
+                errors: "No text field provided!"
+            }
+        }
 
         const session = await getServerSession(authOptions)
 
-        if (!session?.user) {
-            return NextResponse.json({ message: "Došlo je do greške u prijavi, molimo Vas prijavite se ponovo!" }, { status: 500 })
+        if (!session?.user.id) {
+            console.log(session?.user);
+            return {
+                errors: "Unauthorized!"
+            }
         }
- 
+
         const validateResponse = commentCreationFormSchema.safeParse({
             text,
             // isReply,
@@ -39,12 +38,14 @@ export const POST = async (request: NextRequest) => {
                 zodErrors = { ...zodErrors, [issue.path[0]]: issue.message };
             });
     
-            return NextResponse.json({ errors: zodErrors }, { status: 400 });
+            return {
+                errors: zodErrors
+            }
         }
 
         const comment = await prisma.comment.create({
             data: {
-                text, 
+                text: text as string, 
                 isReply,
                 authorId: session.user.id,
                 postId,
@@ -52,8 +53,10 @@ export const POST = async (request: NextRequest) => {
             }
         })
 
-        return NextResponse.json({ comment }, { status: 200 });
+        revalidatePath(`/post/[slug]`)
     } catch (error) {
-        return NextResponse.json({ error })
+        return {
+            errors: error
+        }
     }
 }

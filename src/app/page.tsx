@@ -38,17 +38,6 @@ const getYoutubeVideos = async (): Promise<YTVideoObjRes> => {
   }
 }
 
-// const getYoutubeVideos2 = async () => {
-  // "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBOuy5OmK1RItsOkMGHXCddUCKu88xPeuE&channelId=Ccp3HUStwGKVdrqpANkgmlg&part=snippet,id&order=date&maxResults=50"
-
-  // const response = await youtubeService.videos.list({
-  //   part: 'snippet',
-  //   maxResults: 50, // Set the number of videos you want to retrieve
-  //   playlistId,
-  // });
-// }
-
-
 export default async function Home() {
   const trendingPosts = await getTrendingPosts();
   const ytVideoListPromise = getYoutubeVideos();

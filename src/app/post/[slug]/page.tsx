@@ -138,7 +138,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
       </div>
       <div className="w-full bg-card bottom-0 mt-5 border-b-[1px] border-solid border-secondary pt-5">
         <div className="">
-          <PostComments postId={post.id} comments={post.comments} />
+          <PostComments postSlug={post.slug} postId={post.id} comments={post.comments} />
         </div>
       </div>
     </div>

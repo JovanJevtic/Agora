@@ -17,7 +17,7 @@ type Props = {
 const PostComment = ({ comment, postId }: Props) => {
     const [repliesShown, setRepliesShown] = useState(false);
     const [replyFormShown, setReplyFormShown] = useState(false);
-
+    
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { data: session, status } = useSession()
