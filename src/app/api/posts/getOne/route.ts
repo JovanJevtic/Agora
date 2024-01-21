@@ -44,6 +44,9 @@ export const GET = async (request: NextRequest) => {
                             replies: {
                                 include: {
                                     author: true
+                                },
+                                orderBy: {
+                                    createdAt: 'desc'
                                 }
                             }
                         },

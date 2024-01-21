@@ -8,12 +8,15 @@ import { Suspense } from "react";
 import { Metadata, ResolvingMetadata } from "next";
 import PostComments from "@/app/components/PostComments";
 import { PostWithComments, PostWithEverything } from "@/types";
+import prisma from "@/app/libs/prismadb";
 
 type Props = {
   params: {
     slug: string;
   };
 };
+
+export const dynamic = 'force-dynamic'
 
 export const getPost = async (slug: string): Promise<PostWithEverything> => {
   try {
@@ -23,6 +26,9 @@ export const getPost = async (slug: string): Promise<PostWithEverything> => {
       {
         method: "GET",
         cache: "no-cache",
+        next: {
+          tags: ['post']
+        }
       }
     );
     const data = await res.json();
@@ -70,7 +76,13 @@ export const getSubcategory = async (subcategoryId: string): Promise<Subcategory
 
 export async function generateStaticParams() {
   const slugs = await fetch(
-    `${process.env.BASE_URL}/api/posts/all/staticParams`
+    `${process.env.BASE_URL}/api/posts/all/staticParams`,
+    {
+      cache: 'no-cache',
+      next: {
+        tags: ['post']
+      }
+    }
     // "http://localhost:3000/api/posts/all/staticParams"
   ).then((res) => res.json());
 
@@ -108,10 +120,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
-  const postData = getPost(slug);
-  const post = await postData;
+  // const postData = getPost(slug);
+  // const post = await postData;
 
-  if (post.archived || !post) {
+  const post = await prisma.post.findUnique({ 
+    where: { 
+        slug: slug,
+        // archived: false
+    },
+    include: {
+      author: true,
+      category: {
+        include: {
+          subcategories: true
+        }
+      },
+      subcategory: true,
+      comments: {
+        orderBy: {
+          createdAt: 'desc'
+        },
+        include: {
+          author: true,
+          replies: {
+            orderBy: {
+              createdAt: 'desc'
+            },
+            include: {
+              author: true,
+            }
+          }
+        }
+      }
+    }
+  });
+
+  if (post?.archived || !post) {
     notFound()
   }
 
@@ -134,7 +178,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
       />
       {/* </Suspense> */}
       <div className="container">
-        <PostComponent categoryHex={category.hexCol as string} categoryName={category.name} subcategoryName={subcategory.name} post={post} />
+        <PostComponent categoryHex={category.hexCol as string} categoryName={category.name} subcategoryName={subcategory.name} post={post as PostWithEverything} />
       </div>
       <div className="w-full bg-card bottom-0 mt-5 border-b-[1px] border-solid border-secondary pt-5">
         <div className="">

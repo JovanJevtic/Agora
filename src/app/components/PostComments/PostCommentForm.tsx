@@ -6,11 +6,19 @@ import { Input } from '@/app/components/ui/input'
 import { Button } from "../ui/button"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useOptimistic, useState, useTransition } from "react"
 import { Textarea } from "../ui/textarea"
 import { useSession } from "next-auth/react"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 import Link from "next/link"
+import { createComment } from "@/actions/createComments"
+import AddCommentBtn from "./AddCommentBtn"
+import { revalidatePath } from "next/cache"
+
+type newComment = {
+    text: string;
+    parrentCommentId: string;
+}
 
 type Props = {
     isReply: boolean;
@@ -18,13 +26,19 @@ type Props = {
     postId: string;
     setIsSubmitting: (arg: boolean) => void;
     setShown: (arg: boolean) => void;
+    addOptimisticComment?: (newComment: newComment) => void;
+    setRepliesShown: Dispatch<SetStateAction<boolean>>;
+    setFormShown: Dispatch<SetStateAction<boolean>>;
+    postSlug: string;
 }
 
-const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, setShown }: Props) => {
+const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, setShown, addOptimisticComment, setRepliesShown, postSlug, setFormShown }: Props) => {
     const { refresh } = useRouter()
     const { data: session, status } = useSession()
    
     const [dialogOpen, setDialogOpen] = useState(false);
+
+    const [, startTransition] = useTransition()
 
     const initialValues = {
         text: ''    
@@ -50,6 +64,25 @@ const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, s
     } = form
 
     const { text } = watch()
+
+    const onSubmitAction = async (formData: FormData) => {
+        if (status !== "authenticated") {
+            setDialogOpen(true)
+            return
+        }
+
+        // startTransition(() => {
+        //     addOptimisticComment({ text: text, parrentCommentId })
+        // })
+
+        reset(initialValues)
+
+        setRepliesShown(true)
+        setFormShown(false)
+
+        const createFullComment = createComment.bind(null, postId, true, parrentCommentId, postSlug)
+        await createFullComment(formData)
+    }
 
     const onSubmit = async (data: FieldValues) => {
         try {
@@ -118,7 +151,27 @@ const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, s
         </Dialog>
 
         <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form 
+                action={async (formData) => {
+                    if (status !== "authenticated") {
+                        setDialogOpen(true)
+                        return
+                    }
+            
+                    // startTransition(() => {
+                    //     addOptimisticComment({ text: text, parrentCommentId })
+                    // })
+            
+                    reset(initialValues)
+            
+                    setRepliesShown(true)
+                    setFormShown(false)
+            
+                    const createFullComment = createComment.bind(null, postId, true, parrentCommentId, postSlug)
+                    await createFullComment(formData)
+                }} 
+                // onSubmit={handleSubmit(onSubmit)}
+            >
                 <FormField
                     control={form.control}
                     name="text"
@@ -136,12 +189,7 @@ const PostCommentForm = ({ isReply, postId, parrentCommentId, setIsSubmitting, s
                     <Button type="button" variant={"secondary"} className="h-[34px] text-xs mr-3" onClick={() => setShown(false)}>
                         Odustani
                     </Button>
-                    <Button disabled={isSubmitting || isLoading || text.length < 1 } type="submit" className="h-[34px] text-xs">
-                        Komentariši
-                        {
-                            (isSubmitting || isLoading) && <Loader2 className="ml-2 mr-2 h-4 w-4 animate-spin" />
-                        }
-                    </Button>
+                    <AddCommentBtn text={text} />
                 </div>
             </form>
         </Form>

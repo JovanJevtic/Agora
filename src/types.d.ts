@@ -76,6 +76,13 @@ type CommentWithReplies = Prisma.CommentGetPayload<{
   }
 }>
 
+type ReplyComment = Omit<CommentWithReplies, "replies">
+
+type NewReply = {
+  text: string;
+  parrentCommentId: string;
+}
+
 type PostWithEverything = Prisma.PostGetPayload<{
   include: {
     author: true,

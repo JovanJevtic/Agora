@@ -14,6 +14,7 @@ const getTrendingPosts = async (): Promise<{ primary: Post, secondary: Post[] }>
       method: "GET",
       cache: "no-cache",
     });
+
     const data = await res.json();
     return data;
   } catch (error: any) {

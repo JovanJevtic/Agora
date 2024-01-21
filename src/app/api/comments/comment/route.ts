@@ -57,3 +57,32 @@ export const POST = async (request: NextRequest) => {
         return NextResponse.json({ error })
     }
 }
+
+export const GET = async (request: NextRequest) => {
+    try {
+        const url = new URL(request.url)
+        const id = url.searchParams.get("id");
+        if (!id) return NextResponse.json({ status: 500 });
+
+        const comment = await prisma.comment.findUnique({
+            where: {
+                id
+            },
+            include: {
+                replies: {
+                    orderBy: {
+                        createdAt: "desc"
+                    },
+                    include: {
+                        author: true
+                    }
+                }
+            }
+        })
+
+        return NextResponse.json(comment)
+    } catch (error) {
+        console.log(error, 'blaa <<<<<<<<<==');
+        return NextResponse.error();
+    }
+}

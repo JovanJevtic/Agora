@@ -1,27 +1,34 @@
 'use client';
 
-import { CommentWithReplies } from "@/types"
-import Date from "./Date";
+import { CommentWithReplies, NewReply, ReplyComment } from "@/types"
+import DateComponent from "./Date";
 import Image from "next/image";
-import { ArrowDown, ArrowDown01, ArrowUp, ChevronDown, ChevronUp, DeleteIcon, Loader, Loader2, Trash, Trash2, User } from "lucide-react";
-import { useState } from "react";
+import { ArrowDown, ArrowDown01, ArrowUp, ChevronDown, ChevronUp, DeleteIcon, Loader, Loader2, Trash, Trash2, User as UserIcon } from "lucide-react";
+import { useEffect, useOptimistic, useState } from "react";
 import { Button } from "../ui/button";
 import PostCommentForm from "./PostCommentForm";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { User } from "@prisma/client";
+import { v4 as uuid } from "uuid";
 
 type Props = {
     comment: CommentWithReplies;
     postId: string;
+    postSlug: string;
 }
-const PostComment = ({ comment, postId }: Props) => {
+
+const PostComment = ({ comment, postId, postSlug }: Props) => {
     const [repliesShown, setRepliesShown] = useState(false);
     const [replyFormShown, setReplyFormShown] = useState(false);
-    
+
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { data: session, status } = useSession()
     const { refresh } = useRouter()
+
+    // clr85u6cd000qcez0ujptspm9
+
 
     const onDelete = async (commentId: string) => {
         try {
@@ -48,14 +55,14 @@ const PostComment = ({ comment, postId }: Props) => {
                         comment.author.image ? <Image alt="profile picture" width={24} height={24} className="rounded-[50%]" src={comment.author.image} /> 
                             : 
                         <div className="h-[27px] w-[27px] rounded-[50%] flex items-center justify-center bg-card">
-                            <User size={13} />
+                            <UserIcon size={13} />
                         </div>
                     }
                 </div>
                 <div className="flex-[1]">
                     <div className="flex items-center">
                         <p className="text-sm ml-3 font-">{comment.author.name}</p>
-                        <Date createdAt={comment.createdAt} updatedAt={comment.updatedAt} />
+                        <DateComponent createdAt={comment.createdAt} updatedAt={comment.updatedAt} />
                     </div>
                     
                     <div className="mt-1 ml-3">
@@ -85,7 +92,17 @@ const PostComment = ({ comment, postId }: Props) => {
                     {
                         replyFormShown && (
                             <div className="ml-3">
-                                <PostCommentForm setShown={setReplyFormShown} setIsSubmitting={setIsSubmitting} isReply={true} parrentCommentId={comment.id} postId={postId} />
+                                <PostCommentForm 
+                                    setFormShown={setReplyFormShown} 
+                                    postSlug={postSlug} 
+                                    setRepliesShown={setRepliesShown} 
+                                    // addOptimisticComment={addOptimisticReply} 
+                                    setShown={setReplyFormShown} 
+                                    setIsSubmitting={setIsSubmitting} 
+                                    isReply={true} 
+                                    parrentCommentId={comment.id} 
+                                    postId={postId} 
+                                />
                             </div>
                         )
                     }
@@ -94,6 +111,7 @@ const PostComment = ({ comment, postId }: Props) => {
                     {
                         repliesShown && <div className="ml-[30px] mt-3">
                             {/* <h1 className="text-sm mb-5">Odgovori:</h1> */}
+                            
                             {
                                 (comment.replies?.map((reply) => (
                                     <div key={reply.id} className="mb-5 flex">
@@ -103,7 +121,7 @@ const PostComment = ({ comment, postId }: Props) => {
                                                     reply.author.image ? <Image alt="profile picture" width={24} height={24} className="rounded-[50%]" src={reply.author.image} /> 
                                                     : 
                                                     <div className="h-[27px] w-[27px] rounded-[50%] flex items-center justify-center bg-card">
-                                                        <User size={13} />
+                                                        <UserIcon size={13} />
                                                     </div>
                                                 }
                                             </div>
@@ -111,7 +129,7 @@ const PostComment = ({ comment, postId }: Props) => {
                                         <div className="flex-[1]">
                                             <div className="flex items-center">
                                                 <p className="text-sm ml-3 font-">{reply.author.name}</p>
-                                                <Date createdAt={reply.createdAt} updatedAt={reply.updatedAt} />
+                                                <DateComponent createdAt={reply.createdAt} updatedAt={reply.updatedAt} />
                                                 {/* {
                                                     session?.user.role === "admin" && (
                                                         <div className="flex h-full items-center ml-5">
@@ -126,26 +144,11 @@ const PostComment = ({ comment, postId }: Props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    )))
-                                }
+                                )))
+                            }
                         </div>
                     }
-
-                    {/* {
-                        comment.replies?.map((reply) => (
-                            <div>
-                                <h1>Reply: {reply.text}</h1>
-                            </div>
-                        ))
-                    } */}
                 </div>
-                {/* {
-                    session?.user.role === "admin" && (
-                        <div className="flex h-full items-center">
-                            <Trash2 className="text-red-700 mt-1 cursor-pointer" onClick={() => onDelete(comment.id)} size={24} />
-                        </div>
-                    )
-                } */}
             </div>
         </div>
     </div>

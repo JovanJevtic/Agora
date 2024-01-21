@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -27,6 +24,7 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@unique([provider, providerAccountId])
 }
 
@@ -36,6 +34,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model User {
@@ -100,6 +100,10 @@ model Post {
 
   isVideo         Boolean      @default(false)
   videoLink       String?
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([subcategoryId])
 }
 
 model Category {
@@ -119,6 +123,8 @@ model Subcategory {
   name          String      
   posts         Post[]
   colorHex      String
+
+  @@index([categoryId])
 } 
 
 model Comment {
@@ -139,4 +145,8 @@ model Comment {
   parrentComment        Comment? @relation("replies", fields: [parrentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   
   replies               Comment[]    @relation("replies")
+
+  @@index([postId])
+  @@index([authorId])
+  @@index([parrentCommentId])
 }

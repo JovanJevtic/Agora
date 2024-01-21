@@ -22,7 +22,7 @@ const Date = ({ createdAt, updatedAt }: Props) => {
     return (
     <div className="flex ml-3">
         <p className="text-xs text-gray-400"><Moment locale="bs" fromNow>{createdAt}</Moment></p>
-        { createdAt !== updatedAt && <p className="text-xs text-gray-400 ml-2">Izmjenjeno: <Moment locale="bs" fromNow>{updatedAt}</Moment></p> }
+        { createdAt.getTime() !== updatedAt.getTime() && <p className="text-xs text-gray-400 ml-2">Izmjenjeno: <Moment locale="bs" fromNow>{updatedAt}</Moment></p> }
     </div>
   )
 }
