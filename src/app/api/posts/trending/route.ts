@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 export const GET = async (request: NextRequest) => {
-  const dynamic = 'force-dynamic'
+  const dynamic = "force-dynamic";
   try {
     const postPrimary = await prisma.post.findFirst({
       where: {
         positionPrimary: true,
-        archived: false
+        archived: false,
       },
       take: 1,
       orderBy: { createdAt: "desc" },
@@ -18,15 +18,19 @@ export const GET = async (request: NextRequest) => {
       where: {
         positionSecondary: true,
         NOT: {
-          id: postPrimary?.id || ''
+          id: postPrimary?.id || "",
         },
-        archived: false
+        archived: false,
       },
       take: 4,
       orderBy: { createdAt: "desc" },
     });
-    return NextResponse.json({ primary: postPrimary, secondary: postsSecondary }, { status: 200 });
+    return NextResponse.json(
+      { primary: postPrimary, secondary: postsSecondary },
+      { status: 200 }
+    );
   } catch (error) {
+    console.log("error>>>>", error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
 };
