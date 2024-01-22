@@ -15,7 +15,7 @@ type Props = {
   };
 };
 
-export const getPost = async (slug: string): Promise<PostWithEverything> => {
+const getPost = async (slug: string): Promise<PostWithEverything> => {
   try {
     const res = await fetch(
       `${process.env.BASE_URL}/api/posts/getOne?slug=${slug}`,
@@ -27,16 +27,16 @@ export const getPost = async (slug: string): Promise<PostWithEverything> => {
     );
     const data = await res.json();
     if (data.status === 500) {
-      notFound()
+      notFound();
     }
     return data;
   } catch (error: any) {
-    notFound()
+    notFound();
     throw new Error(error);
   }
 };
 
-export const getCategory = async (categoryId: string): Promise<Category> => {
+const getCategory = async (categoryId: string): Promise<Category> => {
   try {
     const res = await fetch(
       `${process.env.BASE_URL}/api/posts/category/getById?id=${categoryId}`,
@@ -48,11 +48,11 @@ export const getCategory = async (categoryId: string): Promise<Category> => {
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
 };
 
-export const getSubcategory = async (subcategoryId: string): Promise<Subcategory> => {
+const getSubcategory = async (subcategoryId: string): Promise<Subcategory> => {
   try {
     const res = await fetch(
       `${process.env.BASE_URL}/api/posts/subcategory/getById?id=${subcategoryId}`,
@@ -64,7 +64,7 @@ export const getSubcategory = async (subcategoryId: string): Promise<Subcategory
     const data = await res.json();
     return data;
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
 };
 
@@ -81,7 +81,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
-  
+
   const post: Post = await fetch(
     `${process.env.BASE_URL}/api/posts/getOne?slug=${slug}`
     // `http://localhost:3000/api/posts/getOne?slug=${slug}`
@@ -112,7 +112,7 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
   const post = await postData;
 
   if (post.archived || !post) {
-    notFound()
+    notFound();
   }
 
   const categoryData = getCategory(post.categoryId);
@@ -134,7 +134,12 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
       />
       {/* </Suspense> */}
       <div className="container">
-        <PostComponent categoryHex={category.hexCol as string} categoryName={category.name} subcategoryName={subcategory.name} post={post} />
+        <PostComponent
+          categoryHex={category.hexCol as string}
+          categoryName={category.name}
+          subcategoryName={subcategory.name}
+          post={post}
+        />
       </div>
       <div className="w-full bg-card bottom-0 mt-5 border-b-[1px] border-solid border-secondary pt-5">
         <div className="">
@@ -146,3 +151,5 @@ const Page: React.FunctionComponent<Props> = async ({ params: { slug } }) => {
 };
 
 export default Page;
+
+export { getCategory, getSubcategory, getPost };
