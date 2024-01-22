@@ -7,47 +7,52 @@ import { YTVideoObjRes } from "@/types";
 import LandingYoutubePreview from "./components/LandingYoutubePreview";
 import youtubeService from "./libs/youtube";
 
-const getTrendingPosts = async (): Promise<{ primary: Post, secondary: Post[] }> => {
+const getTrendingPosts = async (): Promise<{
+  primary: Post;
+  secondary: Post[];
+}> => {
   try {
     const res = await fetch(`${process.env.BASE_URL}/api/posts/trending`, {
-    // const res = await fetch("http://localhost:3000/api/posts/trending", {
+      // const res = await fetch("http://localhost:3000/api/posts/trending", {
       method: "GET",
       cache: "no-cache",
     });
     const data = await res.json();
     return data;
   } catch (error: any) {
-    console.log(error, 'err');
-    throw new Error(error)
+    console.log(error, "err");
+    throw new Error(error);
   }
 };
 
 const getYoutubeVideos = async (): Promise<YTVideoObjRes> => {
   try {
-    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?channelId=${"UCcp3HUStwGKVdrqpANkgmlg"}&key=${process.env.YT_API_KEY}&maxResults=10&part=snippet,id&order=date&type=video&videoDuration=long`, {
-      method: 'GET',
-      cache: 'force-cache',
-      next: {
-        revalidate: 86400 
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?channelId=${"UCcp3HUStwGKVdrqpANkgmlg"}&key=${process.env.YT_API_KEY}&maxResults=10&part=snippet,id&order=date&type=video&videoDuration=long`,
+      {
+        method: "GET",
+        cache: "force-cache",
+        next: {
+          revalidate: 86400,
+        },
       }
-    });
+    );
     const data = await res.json();
     return data as YTVideoObjRes;
   } catch (error: any) {
-    throw new Error("Error fetching...")
+    throw new Error("Error fetching...");
   }
-}
+};
 
 // const getYoutubeVideos2 = async () => {
-  // "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBOuy5OmK1RItsOkMGHXCddUCKu88xPeuE&channelId=Ccp3HUStwGKVdrqpANkgmlg&part=snippet,id&order=date&maxResults=50"
+// "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBOuy5OmK1RItsOkMGHXCddUCKu88xPeuE&channelId=Ccp3HUStwGKVdrqpANkgmlg&part=snippet,id&order=date&maxResults=50"
 
-  // const response = await youtubeService.videos.list({
-  //   part: 'snippet',
-  //   maxResults: 50, // Set the number of videos you want to retrieve
-  //   playlistId,
-  // });
+// const response = await youtubeService.videos.list({
+//   part: 'snippet',
+//   maxResults: 50, // Set the number of videos you want to retrieve
+//   playlistId,
+// });
 // }
-
 
 export default async function Home() {
   const trendingPosts = await getTrendingPosts();
@@ -61,17 +66,20 @@ export default async function Home() {
           <CurrentDate />
         </div>
       </div>
-      
+
       {/* <div className="bg-card border-solid border-t-[1px] border-secondary"> */}
-        {/* <div className="container py-2"> */}
-          {/* <h1>Iz svijeta i regiona</h1> */}
-        {/* </div> */}
+      {/* <div className="container py-2"> */}
+      {/* <h1>Iz svijeta i regiona</h1> */}
+      {/* </div> */}
       {/* </div> */}
 
       <div className="mt-0 md:mt-0">
-        <TrendingNews primary={trendingPosts.primary} secondary={trendingPosts.secondary} />
+        <TrendingNews
+          primary={trendingPosts.primary}
+          secondary={trendingPosts.secondary}
+        />
       </div>
-      
+
       <div className="">
         <TrendingFromCategory category="Novosti" />
 
