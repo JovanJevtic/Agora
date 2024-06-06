@@ -1,14 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
-  relationMode = "prisma"
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model Account {
@@ -27,6 +24,7 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@unique([provider, providerAccountId])
 }
 
@@ -36,6 +34,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model User {
@@ -66,7 +66,7 @@ model EmailVerificationToken {
   name      String   @db.VarChar(50)
   password  String   @db.VarChar(200)
   token     String   @unique @db.VarChar(200) 
-  expiresAt DateTime @default(dbgenerated("(DATE_ADD(NOW(), INTERVAL 24 HOUR))"))
+  expiresAt DateTime @default(dbgenerated("NOW() + INTERVAL '24 HOUR'"))
 }
 
 model Post {
@@ -82,8 +82,8 @@ model Post {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
-  category      Category      @relation(fields: [categoryId], references: [id], onDelete: NoAction)
-  categoryId    String
+  category        Category      @relation(fields: [categoryId], references: [id], onDelete: NoAction)
+  categoryId      String
 
   subcategory      Subcategory?  @relation(fields: [subcategoryId], references: [id], onDelete: NoAction)
   subcategoryId    String?
@@ -97,6 +97,13 @@ model Post {
   izvor           String?
 
   comments        Comment[]
+
+  isVideo         Boolean      @default(false)
+  videoLink       String?
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([subcategoryId])
 }
 
 model Category {
@@ -116,6 +123,8 @@ model Subcategory {
   name          String      
   posts         Post[]
   colorHex      String
+
+  @@index([categoryId])
 } 
 
 model Comment {
@@ -136,4 +145,8 @@ model Comment {
   parrentComment        Comment? @relation("replies", fields: [parrentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   
   replies               Comment[]    @relation("replies")
+
+  @@index([postId])
+  @@index([authorId])
+  @@index([parrentCommentId])
 }
